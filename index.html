@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M&amp;H Dynamic Tech — Certified Pre-Owned Laptops &amp; Phones in South Africa</title>
+<meta name="description" content="Shop certified pre-owned iPhones, MacBooks and business laptops. Tested, warranted and delivered across South Africa.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#04122B; --navy2:#0A1E40; --ink:#11223A; --muted:#5B6B7E; --line:#E3E8EF;
+  --surface:#F1F3F6; --card:#FFFFFF;
+  --blue:#0E63D6; --blue-deep:#0A4DAB; --sky:#2E9BE6; --sky-soft:#E7F1FC;
+  --save:#E0102B; --gold:#F5A623; --green:#1B9E63;
+  --radius:10px; --shadow:0 1px 3px rgba(17,34,58,.08),0 6px 20px rgba(17,34,58,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--surface);line-height:1.45;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 18px}
+
+/* top strip */
+.strip{background:var(--navy2);color:#BFD4EC;font-size:12.5px}
+.strip .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;padding:7px 18px}
+.strip b{color:#fff}
+
+/* header */
+header{background:var(--navy);position:sticky;top:0;z-index:50}
+.hbar{display:flex;align-items:center;gap:20px;max-width:1240px;margin:0 auto;padding:12px 18px}
+.logo img{height:46px;width:auto}
+.searchwrap{flex:1;display:flex;max-width:680px}
+.searchwrap input{flex:1;border:0;outline:none;font-size:15px;padding:12px 16px;border-radius:8px 0 0 8px;font-family:inherit}
+.searchwrap button{border:0;background:var(--blue);color:#fff;padding:0 22px;border-radius:0 8px 8px 0;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:7px;font-family:inherit}
+.searchwrap button:hover{background:var(--blue-deep)}
+.hactions{display:flex;align-items:center;gap:18px;margin-left:auto;color:#fff}
+.hact{display:flex;flex-direction:column;font-size:11px;color:#AFC6E2;cursor:pointer;line-height:1.2}
+.hact b{font-size:13px;color:#fff}
+.cartbtn{position:relative;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:9px;padding:9px 15px;cursor:pointer;font-weight:600;font-size:14px;font-family:inherit}
+.cartbtn:hover{background:rgba(255,255,255,.16)}
+.cartbtn .count{position:absolute;top:-7px;right:-7px;background:var(--save);color:#fff;font-size:11px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:grid;place-items:center;padding:0 5px}
+
+/* department nav */
+.dept{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:70px;z-index:40}
+.dept .wrap{display:flex;gap:4px;overflow-x:auto}
+.dept a{padding:13px 16px;font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:3px solid transparent;cursor:pointer}
+.dept a:hover{color:var(--blue)}
+.dept a.on{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* breadcrumb */
+.crumb{padding:16px 0 6px}
+.crumb .wrap{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.crumb b{color:var(--ink)}
+.ptitle{padding:2px 0 18px}
+.ptitle h1{font-size:24px;font-weight:700;letter-spacing:-.01em}
+.ptitle p{color:var(--muted);font-size:14px;margin-top:3px}
+
+/* layout */
+.body .wrap{display:grid;grid-template-columns:240px 1fr;gap:22px;align-items:start;padding-bottom:60px}
+aside{background:#fff;border:1px solid var(--line);border-radius:var(--radius);position:sticky;top:130px}
+.fhead{display:flex;justify-content:space-between;align-items:center;padding:15px 16px;border-bottom:1px solid var(--line)}
+.fhead h2{font-size:15px}
+.fhead button{background:none;border:0;color:var(--blue);font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.fgroup{padding:15px 16px;border-bottom:1px solid var(--line)}
+.fgroup:last-child{border-bottom:0}
+.fgroup h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:11px}
+.fopt{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:14px;cursor:pointer;color:var(--ink)}
+.fopt input{width:16px;height:16px;accent-color:var(--blue);cursor:pointer}
+
+/* toolbar */
+.toolbar{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.toolbar .count{font-size:14px;color:var(--muted)}
+.toolbar .count b{color:var(--ink)}
+.tright{display:flex;align-items:center;gap:12px}
+.tright label{font-size:13px;color:var(--muted)}
+.tright select{border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:13.5px;font-family:inherit;color:var(--ink);background:#fff;cursor:pointer}
+.viewtog{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.viewtog button{border:0;background:#fff;padding:8px 10px;cursor:pointer;color:var(--muted);display:grid;place-items:center}
+.viewtog button.on{background:var(--sky-soft);color:var(--blue)}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(214px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,border-color .15s}
+.card:hover{box-shadow:var(--shadow);border-color:#CDD8E6}
+.imgwrap{position:relative;aspect-ratio:1/1;background:#fff;display:block;padding:14px}
+.imgwrap img{width:100%;height:100%;object-fit:contain}
+.grade{position:absolute;top:9px;left:9px;background:var(--sky-soft);color:var(--blue-deep);font-size:10.5px;font-weight:700;letter-spacing:.01em;padding:4px 8px;border-radius:6px}
+.cbody{padding:13px 14px 15px;display:flex;flex-direction:column;gap:8px;flex:1;border-top:1px solid var(--line)}
+.cbody h3{font-size:14.5px;font-weight:500;line-height:1.3;color:var(--ink);min-height:38px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card:hover h3{color:var(--blue)}
+.spec{font-size:12px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.priceline{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:2px}
+.price{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.was{font-size:12.5px;color:var(--muted);text-decoration:line-through}
+.savetag{font-size:11px;font-weight:700;color:var(--save)}
+.add{margin-top:4px;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:11px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:inherit;transition:background .12s}
+.add:hover{background:var(--blue-deep)}
+.add.added{background:var(--green)}
+.empty{grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:var(--radius)}
+
+/* list view */
+.grid.list{grid-template-columns:1fr;gap:12px}
+.grid.list .card{flex-direction:row}
+.grid.list .imgwrap{width:190px;flex:none;aspect-ratio:1/1}
+.grid.list .cbody{border-top:0;border-left:1px solid var(--line);justify-content:center}
+.grid.list .cbody h3{min-height:0;font-size:16px}
+.grid.list .add{align-self:flex-start;padding:11px 30px}
+
+/* footer */
+footer{background:var(--navy);color:#9FB8D4;padding:46px 0 26px}
+footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:30px;margin-bottom:30px}
+footer img.flogo{height:42px;margin-bottom:14px}
+footer h5{color:#fff;font-size:13px;margin-bottom:13px;letter-spacing:.02em;text-transform:uppercase}
+footer a,footer p{display:block;font-size:13.5px;margin-bottom:9px;color:#9FB8D4}
+footer a:hover{color:#fff}
+.pays{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.pays span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:6px;padding:5px 9px;font-size:11px;color:#D3E2F2;font-weight:600}
+.copy{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#7E97B5}
+
+/* cart drawer */
+.overlay{position:fixed;inset:0;background:rgba(4,18,43,.55);opacity:0;visibility:hidden;transition:.2s;z-index:80}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;height:100%;width:400px;max-width:90vw;background:#fff;z-index:90;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.18)}
+.drawer.open{transform:translateX(0)}
+.dhead{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:#fff}
+.dhead h3{font-size:17px}
+.dhead button{background:none;border:0;font-size:26px;cursor:pointer;color:#fff;line-height:1}
+.ditems{flex:1;overflow-y:auto;padding:4px 20px}
+.ditem{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ditem .nm{font-size:14px;font-weight:600}.ditem .pr{font-size:13px;color:var(--muted)}
+.ditem .rm{background:none;border:0;color:var(--save);cursor:pointer;font-size:12.5px;font-weight:600}
+.dempty{text-align:center;color:var(--muted);padding:50px 20px;font-size:14px}
+.dfoot{padding:18px 20px;border-top:1px solid var(--line)}
+.dtotal{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-bottom:6px}
+.dnote{font-size:12px;color:var(--muted);margin-bottom:13px}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;border:0;border-radius:10px;padding:14px;font-weight:700;font-size:15px;cursor:pointer;width:100%;font-family:inherit;text-decoration:none}
+
+@media(max-width:900px){
+  .body .wrap{grid-template-columns:1fr}
+  aside{position:static;order:-1}
+  .fgroup.collapsible{display:none}
+  footer .cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .hbar{flex-wrap:wrap;gap:12px}
+  .searchwrap{order:3;flex-basis:100%;max-width:none}
+  .hactions .hact{display:none}
+  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .grid.list .card{flex-direction:column}
+  .grid.list .imgwrap{width:100%}
+  .grid.list .cbody{border-left:0;border-top:1px solid var(--line)}
+  footer .cols{grid-template-columns:1fr}
+  .logo img{height:38px}
+}
+</style>
+</head>
+<body>
+
+<div class="strip"><div class="wrap">
+  <span>🚚 <b>Fast delivery</b> across South Africa</span>
+  <span>✅ <b>Tested &amp; certified</b> devices</span>
+  <span>💬 <b>Order on WhatsApp</b> in seconds</span>
+</div></div>
+
+<header><div class="hbar">
+  <a class="logo" href="#"><img src="assets/logo.jpg" alt="M&amp;H Dynamic Tech"></a>
+  <div class="searchwrap">
+    <input id="search" type="search" placeholder="Search for iPhones, MacBooks, laptops…">
+    <button onclick="document.getElementById('search').focus()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Search</button>
+  </div>
+  <div class="hactions">
+    <a class="hact" href="https://wa.me/27636110970" target="_blank"><span>Need help?</span><b>063 611 0970</b></a>
+    <button class="cartbtn" id="openCart">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      Cart<span class="count" id="cartCount" style="display:none">0</span>
+    </button>
+  </div>
+</div></header>
+
+<nav class="dept"><div class="wrap">
+  <a data-cat="All" class="on">All Products</a>
+  <a data-cat="iPhones">iPhones</a>
+  <a data-cat="Apple">MacBooks &amp; Apple</a>
+  <a data-cat="Laptops">Laptops</a>
+  <a data-cat="Accessories">Accessories</a>
+</div></nav>
+
+<div class="crumb"><div class="wrap">Home <span>›</span> <b>All Products</b></div></div>
+<div class="ptitle"><div class="wrap"><h1 id="ptitle">All products</h1><p>Certified pre-owned tech, tested and ready to ship across South Africa.</p></div></div>
+
+<div class="body"><div class="wrap">
+  <aside>
+    <div class="fhead"><h2>Filters</h2><button id="clearF">Clear all</button></div>
+    <div class="fgroup">
+      <h3>Brand</h3>
+      <label class="fopt"><input type="checkbox" class="fbrand" value="Acer"><span>Acer</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="Apple"><span>Apple</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="Dell"><span>Dell</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="HP"><span>HP</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="Lenovo"><span>Lenovo</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="Other"><span>Other</span></label>
+    </div>
+    <div class="fgroup">
+      <h3>Price</h3>
+      <label class="fopt"><input type="checkbox" class="fband" value="u3"><span>Under R3,000</span></label>
+      <label class="fopt"><input type="checkbox" class="fband" value="36"><span>R3,000 – R6,000</span></label>
+      <label class="fopt"><input type="checkbox" class="fband" value="610"><span>R6,000 – R10,000</span></label>
+      <label class="fopt"><input type="checkbox" class="fband" value="o10"><span>Over R10,000</span></label>
+    </div>
+    <div class="fgroup">
+      <h3>Condition</h3>
+      <label class="fopt"><input type="checkbox" checked disabled><span>Certified Pre-Owned</span></label>
+    </div>
+  </aside>
+
+  <main>
+    <div class="toolbar">
+      <div class="count"><b id="shown">39</b> products found</div>
+      <div class="tright">
+        <label for="sort">Sort by</label>
+        <select id="sort">
+          <option value="rel">Relevance</option>
+          <option value="plow">Price: Low to High</option>
+          <option value="phigh">Price: High to Low</option>
+          <option value="az">Name: A to Z</option>
+        </select>
+        <div class="viewtog">
+          <button id="vGrid" class="on" title="Grid view"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+          <button id="vList" title="List view"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="4" width="18" height="3" rx="1"/><rect x="3" y="10.5" width="18" height="3" rx="1"/><rect x="3" y="17" width="18" height="3" rx="1"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="grid" id="grid">
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="11000" data-band="o10" data-title="macbook air m1 apple laptop">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20M1%20Apple%20Laptop%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/mac_done.png?v=1776941773" alt="Macbook Air M1 Apple Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Air M1 Apple Laptop</h3>
+          <p class="spec">8-Core CPU 7-Core GPU 13.3 Inch Retina LED with True tone 2560 by 1600 Pixels Two thunderbolt 4 USB Ports Head Jack Stereo Speakers Touch ID Full size</p>
+          <div class="priceline"><span class="price">R 11,000</span><span class="was">R 11,500</span><span class="savetag">Save R 500</span></div>
+          <button class="add" data-i="0">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="11000" data-band="o10" data-title="macbook air m1 apple laptop">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20M1%20Apple%20Laptop%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BBRH286744-3242415-1.webp?v=1775559214" alt="Macbook Air M1 Apple Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Air M1 Apple Laptop</h3>
+          <p class="spec">8-Core CPU 7-Core GPU 13.3 Inch Retina LED with True tone 2560 by 1600 Pixels Two thunderbolt 4 USB Ports Head Jack Stereo Speakers Touch ID Full size</p>
+          <div class="priceline"><span class="price">R 11,000</span></div>
+          <button class="add" data-i="1">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="10000" data-band="o10" data-title="apple macbook neo 13 a 18">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Neo%2013%20A%2018%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/neo_eef5b3ea-b107-4a6a-b409-4b61854863ac.webp?v=1779003038" alt="Apple Macbook Neo 13 A 18" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Apple Macbook Neo 13 A 18</h3>
+          <p class="spec">Specifications Brand: Apple Model: MacBook Neo 13 Display Size: 13-inch Retina Display Colour: Rose Gold / Pink Operating System: macOS Storage: SSD S</p>
+          <div class="priceline"><span class="price">R 10,000</span></div>
+          <button class="add" data-i="2">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="9500" data-band="610" data-title="macbook pro 15-inch, 2017 touchbar">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Pro%2015-Inch,%202017%20Touchbar%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MACB1.webp?v=1775558654" alt="Macbook Pro 15-Inch, 2017 Touchbar" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Pro 15-Inch, 2017 Touchbar</h3>
+          <p class="spec">Processor 2,8 GHz Quad-Core Intel Core i7 Graphics Intel HD Graphics 630 1536 MB Memory 16 GB 2133 MHz LPDDR3 macOS Ventura 13.7.8 Cycle count-534 Bat</p>
+          <div class="priceline"><span class="price">R 9,500</span><span class="was">R 10,000</span><span class="savetag">Save R 500</span></div>
+          <button class="add" data-i="3">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="HP" data-price="9200" data-band="610" data-title="hp elitebook 830 g7 core-i5 10th gen">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20HP%20Elitebook%20830%20G7%20Core-i5%2010th%20Gen%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Untitled_design.png?v=1776940564" alt="HP Elitebook 830 G7 Core-i5 10th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>HP Elitebook 830 G7 Core-i5 10th Gen</h3>
+          <p class="spec">he HP Elitebook 830 G7 is a powerful and versatile laptop designed for professionals who require reliability and performance. With its sleek design an</p>
+          <div class="priceline"><span class="price">R 9,200</span><span class="was">R 9,600</span><span class="savetag">Save R 400</span></div>
+          <button class="add" data-i="4">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="8300" data-band="610" data-title="iphone 14 128 gb">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2014%20128%20GB%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Blue_1_60eed0cb-07ac-4698-824d-b9f0a9db59b9.webp?v=1775565899" alt="iPhone 14 128 GB" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone 14 128 GB</h3>
+          <p class="spec">The iPhone 14 combines advanced technology with user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Super Retina X</p>
+          <div class="priceline"><span class="price">R 8,300</span><span class="was">R 8,700</span><span class="savetag">Save R 400</span></div>
+          <button class="add" data-i="5">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="8200" data-band="610" data-title="iphone 13 128 gb">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20IPhone%2013%20128%20GB%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Bllue.webp?v=1775564920" alt="IPhone 13 128 GB" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>IPhone 13 128 GB</h3>
+          <p class="spec">The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Super </p>
+          <div class="priceline"><span class="price">R 8,200</span><span class="was">R 8,500</span><span class="savetag">Save R 300</span></div>
+          <button class="add" data-i="6">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="7600" data-band="610" data-title="macbook pro 2017 i5">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Pro%202017%20I5%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/RI.webp?v=1775557544" alt="Macbook Pro 2017 I5" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Pro 2017 I5</h3>
+          <p class="spec">Processor: Intel core i5 8GB Ram MacOS Ventura 256GB Storage Cycle Count:903</p>
+          <div class="priceline"><span class="price">R 7,600</span><span class="was">R 7,800</span><span class="savetag">Save R 200</span></div>
+          <button class="add" data-i="7">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="7300" data-band="610" data-title="iphone 13">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2013%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MUGm.png?v=1776943792" alt="iPhone 13" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone 13</h3>
+          <p class="spec">The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Super </p>
+          <div class="priceline"><span class="price">R 7,300</span><span class="was">R 8,000</span><span class="savetag">Save R 700</span></div>
+          <button class="add" data-i="8">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="HP" data-price="6700" data-band="610" data-title="hp elitebook 1040 g1 core i5 - 4th gen">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20HP%20Elitebook%201040%20G1%20Core%20i5%20-%204th%20Gen%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Frame_15_58_ea1b5f41-7ddb-4e14-ad50-539cdfe51377.webp?v=1775566639" alt="HP Elitebook 1040 G1 Core i5 - 4th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>HP Elitebook 1040 G1 Core i5 - 4th Gen</h3>
+          <p class="spec">The HP Elitebook 1040 G1 is a reliable and efficient laptop designed for professionals who need performance on the go. Processor: Powered by an Intel </p>
+          <div class="priceline"><span class="price">R 6,700</span><span class="was">R 7,000</span><span class="savetag">Save R 300</span></div>
+          <button class="add" data-i="9">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="6000" data-band="610" data-title="macbook pro a1398 intel core i7 late 2013 model">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Pro%20A1398%20Intel%20Core%20I7%20Late%202013%20Model%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/macmac.webp?v=1776521925" alt="Macbook Pro A1398 Intel Core I7 Late 2013 Model" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Pro A1398 Intel Core I7 Late 2013 Model</h3>
+          <p class="spec">MacOS Big Sur 8Gb RAM 2.0GHz processor 256Gb SSD Used in good working condition 6 months warranty</p>
+          <div class="priceline"><span class="price">R 6,000</span><span class="was">R 6,800</span><span class="savetag">Save R 800</span></div>
+          <button class="add" data-i="10">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="HP" data-price="6000" data-band="610" data-title="hp elitebook 640 g4 core-i5 8th gen">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20HP%20Elitebook%20640%20G4%20Core-i5%208th%20Gen%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Frame_15_73_63432ffd-9f8f-4ea3-b0b6-b114187b2ba2.webp?v=1775567833" alt="HP Elitebook 640 G4 Core-i5 8th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>HP Elitebook 640 G4 Core-i5 8th Gen</h3>
+          <p class="spec">The HP EliteBook 640 G4 is a reliable and efficient laptop designed for professionals seeking performance and portability. Processor: Powered by an In</p>
+          <div class="priceline"><span class="price">R 6,000</span><span class="was">R 6,400</span><span class="savetag">Save R 400</span></div>
+          <button class="add" data-i="11">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="5800" data-band="36" data-title="iphone 12 64 gb">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2012%2064%20GB%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_1_b6c9b236-cb9c-4d33-98f0-39412dd918c9.webp?v=1775565238" alt="iPhone 12 64 GB" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone 12 64 GB</h3>
+          <p class="spec">The iPhone 12 combines advanced technology with a sleek design, offering users a powerful smartphone experience. Display: 6.1-inch Super Retina XDR di</p>
+          <div class="priceline"><span class="price">R 5,800</span><span class="was">R 6,000</span><span class="savetag">Save R 200</span></div>
+          <button class="add" data-i="12">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="5500" data-band="36" data-title="iphone xr">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%20XR%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_3_de07f0ba-d841-4f42-b0a2-762f5bc7776a.webp?v=1780304416" alt="iPhone XR" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone XR</h3>
+          <p class="spec">Display: 6.1-inch Liquid Retina HD display for vibrant colors and sharp details. Camera: 12 MP rear camera with Smart HDR for stunning photos in vario</p>
+          <div class="priceline"><span class="price">R 5,500</span><span class="was">R 8,600</span><span class="savetag">Save R 3,100</span></div>
+          <button class="add" data-i="13">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="Lenovo" data-price="5500" data-band="36" data-title="lenovo thinkpad t450 core i5 - 5th gen">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Lenovo%20Thinkpad%20T450%20Core%20i5%20-%205th%20Gen%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/i5_done.png?v=1776941555" alt="Lenovo Thinkpad T450 Core i5 - 5th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Lenovo Thinkpad T450 Core i5 - 5th Gen</h3>
+          <p class="spec">The Lenovo Thinkpad T450 is a reliable laptop designed for professionals who need performance and portability. With its robust build and efficient com</p>
+          <div class="priceline"><span class="price">R 5,500</span><span class="was">R 6,000</span><span class="savetag">Save R 500</span></div>
+          <button class="add" data-i="14">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="5500" data-band="36" data-title="macbook pro a1398 intel core i7 2013 model laptop">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Pro%20A1398%20Intel%20Core%20I7%202013%20Model%20Laptop%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MACBB.webp?v=1775557812" alt="Macbook Pro A1398 Intel Core I7 2013 Model Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Pro A1398 Intel Core I7 2013 Model Laptop</h3>
+          <p class="spec">MacOS Mojave 8GB ram 2.3GHz processor 256GB SSD Used in good working condition 6 months warranty</p>
+          <div class="priceline"><span class="price">R 5,500</span><span class="was">R 5,700</span><span class="savetag">Save R 200</span></div>
+          <button class="add" data-i="15">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="5200" data-band="36" data-title="macbook air computer">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20Computer%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/imaq.webp?v=1775558082" alt="Macbook Air Computer" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Air Computer</h3>
+          <p class="spec">Used But New = Processor: 1.6 GHz Intel Core i5 Dual-Core with a maximum boost speed of 3.6 GHz. RAM: 8 GB of installed RAM. Display: 13.3-inch Retina</p>
+          <div class="priceline"><span class="price">R 5,200</span><span class="was">R 5,700</span><span class="savetag">Save R 500</span></div>
+          <button class="add" data-i="16">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="5000" data-band="36" data-title="iphone 11 64 gb">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2011%2064%20GB%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/black_3_513360e6-3bba-40ab-94d7-2ec5ba0e7a22.webp?v=1775565582" alt="iPhone 11 64 GB" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone 11 64 GB</h3>
+          <p class="spec">The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Liquid Retina </p>
+          <div class="priceline"><span class="price">R 5,000</span><span class="was">R 5,500</span><span class="savetag">Save R 500</span></div>
+          <button class="add" data-i="17">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="5000" data-band="36" data-title="macbook air a1466 i5 laptop">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20A1466%20I5%20Laptop%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CACPG075977-3237090-1.webp?v=1775559540" alt="Macbook Air A1466 I5 Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Air A1466 I5 Laptop</h3>
+          <p class="spec">Good condition Superficial scratches along surface and small dent in bottom left corner Intel Core i5 / 1.6GHz 4GB RAM / 121GB Macintosh HD macOS Mont</p>
+          <div class="priceline"><span class="price">R 5,000</span><span class="was">R 5,400</span><span class="savetag">Save R 400</span></div>
+          <button class="add" data-i="18">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="5000" data-band="36" data-title="macbook air (13-inch,2017)">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20(13-Inch,2017)%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CAVNV026618-3247134-1.webp?v=1775557245" alt="Macbook Air (13-Inch,2017)" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Macbook Air (13-Inch,2017)</h3>
+          <p class="spec">Processor : 1.8GHz intel core i5 Memory : 8GB Graphics : intel HD Graphics 6000 1536 MB Storage : 121GB BATTERY HEALTH : Cycle count 563</p>
+          <div class="priceline"><span class="price">R 5,000</span><span class="was">R 5,300</span><span class="savetag">Save R 300</span></div>
+          <button class="add" data-i="19">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="4900" data-band="36" data-title="iphone 11">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2011%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/donedeal.png?v=1777033166" alt="iPhone 11" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone 11</h3>
+          <p class="spec">The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Liquid Retina </p>
+          <div class="priceline"><span class="price">R 4,900</span><span class="was">R 5,500</span><span class="savetag">Save R 600</span></div>
+          <button class="add" data-i="20">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="Dell" data-price="4700" data-band="36" data-title="dell latitude 5480 core i5 - 6th gen">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Dell%20Latitude%205480%20Core%20i5%20-%206th%20Gen%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Untitled_design.png_2.png?v=1776941011" alt="Dell Latitude 5480 Core i5 - 6th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Dell Latitude 5480 Core i5 - 6th Gen</h3>
+          <p class="spec">The Dell Latitude 5480 is a reliable laptop designed for professionals who need performance and portability. With its robust features, it is suitable </p>
+          <div class="priceline"><span class="price">R 4,700</span><span class="was">R 5,000</span><span class="savetag">Save R 300</span></div>
+          <button class="add" data-i="21">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="4600" data-band="36" data-title="iphone x">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%20X%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/SpaceGrey_1_bc96d053-d475-4949-8d1d-eaf43de2981c.webp?v=1780304007" alt="iPhone X" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone X</h3>
+          <p class="spec">Display: 5.8-inch Super Retina display with a resolution of 1125 x 2436 pixels for vibrant colors and sharp images. Camera: Dual 12 MP rear cameras wi</p>
+          <div class="priceline"><span class="price">R 4,600</span><span class="was">R 6,900</span><span class="savetag">Save R 2,300</span></div>
+          <button class="add" data-i="22">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="Lenovo" data-price="4600" data-band="36" data-title="lenovo thinkpad t470 core i5 - 6th gen">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Lenovo%20Thinkpad%20T470%20Core%20i5%20-%206th%20Gen%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/PROMONET.png?v=1780247950" alt="Lenovo Thinkpad T470 Core i5 - 6th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Lenovo Thinkpad T470 Core i5 - 6th Gen</h3>
+          <p class="spec">The Lenovo Thinkpad T470 is a reliable business laptop designed for professionals who need performance and portability. With its robust features, it i</p>
+          <div class="priceline"><span class="price">R 4,600</span><span class="was">R 5,000</span><span class="savetag">Save R 400</span></div>
+          <button class="add" data-i="23">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="4500" data-band="36" data-title="apple macbook pro">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Pro%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MAC2.webp?v=1775558386" alt="Apple Macbook Pro" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Apple Macbook Pro</h3>
+          <p class="spec">Condition – Good macOS High Sierra Version 10.13.6 Processor: 2,7 GHz Intel core i7 RAM: 4GB Storage: 480GB</p>
+          <div class="priceline"><span class="price">R 4,500</span><span class="was">R 4,800</span><span class="savetag">Save R 300</span></div>
+          <button class="add" data-i="24">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="4000" data-band="36" data-title="apple macbook air | intel core i5 | 256gb storage">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Air%20|%20Intel%20Core%20I5%20|%20256Gb%20Storage%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Silver_10_b92838b0-eeb0-42ae-87d8-b7577e8f2226.webp?v=1776719442" alt="Apple Macbook Air | Intel Core I5 | 256Gb Storage" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Apple Macbook Air | Intel Core I5 | 256Gb Storage</h3>
+          <p class="spec">Apple Macbook Air Model No -A1370 Processor – Intel Core i5 Processor Speed – 1.6Ghz Storage – 256GB Ram – 8GB Operating System – MacOS Monterey Charg</p>
+          <div class="priceline"><span class="price">R 4,000</span><span class="was">R 4,800</span><span class="savetag">Save R 800</span></div>
+          <button class="add" data-i="25">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="HP" data-price="3900" data-band="36" data-title="hp notebook laptop">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Hp%20Notebook%20Laptop%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BCTR055006-2886805-1.webp?v=1775567619" alt="Hp Notebook Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Hp Notebook Laptop</h3>
+          <p class="spec">Device Name : Hp Processor : Intel Celeron Installed Ram : 4GB Storage : 430GB HDD No Box Charger Only</p>
+          <div class="priceline"><span class="price">R 3,900</span><span class="was">R 4,100</span><span class="savetag">Save R 200</span></div>
+          <button class="add" data-i="26">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="Dell" data-price="3900" data-band="36" data-title="dell laptop t9kb76t">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Dell%20Laptop%20T9kb76t%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CAMNT046123-3248538-1-scaled.jpg?v=1775567091" alt="Dell Laptop T9kb76t" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Dell Laptop T9kb76t</h3>
+          <p class="spec">Dell Laptop T9KB76T for sale . In a good and working condition backed by a six month guarantee. 4GB RAM, 500GB storage, Intel Celeron N4000 1.10GHz, W</p>
+          <div class="priceline"><span class="price">R 3,900</span><span class="was">R 4,000</span><span class="savetag">Save R 100</span></div>
+          <button class="add" data-i="27">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="3700" data-band="36" data-title="iphone 8">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%208%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/red82.webp?v=1780303307" alt="iPhone 8" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone 8</h3>
+          <p class="spec">he iPhone 8 combines powerful performance with a sleek design, making it a reliable choice for everyday use. Display: 4.7-inch Retina HD display with </p>
+          <div class="priceline"><span class="price">R 3,700</span></div>
+          <button class="add" data-i="28">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="3700" data-band="36" data-title="apple macbook air laptop">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Air%20Laptop%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BAVU.jpg?v=1775560180" alt="Apple Macbook Air Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Apple Macbook Air Laptop</h3>
+          <p class="spec">APPLE MACBOOK AIR MACOS MONTEREY VERSION 12.7.6 4GB MHZ DDR3 1.6 GHZ DUAL-CORE INTEL CORE I5 121GB HDD</p>
+          <div class="priceline"><span class="price">R 3,700</span><span class="was">R 4,000</span><span class="savetag">Save R 300</span></div>
+          <button class="add" data-i="29">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Apple" data-brand="Apple" data-price="3400" data-band="36" data-title="apple macbook pro (13-inch) mid 2012">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Pro%20(13-Inch)%20Mid%202012%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/mac_mac.webp?v=1778944481" alt="Apple Macbook Pro (13-Inch) Mid 2012" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Apple Macbook Pro (13-Inch) Mid 2012</h3>
+          <p class="spec">The 13-inch Mid-2012 MacBook Pro (model A1278) features a 2.5GHz or 2.9GHz Intel Core i5/i7 processor, 1600MHz DDR3L RAM 16GB), 500GB/750GB SSD, and I</p>
+          <div class="priceline"><span class="price">R 3,400</span><span class="was">R 4,000</span><span class="savetag">Save R 600</span></div>
+          <button class="add" data-i="30">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="Acer" data-price="3200" data-band="36" data-title="acer chromebook-r11 convertible-2-in-1 touch-celeron 6th-gen">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Acer%20Chromebook-R11%20Convertible-2-In-1%20Touch-Celeron%206th-gen%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/AcerLaptops_1_78be7e76-9c30-48f1-8bf5-00baecb82180.webp?v=1775566250" alt="Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen</h3>
+          <p class="spec">The Acer Chromebook R11 is a versatile 2-in-1 device designed for both productivity and entertainment. Its convertible design and touch capabilities m</p>
+          <div class="priceline"><span class="price">R 3,200</span><span class="was">R 3,990</span><span class="savetag">Save R 790</span></div>
+          <button class="add" data-i="31">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="3100" data-band="36" data-title="iphone 7">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%207%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_4cdd944e-1ebe-4fef-acc7-0b6499ec0497.webp?v=1780303684" alt="iPhone 7" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>iPhone 7</h3>
+          <p class="spec">Storage 32 GB SIM Card Unlocked Screen size (inches) 6.5 Processor Core 6 OS IOS Connector Lightning eSIM Yes Double SIM Yes Network 4G Release Date 2</p>
+          <div class="priceline"><span class="price">R 3,100</span></div>
+          <button class="add" data-i="32">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Accessories" data-brand="Other" data-price="1296" data-band="u3" data-title="indoor hydroponic plant growing machine">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Indoor%20Hydroponic%20Plant%20Growing%20Machine%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/ed7815a2-3708-49b3-9688-0bbdc37a3b2c.jpg?v=1775563927" alt="Indoor Hydroponic Plant Growing Machine" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Indoor Hydroponic Plant Growing Machine</h3>
+          <p class="spec">Overview Hydroponic System: Soilless cultivation technology for clean indoor gardening Smart Function: Automated lighting and water circulation for op</p>
+          <div class="priceline"><span class="price">R 1,296</span></div>
+          <button class="add" data-i="33">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Accessories" data-brand="Other" data-price="496" data-band="u3" data-title="wireless noise cancelling bluetooth headset with microphone">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Wireless%20Noise%20Cancelling%20Bluetooth%20Headset%20with%20Microphone%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/369d20ec-92a4-49df-adec-b0b9c365b9d8.jpg?v=1775564386" alt="Wireless Noise Cancelling Bluetooth Headset with Microphone" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Wireless Noise Cancelling Bluetooth Headset with Microphone</h3>
+          <p class="spec">Overview Noise Cancellation: Advanced noise reduction technology for clear communication in busy environments Bluetooth Connectivity: Wireless operati</p>
+          <div class="priceline"><span class="price">R 496</span></div>
+          <button class="add" data-i="34">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Laptops" data-brand="HP" data-price="360" data-band="u3" data-title="hp laptop charger mode no ppp012hs">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Hp%20Laptop%20Charger%20Mode%20No%20Ppp012hs%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/chager.webp?v=1775562799" alt="Hp Laptop Charger Mode No Ppp012hs" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Hp Laptop Charger Mode No Ppp012hs</h3>
+          <p class="spec">The HP Laptop Charger P0012HS is a compatible AC power adapter designed to safely charge HP laptops, featuring precise voltage and amperage specificat</p>
+          <div class="priceline"><span class="price">R 360</span></div>
+          <button class="add" data-i="35">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Accessories" data-brand="Other" data-price="288" data-band="u3" data-title="wireless sports bluetooth headphones">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Wireless%20Sports%20Bluetooth%20Headphones%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/941a0be0-e240-4bc8-9d98-887ea0c1d496.jpg?v=1775564054" alt="Wireless Sports Bluetooth Headphones" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Wireless Sports Bluetooth Headphones</h3>
+          <p class="spec">Overview Bluetooth 5.4: Latest protocol for stable connectivity and low power consumption. Air-bone conduction: Open-ear design for situational awaren</p>
+          <div class="priceline"><span class="price">R 288</span></div>
+          <button class="add" data-i="36">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Accessories" data-brand="Other" data-price="275" data-band="u3" data-title="himalayan crystal salt lamp">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Himalayan%20crystal%20salt%20lamp%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/images.jpg?v=1777307082" alt="Himalayan crystal salt lamp" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Himalayan crystal salt lamp</h3>
+          <p class="spec">Himalayan crystal salt lamps are natural, hand-carved lamps from Pakistan’s Khewra Salt Mine that emit a warm, soft glow . They function as ambient li</p>
+          <div class="priceline"><span class="price">R 275</span></div>
+          <button class="add" data-i="37">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-cat="Accessories" data-brand="Other" data-price="208" data-band="u3" data-title="bluetooth earphones">
+        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Bluetooth%20earphones%20available%3F}" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/ffdce3a5-b214-4d92-951f-a5d0d3e9e17e.jpg?v=1775564275" alt="Bluetooth earphones" loading="lazy" onerror="this.style.visibility='hidden'">
+          <span class="grade">Certified Pre-Owned</span>
+        </a>
+        <div class="cbody">
+          <h3>Bluetooth earphones</h3>
+          <p class="spec">Overview Noise Reduction: Advanced noise reduction technology for clear audio. Bluetooth 5.4: Latest Bluetooth protocol for stable and fast connectivi</p>
+          <div class="priceline"><span class="price">R 208</span></div>
+          <button class="add" data-i="38">Add to Cart</button>
+        </div>
+      </article>
+    </div>
+    <div class="empty" id="empty" style="display:none">No products match your filters. Try clearing some, or <a href="#" onclick="document.getElementById('clearF').click();return false;" style="color:var(--blue);font-weight:600">reset all filters</a>.</div>
+  </main>
+</div></div>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div>
+      <img class="flogo" src="assets/logo.jpg" alt="M&amp;H Dynamic Tech">
+      <p>Certified pre-owned laptops and phones, tested and delivered across South Africa.</p>
+      <div class="pays"><span>Visa</span><span>Mastercard</span><span>Ozow EFT</span><span>PayFast</span><span>Payflex</span><span>PayJustNow</span><span>Mobicred</span></div>
+    </div>
+    <div><h5>Shop</h5><a data-cat="iPhones" class="fcat">iPhones</a><a data-cat="Apple" class="fcat">MacBooks</a><a data-cat="Laptops" class="fcat">Laptops</a><a data-cat="All" class="fcat">All products</a></div>
+    <div><h5>Help</h5><a href="policies.html">Returns &amp; refunds</a><a href="policies.html">Shipping</a><a href="policies.html">Warranty</a><a href="https://wa.me/27636110970">Contact us</a></div>
+    <div><h5>Get in touch</h5><a href="https://wa.me/27636110970">WhatsApp: 063 611 0970</a><a href="mailto:lethumkapu561@gmail.com">lethumkapu561@gmail.com</a><a href="#">Instagram</a><a href="#">Facebook</a></div>
+  </div>
+  <div class="copy"><span>© 2026 M&amp;H Dynamic Tech. All rights reserved.</span><span>Certified Pre-Owned · Proudly South African</span></div>
+</div></footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="dhead"><h3>Your Cart</h3><button id="closeCart">&times;</button></div>
+  <div class="ditems" id="ditems"></div>
+  <div class="dfoot" id="dfoot" style="display:none">
+    <div class="dtotal"><span>Total</span><span id="dtotal">R 0</span></div>
+    <p class="dnote">Send your cart to us on WhatsApp to confirm stock and arrange payment &amp; delivery.</p>
+    <a class="wa" id="waCheckout" href="#" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.5-.8-2.5-1.4-3.5-3.1-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
+      Checkout on WhatsApp
+    </a>
+  </div>
+</aside>
+
+<script>
+const WA='27636110970';const PRODUCTS=[{"t": "Macbook Air M1 Apple Laptop", "p": 11000.0}, {"t": "Macbook Air M1 Apple Laptop", "p": 11000.0}, {"t": "Apple Macbook Neo 13 A 18", "p": 10000.0}, {"t": "Macbook Pro 15-Inch, 2017 Touchbar", "p": 9500.0}, {"t": "HP Elitebook 830 G7 Core-i5 10th Gen", "p": 9200.0}, {"t": "iPhone 14 128 GB", "p": 8300.0}, {"t": "IPhone 13 128 GB", "p": 8200.0}, {"t": "Macbook Pro 2017 I5", "p": 7600.0}, {"t": "iPhone 13", "p": 7300.0}, {"t": "HP Elitebook 1040 G1 Core i5 - 4th Gen", "p": 6700.0}, {"t": "Macbook Pro A1398 Intel Core I7 Late 2013 Model", "p": 6000.0}, {"t": "HP Elitebook 640 G4 Core-i5 8th Gen", "p": 6000.0}, {"t": "iPhone 12 64 GB", "p": 5800.0}, {"t": "iPhone XR", "p": 5500.0}, {"t": "Lenovo Thinkpad T450 Core i5 - 5th Gen", "p": 5500.0}, {"t": "Macbook Pro A1398 Intel Core I7 2013 Model Laptop", "p": 5500.0}, {"t": "Macbook Air Computer", "p": 5200.0}, {"t": "iPhone 11 64 GB", "p": 5000.0}, {"t": "Macbook Air A1466 I5 Laptop", "p": 5000.0}, {"t": "Macbook Air (13-Inch,2017)", "p": 5000.0}, {"t": "iPhone 11", "p": 4900.0}, {"t": "Dell Latitude 5480 Core i5 - 6th Gen", "p": 4700.0}, {"t": "iPhone X", "p": 4600.0}, {"t": "Lenovo Thinkpad T470 Core i5 - 6th Gen", "p": 4600.0}, {"t": "Apple Macbook Pro", "p": 4500.0}, {"t": "Apple Macbook Air | Intel Core I5 | 256Gb Storage", "p": 4000.0}, {"t": "Hp Notebook Laptop", "p": 3900.0}, {"t": "Dell Laptop T9kb76t", "p": 3900.0}, {"t": "iPhone 8", "p": 3700.0}, {"t": "Apple Macbook Air Laptop", "p": 3700.0}, {"t": "Apple Macbook Pro (13-Inch) Mid 2012", "p": 3400.0}, {"t": "Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen", "p": 3200.0}, {"t": "iPhone 7", "p": 3100.0}, {"t": "Indoor Hydroponic Plant Growing Machine", "p": 1296.0}, {"t": "Wireless Noise Cancelling Bluetooth Headset with Microphone", "p": 496.0}, {"t": "Hp Laptop Charger Mode No Ppp012hs", "p": 360.0}, {"t": "Wireless Sports Bluetooth Headphones", "p": 288.0}, {"t": "Himalayan crystal salt lamp", "p": 275.0}, {"t": "Bluetooth earphones", "p": 208.0}];
+let cart=[];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const grid=$('#grid');
+const cards=$$('.card');
+const state={cat:'All',brands:[],bands:[],q:'',sort:'rel'};
+
+function apply(){
+  state.q=($('#search').value||'').toLowerCase().trim();
+  state.brands=$$('.fbrand:checked').map(c=>c.value);
+  state.bands=$$('.fband:checked').map(c=>c.value);
+  let shown=0;
+  cards.forEach(c=>{
+    const okCat=state.cat==='All'||c.dataset.cat===state.cat;
+    const okBrand=!state.brands.length||state.brands.includes(c.dataset.brand);
+    const okBand=!state.bands.length||state.bands.includes(c.dataset.band);
+    const okQ=!state.q||c.dataset.title.includes(state.q);
+    const show=okCat&&okBrand&&okBand&&okQ;
+    c.style.display=show?'':'none';
+    if(show)shown++;
+  });
+  // sort visible
+  const vis=cards.filter(c=>c.style.display!=='none');
+  if(state.sort!=='rel'){
+    vis.sort((a,b)=>{
+      const pa=+a.dataset.price,pb=+b.dataset.price;
+      if(state.sort==='plow')return pa-pb;
+      if(state.sort==='phigh')return pb-pa;
+      if(state.sort==='az')return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+    vis.forEach(c=>grid.appendChild(c));
+  }
+  $('#shown').textContent=shown;
+  $('#empty').style.display=shown?'none':'block';
+}
+$('#search').addEventListener('input',apply);
+$$('.fbrand,.fband').forEach(c=>c.addEventListener('change',apply));
+$('#sort').addEventListener('change',e=>{state.sort=e.target.value;apply();});
+
+// department + category sync
+function setCat(cat){
+  state.cat=cat;
+  $$('.dept a').forEach(a=>a.classList.toggle('on',a.dataset.cat===cat));
+  $('#ptitle').textContent = cat==='All'?'All products':cat==='Apple'?'MacBooks & Apple':cat;
+  apply();
+}
+$$('.dept a').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();setCat(a.dataset.cat);window.scrollTo({top:0,behavior:'smooth'});}));
+$('#clearF').addEventListener('click',()=>{
+  $$('.fbrand,.fband').forEach(c=>c.checked=false);
+  $('#search').value='';setCat('All');
+});
+
+// view toggle
+$('#vGrid').addEventListener('click',()=>{grid.classList.remove('list');$('#vGrid').classList.add('on');$('#vList').classList.remove('on');});
+$('#vList').addEventListener('click',()=>{grid.classList.add('list');$('#vList').classList.add('on');$('#vGrid').classList.remove('on');});
+
+// cart
+function money(n){return 'R\u00a0'+n.toLocaleString('en-ZA')}
+function renderCart(){
+  const box=$('#ditems');$('#cartCount').textContent=cart.length;
+  $('#cartCount').style.display=cart.length?'grid':'none';
+  if(!cart.length){box.innerHTML='<div class="dempty">Your cart is empty.<br>Add devices and order in seconds on WhatsApp.</div>';$('#dfoot').style.display='none';return;}
+  $('#dfoot').style.display='block';let total=0;
+  box.innerHTML=cart.map((i,ix)=>{total+=i.p;return `<div class="ditem"><div><div class="nm">${i.t}</div><div class="pr">${money(i.p)}</div></div><button class="rm" data-x="${ix}">Remove</button></div>`}).join('');
+  $('#dtotal').textContent=money(total);
+  let msg='Hi M&H Dynamic Tech! I would like to order:%0A%0A';
+  cart.forEach(i=>{msg+='\u2022 '+encodeURIComponent(i.t)+' \u2013 '+encodeURIComponent(money(i.p))+'%0A'});
+  msg+='%0ATotal: '+encodeURIComponent(money(total))+'%0A%0APlease confirm availability, payment & delivery.';
+  $('#waCheckout').href=`https://wa.me/${WA}?text=${msg}`;
+  box.querySelectorAll('.rm').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.x,1);renderCart();});
+}
+$$('.add').forEach(btn=>btn.addEventListener('click',()=>{
+  cart.push(PRODUCTS[+btn.dataset.i]);
+  btn.textContent='Added \u2713';btn.classList.add('added');
+  setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added')},1100);
+  renderCart();openCart();
+}));
+function openCart(){$('#drawer').classList.add('open');$('#overlay').classList.add('open');}
+function closeCart(){$('#drawer').classList.remove('open');$('#overlay').classList.remove('open');}
+$('#openCart').onclick=openCart;$('#closeCart').onclick=closeCart;$('#overlay').onclick=closeCart;
+$$('.fcat').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector('.dept a[data-cat="'+a.dataset.cat+'"]').click();}));
+renderCart();apply();
+</script>
+</body>
+</html>
