@@ -184,6 +184,41 @@ footer a:hover{color:#fff}
 .rmodal .row{display:flex;gap:10px;margin-top:18px}
 .rmodal .submit{flex:1;background:#25D366;color:#fff;border:0;border-radius:9px;padding:13px;font-weight:700;cursor:pointer;font-family:inherit}
 .rmodal .cancel{background:none;border:1px solid var(--line);border-radius:9px;padding:13px 18px;cursor:pointer;font-family:inherit;font-weight:600;color:var(--muted)}
+.fav{position:absolute;top:9px;right:9px;z-index:3;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--line);display:grid;place-items:center;cursor:pointer;color:#90A2B4;box-shadow:0 1px 4px rgba(17,34,58,.12)}
+.fav svg{fill:currentColor;transition:transform .12s}
+.fav:hover{color:var(--save)}
+.fav:hover svg{transform:scale(1.12)}
+.fav.on{color:var(--save)}
+.favbtn{position:relative;display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:9px;padding:9px 12px;cursor:pointer}
+.favbtn svg{fill:currentColor}
+.favbtn:hover{background:rgba(255,255,255,.16)}
+.favbtn.on{background:var(--save);border-color:var(--save)}
+.favbtn .count{position:absolute;top:-7px;right:-7px;background:var(--save);color:#fff;font-size:11px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:grid;place-items:center;padding:0 5px}
+.favbtn.on .count{background:#fff;color:var(--save)}
+.imgwrap[data-open],.cbody h3[data-open]{cursor:pointer}
+.cbody h3[data-open]:hover{color:var(--blue)}
+.viewbtn{margin-top:2px;background:#fff;color:var(--blue);border:1px solid var(--blue);border-radius:8px;padding:9px;font-weight:600;font-size:13px;cursor:pointer;font-family:inherit}
+.viewbtn:hover{background:var(--sky-soft)}
+.pmodal-bg{position:fixed;inset:0;background:rgba(4,18,43,.6);display:none;z-index:95;overflow-y:auto;padding:24px 16px}
+.pmodal-bg.open{display:block}
+.pmodal{background:#fff;border-radius:14px;max-width:860px;margin:0 auto;position:relative;overflow:hidden}
+.pclose{position:absolute;top:12px;right:14px;z-index:3;background:#fff;border:1px solid var(--line);width:36px;height:36px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;color:var(--ink)}
+.pmgrid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pmimg{position:relative;background:#fff;aspect-ratio:1/1;display:grid;place-items:center;padding:24px;border-right:1px solid var(--line)}
+.pmimg img{width:100%;height:100%;object-fit:contain}
+.pmimg.noimg{background:#EDF1F6}
+.pmimg.noimg::after{content:'M&H';position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:40px;color:#A9B8C9}
+.pminfo{padding:26px 28px}
+.pminfo h2{font-size:23px;font-weight:800;line-height:1.25;margin-bottom:12px}
+.pminfo .priceline{margin-bottom:10px}
+.pminfo .price{font-size:26px}
+.pmcond{display:inline-flex;align-items:center;gap:7px;background:var(--sky-soft);color:var(--blue-deep);font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:7px;margin-bottom:18px}
+.pminfo h4{font-size:14px;font-weight:700;margin:14px 0 8px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.pmdesc{font-size:14px;color:#2C3A4C;line-height:1.6;white-space:pre-line;max-height:230px;overflow-y:auto;padding-right:6px}
+.pmbtns{display:flex;gap:10px;margin-top:20px}
+.pmbtns .add{flex:1;margin:0;padding:14px}
+.pmbtns .wa{flex:1;padding:14px;font-size:14px}
+@media(max-width:680px){.pmgrid{grid-template-columns:1fr}.pmimg{border-right:0;border-bottom:1px solid var(--line);aspect-ratio:16/10}}
 @media(max-width:820px){.rgrid{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){
   .body .wrap{grid-template-columns:1fr}
@@ -221,6 +256,10 @@ footer a:hover{color:#fff}
   </div>
   <div class="hactions">
     <a class="hact" href="https://wa.me/27636110970" target="_blank"><span>Need help?</span><b>063 611 0970</b></a>
+    <button class="favbtn" id="openFav" title="Favourites">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg>
+      <span class="count" id="favCount" style="display:none">0</span>
+    </button>
     <button class="cartbtn" id="openCart">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
       Cart<span class="count" id="cartCount" style="display:none">0</span>
@@ -282,471 +321,1387 @@ footer a:hover{color:#fff}
       </div>
     </div>
     <div class="grid" id="grid">
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="11000" data-band="o10" data-title="macbook air m1 apple laptop">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20M1%20Apple%20Laptop%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/mac_done.png?v=1776941773&width=1080" alt="Macbook Air M1 Apple Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="0" data-cat="Apple" data-brand="Apple" data-price="11000" data-band="o10" data-title="macbook air m1 apple laptop">
+        <div class="imgwrap" data-open="0">
+          <button class="fav" data-fav="0" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/mac_done.png?v=1776941773&width=1080" alt="Macbook Air M1 Apple Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Air M1 Apple Laptop</h3>
-          <p class="spec">8-Core CPU 7-Core GPU 13.3 Inch Retina LED with True tone 2560 by 1600 Pixels Two thunderbolt 4 USB Ports Head Jack Stereo Speakers Touch ID Full size</p>
+          <h3 data-open="0">Macbook Air M1 Apple Laptop</h3>
+          <p class="spec">8-Core CPU
+7-Core GPU
+13.3 Inch
+Retina LED with True tone
+2560 by 1600 Pixels
+Two thunderbolt
+4 USB Ports
+Head Jack
+Stereo Speakers
+Touch ID
+Full size backlit Magic Keyboard
+Wi-Fi 6 and Bluetooth 5.0
+FaceTime Hd Camera
+256 GB SSD
++Charger
+
+The Apple MacBook Air delivers reliable performance for work, study, and everyday use — now paired with an exclusive dining experience to complete your purchase.
+
+💻 What You Get
+
+✔ Apple MacBook Pro (Refurbished, tested & fully functional)
+✔ Charger included
+✔ 🎁 Complimentary Dining Voucher of R250
+
+🎁 Exclusive Bonus
+
+Enjoy more than just technology.
+
+With your purchase, receive a complimentary dining voucher to elevate your experience.
+
+Imagine working, streaming, or relaxing on your MacBook — then stepping out to enjoy a well-deserved dinner.
+
+📍 Voucher Availability
+Available in selected areas across South Africa
+Coverage depends on participating restaurants
+Best suited for major cities and surrounding areas
+📩 Delivery of Voucher
+Sent via email after successful order
+Easy to redeem
+Terms and conditions apply
+🚚 Delivery
+
+Orders are processed within 1–7 business days
+Nationwide delivery available across South Africa</p>
           <div class="priceline"><span class="price">R 11,000</span><span class="was">R 11,500</span><span class="savetag">Save R 500</span></div>
+          <button class="viewbtn" data-open="0">View details</button>
           <button class="add" data-i="0">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="11000" data-band="o10" data-title="macbook air m1 apple laptop">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20M1%20Apple%20Laptop%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BBRH286744-3242415-1.webp?v=1775559214&width=1080" alt="Macbook Air M1 Apple Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="1" data-cat="Apple" data-brand="Apple" data-price="11000" data-band="o10" data-title="macbook air m1 apple laptop">
+        <div class="imgwrap" data-open="1">
+          <button class="fav" data-fav="1" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BBRH286744-3242415-1.webp?v=1775559214&width=1080" alt="Macbook Air M1 Apple Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Air M1 Apple Laptop</h3>
-          <p class="spec">8-Core CPU 7-Core GPU 13.3 Inch Retina LED with True tone 2560 by 1600 Pixels Two thunderbolt 4 USB Ports Head Jack Stereo Speakers Touch ID Full size</p>
+          <h3 data-open="1">Macbook Air M1 Apple Laptop</h3>
+          <p class="spec">8-Core CPU
+7-Core GPU
+13.3 Inch
+Retina LED with True tone
+2560 by 1600 Pixels
+Two thunderbolt
+4 USB Ports
+Head Jack
+Stereo Speakers
+Touch ID
+Full size backlit Magic Keyboard
+Wi-Fi 6 and Bluetooth 5.0
+FaceTime Hd Camera
+256 GB SSD
++Charger
+
+Condition good
+Comes in a box
+Still looks neat
+Comes with a charger</p>
           <div class="priceline"><span class="price">R 11,000</span></div>
+          <button class="viewbtn" data-open="1">View details</button>
           <button class="add" data-i="1">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="10000" data-band="o10" data-title="apple macbook neo 13 a 18">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Neo%2013%20A%2018%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/neo_eef5b3ea-b107-4a6a-b409-4b61854863ac.webp?v=1779003038&width=1080" alt="Apple Macbook Neo 13 A 18" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="2" data-cat="Apple" data-brand="Apple" data-price="10000" data-band="o10" data-title="apple macbook neo 13 a 18">
+        <div class="imgwrap" data-open="2">
+          <button class="fav" data-fav="2" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/neo_eef5b3ea-b107-4a6a-b409-4b61854863ac.webp?v=1779003038&width=1080" alt="Apple Macbook Neo 13 A 18" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Apple Macbook Neo 13 A 18</h3>
-          <p class="spec">Specifications Brand: Apple Model: MacBook Neo 13 Display Size: 13-inch Retina Display Colour: Rose Gold / Pink Operating System: macOS Storage: SSD S</p>
+          <h3 data-open="2">Apple Macbook Neo 13 A 18</h3>
+          <p class="spec">Specifications
+Brand: Apple
+Model: MacBook Neo 13
+Display Size: 13-inch Retina Display
+Colour: Rose Gold / Pink
+Operating System: macOS
+Storage: SSD Storage
+Connectivity: Wi-Fi and Bluetooth
+Keyboard: Full-size backlit keyboard
+Trackpad: Large precision multi-touch trackpad
+Battery: Long-lasting rechargeable battery
+Design: Slim, lightweight aluminium body
+Features
+Stylish ultra-slim premium design
+Bright and vibrant Retina display
+Smooth and responsive performance
+Lightweight and travel-friendly
+Excellent battery life for daily use
+Fast wireless connectivity
+Ideal for students, professionals, and everyday users
+Premium Apple build quality</p>
           <div class="priceline"><span class="price">R 10,000</span></div>
+          <button class="viewbtn" data-open="2">View details</button>
           <button class="add" data-i="2">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="9500" data-band="610" data-title="macbook pro 15-inch, 2017 touchbar">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Pro%2015-Inch,%202017%20Touchbar%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MACB1.webp?v=1775558654&width=1080" alt="Macbook Pro 15-Inch, 2017 Touchbar" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="3" data-cat="Apple" data-brand="Apple" data-price="9500" data-band="610" data-title="macbook pro 15-inch, 2017 touchbar">
+        <div class="imgwrap" data-open="3">
+          <button class="fav" data-fav="3" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MACB1.webp?v=1775558654&width=1080" alt="Macbook Pro 15-Inch, 2017 Touchbar" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Pro 15-Inch, 2017 Touchbar</h3>
-          <p class="spec">Processor 2,8 GHz Quad-Core Intel Core i7 Graphics Intel HD Graphics 630 1536 MB Memory 16 GB 2133 MHz LPDDR3 macOS Ventura 13.7.8 Cycle count-534 Bat</p>
+          <h3 data-open="3">Macbook Pro 15-Inch, 2017 Touchbar</h3>
+          <p class="spec">Processor 2,8 GHz Quad-Core Intel Core i7
+Graphics Intel HD Graphics 630 1536 MB
+Memory 16 GB 2133 MHz LPDDR3
+macOS Ventura 13.7.8
+Cycle count-534
+Battery condition-Normal</p>
           <div class="priceline"><span class="price">R 9,500</span><span class="was">R 10,000</span><span class="savetag">Save R 500</span></div>
+          <button class="viewbtn" data-open="3">View details</button>
           <button class="add" data-i="3">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="HP" data-price="9200" data-band="610" data-title="hp elitebook 830 g7 core-i5 10th gen">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20HP%20Elitebook%20830%20G7%20Core-i5%2010th%20Gen%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Untitled_design.png?v=1776940564&width=1080" alt="HP Elitebook 830 G7 Core-i5 10th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="4" data-cat="Laptops" data-brand="HP" data-price="9200" data-band="610" data-title="hp elitebook 830 g7 core-i5 10th gen">
+        <div class="imgwrap" data-open="4">
+          <button class="fav" data-fav="4" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Untitled_design.png?v=1776940564&width=1080" alt="HP Elitebook 830 G7 Core-i5 10th Gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>HP Elitebook 830 G7 Core-i5 10th Gen</h3>
-          <p class="spec">he HP Elitebook 830 G7 is a powerful and versatile laptop designed for professionals who require reliability and performance. With its sleek design an</p>
+          <h3 data-open="4">HP Elitebook 830 G7 Core-i5 10th Gen</h3>
+          <p class="spec">he HP Elitebook 830 G7 is a powerful and versatile laptop designed for professionals who require reliability and performance. With its sleek design and advanced features, it is well-suited for both office and remote work.
+
+• 
+Processor: Equipped with an Intel Core i5 10th Generation processor for efficient multitasking and performance.
+
+• 
+Display: Features a 13.3-inch Full HD display for clear visuals and vibrant colors.
+
+• 
+RAM: Available in different configurations to meet various performance needs.
+
+• 
+Storage: Comes with different storage options to accommodate your data and applications.
+
+• 
+Operating System: Pre-installed with Windows 10 Pro for enhanced productivity and security.
+
+• 
+Connectivity: Offers multiple USB ports, HDMI, and Thunderbolt 3 for versatile connectivity options.
+
+• 
+Security Features: Includes a fingerprint reader and HP Sure Start for enhanced security.
+
+• 
+Audio: Features high-quality audio with dual speakers and HP Noise Cancellation technology.
+
+• 
+Weight: Lightweight design for easy portability.
+
+The HP Elitebook 830 G7 is a reliable choice for professionals seeking a balance of performance and portability in their computing devices.
+
+HP Elitebook 830 G7 Core-i5 10th Gen + Complimentary Dining Voucher (Limited Offer)
+
+🎁 As part of this promotion, customers may receive a complimentary dining voucher valued up to R250.
+
+Voucher is purchased from a third-party provider and shared after successful order completion.
+
+Terms and conditions apply.</p>
           <div class="priceline"><span class="price">R 9,200</span><span class="was">R 9,600</span><span class="savetag">Save R 400</span></div>
+          <button class="viewbtn" data-open="4">View details</button>
           <button class="add" data-i="4">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="8300" data-band="610" data-title="iphone 14 128 gb">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2014%20128%20GB%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Blue_1_60eed0cb-07ac-4698-824d-b9f0a9db59b9.webp?v=1775565899&width=1080" alt="iPhone 14 128 GB" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="5" data-cat="iPhones" data-brand="Apple" data-price="8300" data-band="610" data-title="iphone 14 128 gb">
+        <div class="imgwrap" data-open="5">
+          <button class="fav" data-fav="5" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Blue_1_60eed0cb-07ac-4698-824d-b9f0a9db59b9.webp?v=1775565899&width=1080" alt="iPhone 14 128 GB" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone 14 128 GB</h3>
-          <p class="spec">The iPhone 14 combines advanced technology with user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Super Retina X</p>
+          <h3 data-open="5">iPhone 14 128 GB</h3>
+          <p class="spec">The iPhone 14 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.
+
+• 
+Display: 6.1-inch Super Retina XDR display for vibrant colors and sharp details.
+
+• 
+Camera System: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+Processor: A15 Bionic chip for fast performance and efficient multitasking.
+
+• 
+Storage: Available in different configurations to suit your needs.
+
+• 
+RAM: Available in different configurations to enhance performance.
+
+• 
+Operating System: Runs on iOS, providing a smooth and intuitive user experience.
+
+• 
+5G Capability: Supports 5G networks for faster download and streaming speeds.
+
+• 
+Face ID: Secure facial recognition technology for easy unlocking and secure payments.
+
+The iPhone 14 is designed to meet the demands of modern users, offering a blend of performance and functionality.</p>
           <div class="priceline"><span class="price">R 8,300</span><span class="was">R 8,700</span><span class="savetag">Save R 400</span></div>
+          <button class="viewbtn" data-open="5">View details</button>
           <button class="add" data-i="5">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="8200" data-band="610" data-title="iphone 13 128 gb">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20IPhone%2013%20128%20GB%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Bllue.webp?v=1775564920&width=1080" alt="IPhone 13 128 GB" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="6" data-cat="iPhones" data-brand="Apple" data-price="8200" data-band="610" data-title="iphone 13 128 gb">
+        <div class="imgwrap" data-open="6">
+          <button class="fav" data-fav="6" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Bllue.webp?v=1775564920&width=1080" alt="IPhone 13 128 GB" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>IPhone 13 128 GB</h3>
-          <p class="spec">The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Super </p>
+          <h3 data-open="6">IPhone 13 128 GB</h3>
+          <p class="spec">The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use.
+
+• 
+Display: 6.1-inch Super Retina XDR display for vibrant colors and sharp details.
+
+• 
+Camera System: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+Processor: A15 Bionic chip for fast performance and efficient power management.
+
+• 
+Storage: Available in different configurations to suit your storage needs.
+
+• 
+RAM: Available in different configurations to enhance multitasking capabilities.
+
+• 
+Operating System: Runs on iOS, providing a smooth and intuitive user experience.
+
+• 
+5G Connectivity: Supports 5G for faster download speeds and improved streaming quality.
+
+• 
+Face ID: Secure facial recognition technology for easy and secure unlocking.
+
+• 
+Durability: Ceramic Shield front cover for improved drop performance.</p>
           <div class="priceline"><span class="price">R 8,200</span><span class="was">R 8,500</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="6">View details</button>
           <button class="add" data-i="6">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="7600" data-band="610" data-title="macbook pro 2017 i5">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Pro%202017%20I5%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/RI.webp?v=1775557544&width=1080" alt="Macbook Pro 2017 I5" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="7" data-cat="Apple" data-brand="Apple" data-price="7600" data-band="610" data-title="macbook pro 2017 i5">
+        <div class="imgwrap" data-open="7">
+          <button class="fav" data-fav="7" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/RI.webp?v=1775557544&width=1080" alt="Macbook Pro 2017 I5" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Pro 2017 I5</h3>
-          <p class="spec">Processor: Intel core i5 8GB Ram MacOS Ventura 256GB Storage Cycle Count:903</p>
+          <h3 data-open="7">Macbook Pro 2017 I5</h3>
+          <p class="spec">Processor: Intel core i5
+8GB Ram
+MacOS Ventura
+256GB Storage
+Cycle Count:903</p>
           <div class="priceline"><span class="price">R 7,600</span><span class="was">R 7,800</span><span class="savetag">Save R 200</span></div>
+          <button class="viewbtn" data-open="7">View details</button>
           <button class="add" data-i="7">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="7300" data-band="610" data-title="iphone 13">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2013%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MUGm.png?v=1776943792&width=1080" alt="iPhone 13" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="8" data-cat="iPhones" data-brand="Apple" data-price="7300" data-band="610" data-title="iphone 13">
+        <div class="imgwrap" data-open="8">
+          <button class="fav" data-fav="8" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MUGm.png?v=1776943792&width=1080" alt="iPhone 13" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone 13</h3>
-          <p class="spec">The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Super </p>
+          <h3 data-open="8">iPhone 13</h3>
+          <p class="spec">The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use.
+
+• 
+Display: 6.1-inch Super Retina XDR display for vibrant colors and sharp details.
+
+• 
+Camera System: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+Processor: A15 Bionic chip for fast performance and efficient power management.
+
+• 
+128 GB Storage: Available in different configurations to suit your storage needs.
+
+• 
+RAM: Available in different configurations to enhance multitasking capabilities.
+
+• 
+Operating System: Runs on iOS, providing a smooth and intuitive user experience.
+
+• 
+5G Connectivity: Supports 5G for faster download speeds and improved streaming quality.
+
+• 
+Face ID: Secure facial recognition technology for easy and secure unlocking.
+
+• 
+Durability: Ceramic Shield front cover for improved drop performance.
+
+• 
+ As part of this promotion, customers may receive a complimentary Mug& Bean  voucher valued up to R300.
+
+Voucher is purchased from a third-party provider and shared after successful order completion.
+
+The iPhone 13 combines cutting-edge technology with practical features, making it a solid choice for users seeking reliability and performance.</p>
           <div class="priceline"><span class="price">R 7,300</span><span class="was">R 8,000</span><span class="savetag">Save R 700</span></div>
+          <button class="viewbtn" data-open="8">View details</button>
           <button class="add" data-i="8">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="HP" data-price="6700" data-band="610" data-title="hp elitebook 1040 g1 core i5 - 4th gen">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20HP%20Elitebook%201040%20G1%20Core%20i5%20-%204th%20Gen%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Frame_15_58_ea1b5f41-7ddb-4e14-ad50-539cdfe51377.webp?v=1775566639&width=1080" alt="HP Elitebook 1040 G1 Core i5 - 4th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="9" data-cat="Laptops" data-brand="HP" data-price="6700" data-band="610" data-title="hp elitebook 1040 g1 core i5 - 4th gen">
+        <div class="imgwrap" data-open="9">
+          <button class="fav" data-fav="9" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Frame_15_58_ea1b5f41-7ddb-4e14-ad50-539cdfe51377.webp?v=1775566639&width=1080" alt="HP Elitebook 1040 G1 Core i5 - 4th Gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>HP Elitebook 1040 G1 Core i5 - 4th Gen</h3>
-          <p class="spec">The HP Elitebook 1040 G1 is a reliable and efficient laptop designed for professionals who need performance on the go. Processor: Powered by an Intel </p>
+          <h3 data-open="9">HP Elitebook 1040 G1 Core i5 - 4th Gen</h3>
+          <p class="spec">The HP Elitebook 1040 G1 is a reliable and efficient laptop designed for professionals who need performance on the go.
+
+• 
+Processor: Powered by an Intel Core i5 - 4th Generation processor for smooth multitasking.
+
+• 
+Display: Features a 14-inch Full HD display for clear visuals and vibrant colors.
+
+• 
+8GBRAM: Available in different configurations to meet your performance needs.
+
+• 
+128 GB SSD Storage: Available in different configurations, providing ample space for your files and applications.
+
+• 
+Operating System: Comes with Windows 10 Pro for a familiar and productive user experience.
+
+• 
+Connectivity: Equipped with multiple USB ports, HDMI, and Ethernet for versatile connectivity options.
+
+• 
+Security Features: Includes HP's security suite to protect your data and privacy.
+
+• 
+Design: Sleek and lightweight design makes it easy to carry for business travel.
+
+The HP Elitebook 1040 G1 is a solid choice for professionals seeking a balance of performance and portability.</p>
           <div class="priceline"><span class="price">R 6,700</span><span class="was">R 7,000</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="9">View details</button>
           <button class="add" data-i="9">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="6000" data-band="610" data-title="macbook pro a1398 intel core i7 late 2013 model">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Pro%20A1398%20Intel%20Core%20I7%20Late%202013%20Model%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/macmac.webp?v=1776521925&width=1080" alt="Macbook Pro A1398 Intel Core I7 Late 2013 Model" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="10" data-cat="Apple" data-brand="Apple" data-price="6000" data-band="610" data-title="macbook pro a1398 intel core i7 late 2013 model">
+        <div class="imgwrap" data-open="10">
+          <button class="fav" data-fav="10" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/macmac.webp?v=1776521925&width=1080" alt="Macbook Pro A1398 Intel Core I7 Late 2013 Model" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Pro A1398 Intel Core I7 Late 2013 Model</h3>
-          <p class="spec">MacOS Big Sur 8Gb RAM 2.0GHz processor 256Gb SSD Used in good working condition 6 months warranty</p>
+          <h3 data-open="10">Macbook Pro A1398 Intel Core I7 Late 2013 Model</h3>
+          <p class="spec">MacOS Big Sur
+8Gb RAM
+2.0GHz processor
+256Gb SSD
+Used in good working condition
+6 months warranty</p>
           <div class="priceline"><span class="price">R 6,000</span><span class="was">R 6,800</span><span class="savetag">Save R 800</span></div>
+          <button class="viewbtn" data-open="10">View details</button>
           <button class="add" data-i="10">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="HP" data-price="6000" data-band="610" data-title="hp elitebook 640 g4 core-i5 8th gen">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20HP%20Elitebook%20640%20G4%20Core-i5%208th%20Gen%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Frame_15_73_63432ffd-9f8f-4ea3-b0b6-b114187b2ba2.webp?v=1775567833&width=1080" alt="HP Elitebook 640 G4 Core-i5 8th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="11" data-cat="Laptops" data-brand="HP" data-price="6000" data-band="610" data-title="hp elitebook 640 g4 core-i5 8th gen">
+        <div class="imgwrap" data-open="11">
+          <button class="fav" data-fav="11" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Frame_15_73_63432ffd-9f8f-4ea3-b0b6-b114187b2ba2.webp?v=1775567833&width=1080" alt="HP Elitebook 640 G4 Core-i5 8th Gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>HP Elitebook 640 G4 Core-i5 8th Gen</h3>
-          <p class="spec">The HP EliteBook 640 G4 is a reliable and efficient laptop designed for professionals seeking performance and portability. Processor: Powered by an In</p>
+          <h3 data-open="11">HP Elitebook 640 G4 Core-i5 8th Gen</h3>
+          <p class="spec">The HP EliteBook 640 G4 is a reliable and efficient laptop designed for professionals seeking performance and portability.
+
+• 
+Processor: Powered by an Intel Core i5 8th Generation processor for smooth multitasking.
+
+• 
+Display: Features a 15.6-inch Full HD display for clear visuals and comfortable viewing.
+
+• 
+RAM: Available in different configurations to meet various performance needs.
+
+• 
+Storage: Offers different storage options to accommodate your data and applications.
+
+• 
+Operating System: Comes with Windows 10 Pro for a familiar and secure user experience.
+
+• 
+Connectivity: Equipped with multiple USB ports, HDMI, and Ethernet for versatile connectivity.
+
+• 
+Security Features: Includes advanced security features like a fingerprint reader and TPM for data protection.
+
+• 
+Weight: Lightweight design for easy portability, making it suitable for on-the-go professionals.
+
+Overall, the HP EliteBook 640 G4 is a solid choice for business users looking for a dependable laptop with essential features.</p>
           <div class="priceline"><span class="price">R 6,000</span><span class="was">R 6,400</span><span class="savetag">Save R 400</span></div>
+          <button class="viewbtn" data-open="11">View details</button>
           <button class="add" data-i="11">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="5800" data-band="36" data-title="iphone 12 64 gb">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2012%2064%20GB%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_1_b6c9b236-cb9c-4d33-98f0-39412dd918c9.webp?v=1775565238&width=1080" alt="iPhone 12 64 GB" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="12" data-cat="iPhones" data-brand="Apple" data-price="5800" data-band="36" data-title="iphone 12 64 gb">
+        <div class="imgwrap" data-open="12">
+          <button class="fav" data-fav="12" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_1_b6c9b236-cb9c-4d33-98f0-39412dd918c9.webp?v=1775565238&width=1080" alt="iPhone 12 64 GB" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone 12 64 GB</h3>
-          <p class="spec">The iPhone 12 combines advanced technology with a sleek design, offering users a powerful smartphone experience. Display: 6.1-inch Super Retina XDR di</p>
+          <h3 data-open="12">iPhone 12 64 GB</h3>
+          <p class="spec">The iPhone 12 combines advanced technology with a sleek design, offering users a powerful smartphone experience.
+
+• 
+Display: 6.1-inch Super Retina XDR display for vibrant colors and sharp details.
+
+• 
+Processor: A14 Bionic chip for high performance and efficiency.
+
+• 
+Cameras: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+5G Capability: Supports 5G networks for faster download and streaming speeds.
+
+• 
+Storage: Available in different configurations to suit your needs.
+
+• 
+RAM: Generous RAM for smooth multitasking and app performance.
+
+• 
+Operating System: Runs on iOS, providing a user-friendly interface and regular updates.
+
+• 
+Face ID: Secure facial recognition technology for easy unlocking and secure payments.
+
+The iPhone 12 is designed to meet the demands of modern users, delivering performance and functionality in a stylish package</p>
           <div class="priceline"><span class="price">R 5,800</span><span class="was">R 6,000</span><span class="savetag">Save R 200</span></div>
+          <button class="viewbtn" data-open="12">View details</button>
           <button class="add" data-i="12">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="5500" data-band="36" data-title="iphone xr">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%20XR%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_3_de07f0ba-d841-4f42-b0a2-762f5bc7776a.webp?v=1780304416&width=1080" alt="iPhone XR" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="13" data-cat="iPhones" data-brand="Apple" data-price="5500" data-band="36" data-title="iphone xr">
+        <div class="imgwrap" data-open="13">
+          <button class="fav" data-fav="13" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_3_de07f0ba-d841-4f42-b0a2-762f5bc7776a.webp?v=1780304416&width=1080" alt="iPhone XR" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone XR</h3>
-          <p class="spec">Display: 6.1-inch Liquid Retina HD display for vibrant colors and sharp details. Camera: 12 MP rear camera with Smart HDR for stunning photos in vario</p>
+          <h3 data-open="13">iPhone XR</h3>
+          <p class="spec">• 
+Display: 6.1-inch Liquid Retina HD display for vibrant colors and sharp details.
+
+• 
+Camera: 12 MP rear camera with Smart HDR for stunning photos in various lighting conditions.
+
+• 
+Processor: A12 Bionic chip for efficient performance and smooth multitasking.
+
+• 
+Face ID: Secure facial recognition technology for easy and secure unlocking.
+
+• 
+Water and Dust Resistance: Rated IP67, providing protection against splashes and dust.
+
+• 
+Storage and RAM: Available in different configurations to suit your needs.
+
+• 
+Operating System: Runs on iOS, offering a seamless user experience with regular updates.
+
+• 
+Audio: Spatial audio and stereo speakers for an immersive sound experience.</p>
           <div class="priceline"><span class="price">R 5,500</span><span class="was">R 8,600</span><span class="savetag">Save R 3,100</span></div>
+          <button class="viewbtn" data-open="13">View details</button>
           <button class="add" data-i="13">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="Lenovo" data-price="5500" data-band="36" data-title="lenovo thinkpad t450 core i5 - 5th gen">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Lenovo%20Thinkpad%20T450%20Core%20i5%20-%205th%20Gen%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/i5_done.png?v=1776941555&width=1080" alt="Lenovo Thinkpad T450 Core i5 - 5th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="14" data-cat="Laptops" data-brand="Lenovo" data-price="5500" data-band="36" data-title="lenovo thinkpad t450 core i5 - 5th gen">
+        <div class="imgwrap" data-open="14">
+          <button class="fav" data-fav="14" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/i5_done.png?v=1776941555&width=1080" alt="Lenovo Thinkpad T450 Core i5 - 5th Gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Lenovo Thinkpad T450 Core i5 - 5th Gen</h3>
-          <p class="spec">The Lenovo Thinkpad T450 is a reliable laptop designed for professionals who need performance and portability. With its robust build and efficient com</p>
+          <h3 data-open="14">Lenovo Thinkpad T450 Core i5 - 5th Gen</h3>
+          <p class="spec">The Lenovo Thinkpad T450 is a reliable laptop designed for professionals who need performance and portability. With its robust build and efficient components, it is suitable for various business tasks.
+
+• 
+Processor: Equipped with an Intel Core i5 - 5th Gen processor for efficient multitasking and performance.
+
+• 
+Display: Features a 15.6-inch display with a resolution of 1366 x 768 pixels, providing clear visuals for work and entertainment.
+
+• 
+8gbRAM: Available in different configurations to meet your memory needs, ensuring smooth operation of applications.
+
+• 
+256 SSDStorage: Comes with various storage options, allowing you to choose the right amount of space for your files and applications.
+
+• 
+Operating System: Pre-installed with Windows 10, offering a familiar interface and access to a wide range of software.
+
+• 
+Connectivity: Includes multiple USB ports, HDMI, and Ethernet for versatile connectivity options.
+
+• 
+Keyboard: Features a spill-resistant keyboard designed for comfort and durability during extended use.
+
+• 
+Weight: Lightweight design, making it easy to carry for on-the-go professionals.
+
+• 
+Get more value with your purchase at M&H Dynamic Tech.
+
+Selected products include a complimentary R150 Takealot voucher, giving you the freedom to shop a wide range of items online at Takealot.
+
+This digital voucher can be used personally or shared with someone else, making it a flexible and rewarding bonus.
+
+The voucher is delivered via email after successful order confirmation and can be redeemed easily at checkout on Takealot.
+
+Available on selected deals only. Terms and conditions apply.</p>
           <div class="priceline"><span class="price">R 5,500</span><span class="was">R 6,000</span><span class="savetag">Save R 500</span></div>
+          <button class="viewbtn" data-open="14">View details</button>
           <button class="add" data-i="14">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="5500" data-band="36" data-title="macbook pro a1398 intel core i7 2013 model laptop">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Pro%20A1398%20Intel%20Core%20I7%202013%20Model%20Laptop%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MACBB.webp?v=1775557812&width=1080" alt="Macbook Pro A1398 Intel Core I7 2013 Model Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="15" data-cat="Apple" data-brand="Apple" data-price="5500" data-band="36" data-title="macbook pro a1398 intel core i7 2013 model laptop">
+        <div class="imgwrap" data-open="15">
+          <button class="fav" data-fav="15" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MACBB.webp?v=1775557812&width=1080" alt="Macbook Pro A1398 Intel Core I7 2013 Model Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Pro A1398 Intel Core I7 2013 Model Laptop</h3>
-          <p class="spec">MacOS Mojave 8GB ram 2.3GHz processor 256GB SSD Used in good working condition 6 months warranty</p>
+          <h3 data-open="15">Macbook Pro A1398 Intel Core I7 2013 Model Laptop</h3>
+          <p class="spec">MacOS Mojave
+8GB ram
+2.3GHz processor
+256GB SSD
+Used in good working condition
+6 months warranty</p>
           <div class="priceline"><span class="price">R 5,500</span><span class="was">R 5,700</span><span class="savetag">Save R 200</span></div>
+          <button class="viewbtn" data-open="15">View details</button>
           <button class="add" data-i="15">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="5200" data-band="36" data-title="macbook air computer">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20Computer%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/imaq.webp?v=1775558082&width=1080" alt="Macbook Air Computer" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="16" data-cat="Apple" data-brand="Apple" data-price="5200" data-band="36" data-title="macbook air computer">
+        <div class="imgwrap" data-open="16">
+          <button class="fav" data-fav="16" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/imaq.webp?v=1775558082&width=1080" alt="Macbook Air Computer" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Air Computer</h3>
-          <p class="spec">Used But New = Processor: 1.6 GHz Intel Core i5 Dual-Core with a maximum boost speed of 3.6 GHz. RAM: 8 GB of installed RAM. Display: 13.3-inch Retina</p>
+          <h3 data-open="16">Macbook Air Computer</h3>
+          <p class="spec">Used But New = Processor: 1.6 GHz Intel Core i5 Dual-Core with a maximum boost speed of 3.6 GHz.
+RAM: 8 GB of installed RAM.
+Display: 13.3-inch Retina display.
+Ports: Two Thunderbolt / USB 4 ports.</p>
           <div class="priceline"><span class="price">R 5,200</span><span class="was">R 5,700</span><span class="savetag">Save R 500</span></div>
+          <button class="viewbtn" data-open="16">View details</button>
           <button class="add" data-i="16">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="5000" data-band="36" data-title="iphone 11 64 gb">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2011%2064%20GB%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/black_3_513360e6-3bba-40ab-94d7-2ec5ba0e7a22.webp?v=1775565582&width=1080" alt="iPhone 11 64 GB" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="17" data-cat="iPhones" data-brand="Apple" data-price="5000" data-band="36" data-title="iphone 11 64 gb">
+        <div class="imgwrap" data-open="17">
+          <button class="fav" data-fav="17" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/black_3_513360e6-3bba-40ab-94d7-2ec5ba0e7a22.webp?v=1775565582&width=1080" alt="iPhone 11 64 GB" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone 11 64 GB</h3>
-          <p class="spec">The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Liquid Retina </p>
+          <h3 data-open="17">iPhone 11 64 GB</h3>
+          <p class="spec">The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.
+
+• 
+Display: 6.1-inch Liquid Retina HD display for vibrant colors and sharp details.
+
+• 
+Camera: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+Processor: A13 Bionic chip for exceptional performance and efficiency.
+
+• 
+Storage: Available in different configurations to suit your needs.
+
+• 
+RAM: Generous RAM for smooth multitasking and app performance.
+
+• 
+Operating System: Runs on iOS, providing a seamless and intuitive user experience.
+
+• 
+Water Resistance: Rated IP68 for water and dust resistance, ensuring durability.
+
+• 
+Face ID: Secure facial recognition technology for easy unlocking and secure payments.
+
+Overall, the iPhone 11 is designed to meet the demands of modern users with its robust features and reliable performance</p>
           <div class="priceline"><span class="price">R 5,000</span><span class="was">R 5,500</span><span class="savetag">Save R 500</span></div>
+          <button class="viewbtn" data-open="17">View details</button>
           <button class="add" data-i="17">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="5000" data-band="36" data-title="macbook air a1466 i5 laptop">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20A1466%20I5%20Laptop%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CACPG075977-3237090-1.webp?v=1775559540&width=1080" alt="Macbook Air A1466 I5 Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="18" data-cat="Apple" data-brand="Apple" data-price="5000" data-band="36" data-title="macbook air a1466 i5 laptop">
+        <div class="imgwrap" data-open="18">
+          <button class="fav" data-fav="18" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CACPG075977-3237090-1.webp?v=1775559540&width=1080" alt="Macbook Air A1466 I5 Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Air A1466 I5 Laptop</h3>
-          <p class="spec">Good condition Superficial scratches along surface and small dent in bottom left corner Intel Core i5 / 1.6GHz 4GB RAM / 121GB Macintosh HD macOS Mont</p>
+          <h3 data-open="18">Macbook Air A1466 I5 Laptop</h3>
+          <p class="spec">Good condition
+Superficial scratches along surface and small dent in bottom left corner
+Intel Core i5 / 1.6GHz
+4GB RAM / 121GB Macintosh HD
+macOS Monterey
+Cycle count: 447</p>
           <div class="priceline"><span class="price">R 5,000</span><span class="was">R 5,400</span><span class="savetag">Save R 400</span></div>
+          <button class="viewbtn" data-open="18">View details</button>
           <button class="add" data-i="18">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="5000" data-band="36" data-title="macbook air (13-inch,2017)">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Macbook%20Air%20(13-Inch,2017)%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CAVNV026618-3247134-1.webp?v=1775557245&width=1080" alt="Macbook Air (13-Inch,2017)" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="19" data-cat="Apple" data-brand="Apple" data-price="5000" data-band="36" data-title="macbook air (13-inch,2017)">
+        <div class="imgwrap" data-open="19">
+          <button class="fav" data-fav="19" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CAVNV026618-3247134-1.webp?v=1775557245&width=1080" alt="Macbook Air (13-Inch,2017)" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Macbook Air (13-Inch,2017)</h3>
-          <p class="spec">Processor : 1.8GHz intel core i5 Memory : 8GB Graphics : intel HD Graphics 6000 1536 MB Storage : 121GB BATTERY HEALTH : Cycle count 563</p>
+          <h3 data-open="19">Macbook Air (13-Inch,2017)</h3>
+          <p class="spec">Processor : 1.8GHz intel core i5
+Memory : 8GB
+Graphics : intel HD Graphics 6000 1536 MB
+Storage : 121GB
+BATTERY HEALTH : Cycle count 563</p>
           <div class="priceline"><span class="price">R 5,000</span><span class="was">R 5,300</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="19">View details</button>
           <button class="add" data-i="19">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="4900" data-band="36" data-title="iphone 11">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%2011%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/donedeal.png?v=1777033166&width=1080" alt="iPhone 11" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="20" data-cat="iPhones" data-brand="Apple" data-price="4900" data-band="36" data-title="iphone 11">
+        <div class="imgwrap" data-open="20">
+          <button class="fav" data-fav="20" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/donedeal.png?v=1777033166&width=1080" alt="iPhone 11" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone 11</h3>
-          <p class="spec">The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use. Display: 6.1-inch Liquid Retina </p>
+          <h3 data-open="20">iPhone 11</h3>
+          <p class="spec">The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.
+
+• 
+Display: 6.1-inch Liquid Retina HD display for vibrant colors and sharp details.
+
+• 
+Camera: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+Processor: A13 Bionic chip for exceptional performance and efficiency.
+
+• 
+64 Gb Storage: Available in different configurations to suit your needs.
+
+• 
+RAM: Generous RAM for smooth multitasking and app performance.
+
+• 
+Operating System: Runs on iOS, providing a seamless and intuitive user experience.
+
+• 
+Water Resistance: Rated IP68 for water and dust resistance, ensuring durability.
+
+• 
+Face ID: Secure facial recognition technology for easy unlocking and secure payments.
+
+Overall, the iPhone 11 is designed to meet the demands of modern users with its robust features and reliable performance.</p>
           <div class="priceline"><span class="price">R 4,900</span><span class="was">R 5,500</span><span class="savetag">Save R 600</span></div>
+          <button class="viewbtn" data-open="20">View details</button>
           <button class="add" data-i="20">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="Dell" data-price="4700" data-band="36" data-title="dell latitude 5480 core i5 - 6th gen">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Dell%20Latitude%205480%20Core%20i5%20-%206th%20Gen%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Untitled_design.png_2.png?v=1776941011&width=1080" alt="Dell Latitude 5480 Core i5 - 6th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="21" data-cat="Laptops" data-brand="Dell" data-price="4700" data-band="36" data-title="dell latitude 5480 core i5 - 6th gen">
+        <div class="imgwrap" data-open="21">
+          <button class="fav" data-fav="21" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Untitled_design.png_2.png?v=1776941011&width=1080" alt="Dell Latitude 5480 Core i5 - 6th Gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Dell Latitude 5480 Core i5 - 6th Gen</h3>
-          <p class="spec">The Dell Latitude 5480 is a reliable laptop designed for professionals who need performance and portability. With its robust features, it is suitable </p>
+          <h3 data-open="21">Dell Latitude 5480 Core i5 - 6th Gen</h3>
+          <p class="spec">The Dell Latitude 5480 is a reliable laptop designed for professionals who need performance and portability. With its robust features, it is suitable for various business applications.
+
+• 
+Processor: Equipped with an Intel Core i5 6th Generation processor for efficient multitasking.
+
+• 
+Display: Features a 15.6-inch Full HD display for clear visuals and comfortable viewing.
+
+• 
+8GBRAM: Available in different configurations to meet your performance needs.
+
+• 
+256 GB SSD Storage: Offers various storage options to accommodate your files and applications.
+
+• 
+Graphics: Integrated Intel HD Graphics for everyday tasks and light multimedia use.
+
+• 
+Connectivity: Includes multiple USB ports, HDMI, and Ethernet for versatile connectivity.
+
+• 
+Operating System: Comes with Windows 10 Pro for a professional experience.
+
+• 
+Security Features: Equipped with a fingerprint reader and TPM for enhanced security.
+
+• 
+Build Quality: Durable design that meets military-grade specifications for reliability.
+
+The Dell Latitude 5480 is a solid choice for professionals seeking a dependable laptop with essential features.
+
+Get more value with your purchase at M&H Dynamic Tech.
+
+Selected products include a complimentary R150 Takealot voucher, giving you the freedom to shop a wide range of items online at Takealot.
+
+This digital voucher can be used personally or shared with someone else, making it a flexible and rewarding bonus.
+
+The voucher is delivered electronically after successful order confirmation and can be redeemed easily at checkout on Takealot.
+
+Available on selected deals only. Terms and conditions apply.</p>
           <div class="priceline"><span class="price">R 4,700</span><span class="was">R 5,000</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="21">View details</button>
           <button class="add" data-i="21">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="4600" data-band="36" data-title="iphone x">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%20X%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/SpaceGrey_1_bc96d053-d475-4949-8d1d-eaf43de2981c.webp?v=1780304007&width=1080" alt="iPhone X" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="22" data-cat="iPhones" data-brand="Apple" data-price="4600" data-band="36" data-title="iphone x">
+        <div class="imgwrap" data-open="22">
+          <button class="fav" data-fav="22" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/SpaceGrey_1_bc96d053-d475-4949-8d1d-eaf43de2981c.webp?v=1780304007&width=1080" alt="iPhone X" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone X</h3>
-          <p class="spec">Display: 5.8-inch Super Retina display with a resolution of 1125 x 2436 pixels for vibrant colors and sharp images. Camera: Dual 12 MP rear cameras wi</p>
+          <h3 data-open="22">iPhone X</h3>
+          <p class="spec">• 
+Display: 5.8-inch Super Retina display with a resolution of 1125 x 2436 pixels for vibrant colors and sharp images.
+
+• 
+Camera: Dual 12 MP rear cameras with optical image stabilization for high-quality photos and videos.
+
+• 
+Face ID: Secure facial recognition technology for easy and secure unlocking of the device.
+
+• 
+Processor: A11 Bionic chip with 64-bit architecture for fast performance and efficient multitasking.
+
+• 
+64GBStorage: Available in different configurations to suit various storage needs.
+
+• 
+ Generous RAM capacity for smooth operation and app performance.
+
+• 
+Operating System: Ships with iOS, providing access to a wide range of apps and features.
+
+• 
+Water and Dust Resistance: Rated IP67, offering protection against water and dust ingress.
+
+• 
+Wireless Charging: Supports Qi wireless charging for convenient power options.</p>
           <div class="priceline"><span class="price">R 4,600</span><span class="was">R 6,900</span><span class="savetag">Save R 2,300</span></div>
+          <button class="viewbtn" data-open="22">View details</button>
           <button class="add" data-i="22">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="Lenovo" data-price="4600" data-band="36" data-title="lenovo thinkpad t470 core i5 - 6th gen">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Lenovo%20Thinkpad%20T470%20Core%20i5%20-%206th%20Gen%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/PROMONET.png?v=1780247950&width=1080" alt="Lenovo Thinkpad T470 Core i5 - 6th Gen" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="23" data-cat="Laptops" data-brand="Lenovo" data-price="4600" data-band="36" data-title="lenovo thinkpad t470 core i5 - 6th gen">
+        <div class="imgwrap" data-open="23">
+          <button class="fav" data-fav="23" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/PROMONET.png?v=1780247950&width=1080" alt="Lenovo Thinkpad T470 Core i5 - 6th Gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Lenovo Thinkpad T470 Core i5 - 6th Gen</h3>
-          <p class="spec">The Lenovo Thinkpad T470 is a reliable business laptop designed for professionals who need performance and portability. With its robust features, it i</p>
+          <h3 data-open="23">Lenovo Thinkpad T470 Core i5 - 6th Gen</h3>
+          <p class="spec">The Lenovo Thinkpad T470 is a reliable business laptop designed for professionals who need performance and portability. With its robust features, it is well-suited for various tasks.
+
+• 
+Processor: Powered by Intel Core i5 - 6th Gen for efficient multitasking and performance.
+
+• 
+Display: 14-inch Full HD display with a resolution of 1920 x 1080 for clear visuals.
+
+• 
+8 GB RAM: Available in different configurations to meet your memory needs.
+
+• 
+256 GB Storage: Available in different configurations, providing ample space for your files and applications.
+
+• 
+Operating System: Comes with Windows 10 Pro, offering a familiar and secure environment.
+
+• 
+Connectivity: Features multiple USB ports, HDMI, and Ethernet for versatile connectivity options.
+
+• 
+Keyboard: Equipped with a spill-resistant keyboard for durability and comfort during typing.
+
+• 
+Weight: Lightweight design, making it easy to carry for on-the-go professionals.
+
+• 
+Security: Includes a fingerprint reader and TPM for enhanced security features.
+
+•  One Netflix promotional reward per order buy a Thinkpad Laptop and win a Premium4K + HDR
+
+• 
+
+Monthly price
+
+ZAR 229
+
+• 
+
+Video and sound quality
+
+Best
+
+• 
+
+Resolution
+
+4K (Ultra HD) + HDR
+
+• 
+
+Spatial audio (immersive sound)
+
+Included
+
+• 
+
+Supported devices
+
+TV, computer, mobile phone, tablet
+
+• 
+
+Devices your household can watch at the same time
+
+4
+
+• 
+
+Download devices
+
+6
+
+• Reward granted after successful delivery
+• Customer must not already have an active Netflix Premium plan to qualify for the free one-month
+Netflix offer
+• Customers without an active Netflix Premium plan may qualify.</p>
           <div class="priceline"><span class="price">R 4,600</span><span class="was">R 5,000</span><span class="savetag">Save R 400</span></div>
+          <button class="viewbtn" data-open="23">View details</button>
           <button class="add" data-i="23">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="4500" data-band="36" data-title="apple macbook pro">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Pro%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MAC2.webp?v=1775558386&width=1080" alt="Apple Macbook Pro" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="24" data-cat="Apple" data-brand="Apple" data-price="4500" data-band="36" data-title="apple macbook pro">
+        <div class="imgwrap" data-open="24">
+          <button class="fav" data-fav="24" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MAC2.webp?v=1775558386&width=1080" alt="Apple Macbook Pro" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Apple Macbook Pro</h3>
-          <p class="spec">Condition – Good macOS High Sierra Version 10.13.6 Processor: 2,7 GHz Intel core i7 RAM: 4GB Storage: 480GB</p>
+          <h3 data-open="24">Apple Macbook Pro</h3>
+          <p class="spec">Condition – Good
+macOS High Sierra
+Version 10.13.6
+Processor: 2,7 GHz Intel core i7
+RAM: 4GB
+Storage: 480GB</p>
           <div class="priceline"><span class="price">R 4,500</span><span class="was">R 4,800</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="24">View details</button>
           <button class="add" data-i="24">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="4000" data-band="36" data-title="apple macbook air | intel core i5 | 256gb storage">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Air%20|%20Intel%20Core%20I5%20|%20256Gb%20Storage%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Silver_10_b92838b0-eeb0-42ae-87d8-b7577e8f2226.webp?v=1776719442&width=1080" alt="Apple Macbook Air | Intel Core I5 | 256Gb Storage" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="25" data-cat="Apple" data-brand="Apple" data-price="4000" data-band="36" data-title="apple macbook air | intel core i5 | 256gb storage">
+        <div class="imgwrap" data-open="25">
+          <button class="fav" data-fav="25" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Silver_10_b92838b0-eeb0-42ae-87d8-b7577e8f2226.webp?v=1776719442&width=1080" alt="Apple Macbook Air | Intel Core I5 | 256Gb Storage" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Apple Macbook Air | Intel Core I5 | 256Gb Storage</h3>
-          <p class="spec">Apple Macbook Air Model No -A1370 Processor – Intel Core i5 Processor Speed – 1.6Ghz Storage – 256GB Ram – 8GB Operating System – MacOS Monterey Charg</p>
+          <h3 data-open="25">Apple Macbook Air | Intel Core I5 | 256Gb Storage</h3>
+          <p class="spec">Apple Macbook Air
+Model No -A1370
+Processor – Intel Core i5
+Processor Speed – 1.6Ghz
+Storage – 256GB
+Ram – 8GB
+Operating System – MacOS Monterey
+Charging Cable
+Great Working Condition
+Good Condition
+
+Nb – Slight Crack On Screen</p>
           <div class="priceline"><span class="price">R 4,000</span><span class="was">R 4,800</span><span class="savetag">Save R 800</span></div>
+          <button class="viewbtn" data-open="25">View details</button>
           <button class="add" data-i="25">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="HP" data-price="3900" data-band="36" data-title="hp notebook laptop">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Hp%20Notebook%20Laptop%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BCTR055006-2886805-1.webp?v=1775567619&width=1080" alt="Hp Notebook Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="26" data-cat="Apple" data-brand="HP" data-price="3900" data-band="36" data-title="hp notebook laptop">
+        <div class="imgwrap" data-open="26">
+          <button class="fav" data-fav="26" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BCTR055006-2886805-1.webp?v=1775567619&width=1080" alt="Hp Notebook Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Hp Notebook Laptop</h3>
-          <p class="spec">Device Name : Hp Processor : Intel Celeron Installed Ram : 4GB Storage : 430GB HDD No Box Charger Only</p>
+          <h3 data-open="26">Hp Notebook Laptop</h3>
+          <p class="spec">Device Name : Hp
+Processor : Intel Celeron
+Installed Ram : 4GB
+Storage : 430GB HDD
+No Box
+Charger Only</p>
           <div class="priceline"><span class="price">R 3,900</span><span class="was">R 4,100</span><span class="savetag">Save R 200</span></div>
+          <button class="viewbtn" data-open="26">View details</button>
           <button class="add" data-i="26">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="Dell" data-price="3900" data-band="36" data-title="dell laptop t9kb76t">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Dell%20Laptop%20T9kb76t%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CAMNT046123-3248538-1-scaled.jpg?v=1775567091&width=1080" alt="Dell Laptop T9kb76t" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="27" data-cat="Laptops" data-brand="Dell" data-price="3900" data-band="36" data-title="dell laptop t9kb76t">
+        <div class="imgwrap" data-open="27">
+          <button class="fav" data-fav="27" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CAMNT046123-3248538-1-scaled.jpg?v=1775567091&width=1080" alt="Dell Laptop T9kb76t" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Dell Laptop T9kb76t</h3>
-          <p class="spec">Dell Laptop T9KB76T for sale . In a good and working condition backed by a six month guarantee. 4GB RAM, 500GB storage, Intel Celeron N4000 1.10GHz, W</p>
+          <h3 data-open="27">Dell Laptop T9kb76t</h3>
+          <p class="spec">Dell Laptop T9KB76T for sale . In a good and working condition backed by a six month guarantee. 4GB RAM, 500GB storage, Intel Celeron N4000 1.10GHz, Windows 10. Black in colour</p>
           <div class="priceline"><span class="price">R 3,900</span><span class="was">R 4,000</span><span class="savetag">Save R 100</span></div>
+          <button class="viewbtn" data-open="27">View details</button>
           <button class="add" data-i="27">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="3700" data-band="36" data-title="iphone 8">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%208%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/red82.webp?v=1780303307&width=1080" alt="iPhone 8" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="28" data-cat="iPhones" data-brand="Apple" data-price="3700" data-band="36" data-title="iphone 8">
+        <div class="imgwrap" data-open="28">
+          <button class="fav" data-fav="28" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/red82.webp?v=1780303307&width=1080" alt="iPhone 8" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone 8</h3>
-          <p class="spec">he iPhone 8 combines powerful performance with a sleek design, making it a reliable choice for everyday use. Display: 4.7-inch Retina HD display with </p>
+          <h3 data-open="28">iPhone 8</h3>
+          <p class="spec">he iPhone 8 combines powerful performance with a sleek design, making it a reliable choice for everyday use.
+
+• 
+Display: 4.7-inch Retina HD display with True Tone technology for vibrant colors.
+
+• 
+Camera: 12 MP rear camera with optical image stabilization for high-quality photos and videos.
+
+• 
+Processor: A11 Bionic chip for fast performance and efficient multitasking.
+
+• 
+64GBStorage: Available in different configurations to suit your needs.
+
+• 
+ Generous RAM capacity for smooth operation and app performance.
+
+• 
+Operating System: Runs on iOS, providing access to a wide range of apps and features.
+
+• 
+Water and Dust Resistance: Rated IP67 for protection against water and dust ingress.
+
+• 
+Wireless Charging: Supports Qi wireless charging for convenient power-ups.
+
+The iPhone 8 is a solid choice for users seeking a blend of performance and functionality in a compact device.</p>
           <div class="priceline"><span class="price">R 3,700</span></div>
+          <button class="viewbtn" data-open="28">View details</button>
           <button class="add" data-i="28">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="3700" data-band="36" data-title="apple macbook air laptop">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Air%20Laptop%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BAVU.jpg?v=1775560180&width=1080" alt="Apple Macbook Air Laptop" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="29" data-cat="Apple" data-brand="Apple" data-price="3700" data-band="36" data-title="apple macbook air laptop">
+        <div class="imgwrap" data-open="29">
+          <button class="fav" data-fav="29" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BAVU.jpg?v=1775560180&width=1080" alt="Apple Macbook Air Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Apple Macbook Air Laptop</h3>
-          <p class="spec">APPLE MACBOOK AIR MACOS MONTEREY VERSION 12.7.6 4GB MHZ DDR3 1.6 GHZ DUAL-CORE INTEL CORE I5 121GB HDD</p>
+          <h3 data-open="29">Apple Macbook Air Laptop</h3>
+          <p class="spec">APPLE MACBOOK AIR
+MACOS MONTEREY VERSION 12.7.6
+4GB MHZ DDR3 1.6 GHZ DUAL-CORE INTEL CORE I5 121GB HDD</p>
           <div class="priceline"><span class="price">R 3,700</span><span class="was">R 4,000</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="29">View details</button>
           <button class="add" data-i="29">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Apple" data-brand="Apple" data-price="3400" data-band="36" data-title="apple macbook pro (13-inch) mid 2012">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Apple%20Macbook%20Pro%20(13-Inch)%20Mid%202012%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/mac_mac.webp?v=1778944481&width=1080" alt="Apple Macbook Pro (13-Inch) Mid 2012" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="30" data-cat="Apple" data-brand="Apple" data-price="3400" data-band="36" data-title="apple macbook pro (13-inch) mid 2012">
+        <div class="imgwrap" data-open="30">
+          <button class="fav" data-fav="30" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/mac_mac.webp?v=1778944481&width=1080" alt="Apple Macbook Pro (13-Inch) Mid 2012" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Apple Macbook Pro (13-Inch) Mid 2012</h3>
-          <p class="spec">The 13-inch Mid-2012 MacBook Pro (model A1278) features a 2.5GHz or 2.9GHz Intel Core i5/i7 processor, 1600MHz DDR3L RAM 16GB), 500GB/750GB SSD, and I</p>
+          <h3 data-open="30">Apple Macbook Pro (13-Inch) Mid 2012</h3>
+          <p class="spec">The 13-inch Mid-2012 MacBook Pro (model A1278) features a 2.5GHz or 2.9GHz Intel Core i5/i7 processor,  1600MHz DDR3L RAM  16GB), 500GB/750GB   SSD, and Intel HD Graphics 4000. It includes a 13.3&quot; 1280x800 display, SuperDrive, and 2x USB 3.0 ports.</p>
           <div class="priceline"><span class="price">R 3,400</span><span class="was">R 4,000</span><span class="savetag">Save R 600</span></div>
+          <button class="viewbtn" data-open="30">View details</button>
           <button class="add" data-i="30">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="Acer" data-price="3200" data-band="36" data-title="acer chromebook-r11 convertible-2-in-1 touch-celeron 6th-gen">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Acer%20Chromebook-R11%20Convertible-2-In-1%20Touch-Celeron%206th-gen%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/AcerLaptops_1_78be7e76-9c30-48f1-8bf5-00baecb82180.webp?v=1775566250&width=1080" alt="Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="31" data-cat="Laptops" data-brand="Acer" data-price="3200" data-band="36" data-title="acer chromebook-r11 convertible-2-in-1 touch-celeron 6th-gen">
+        <div class="imgwrap" data-open="31">
+          <button class="fav" data-fav="31" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/AcerLaptops_1_78be7e76-9c30-48f1-8bf5-00baecb82180.webp?v=1775566250&width=1080" alt="Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen</h3>
-          <p class="spec">The Acer Chromebook R11 is a versatile 2-in-1 device designed for both productivity and entertainment. Its convertible design and touch capabilities m</p>
+          <h3 data-open="31">Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen</h3>
+          <p class="spec">The Acer Chromebook R11 is a versatile 2-in-1 device designed for both productivity and entertainment. Its convertible design and touch capabilities make it suitable for various tasks.
+
+• 
+Processor: Powered by a 6th generation Intel Celeron processor for efficient performance.
+
+• 
+Display: Features an 11.6-inch HD touchscreen display for vibrant visuals and easy navigation.
+
+• 
+Convertible Design: Easily transforms between laptop and tablet modes to suit your needs.
+
+• 
+4GBRAM: Available in different configurations to handle multitasking effectively.
+
+• 
+16 GB SSD Storage: Comes with various storage options to accommodate your files and applications.
+
+• 
+Operating System: Runs on Chrome OS, providing a fast and secure user experience.
+
+• 
+Connectivity: Includes multiple ports such as USB 3.0, HDMI, and a microSD card reader for versatile connectivity.
+
+• 
+Battery Life: Designed for all-day use, ensuring you stay productive without frequent recharging.
+
+• 
+Weight: Lightweight design for easy portability, making it ideal for on-the-go use.</p>
           <div class="priceline"><span class="price">R 3,200</span><span class="was">R 3,990</span><span class="savetag">Save R 790</span></div>
+          <button class="viewbtn" data-open="31">View details</button>
           <button class="add" data-i="31">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="iPhones" data-brand="Apple" data-price="3100" data-band="36" data-title="iphone 7">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20iPhone%207%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_4cdd944e-1ebe-4fef-acc7-0b6499ec0497.webp?v=1780303684&width=1080" alt="iPhone 7" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="32" data-cat="iPhones" data-brand="Apple" data-price="3100" data-band="36" data-title="iphone 7">
+        <div class="imgwrap" data-open="32">
+          <button class="fav" data-fav="32" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_4cdd944e-1ebe-4fef-acc7-0b6499ec0497.webp?v=1780303684&width=1080" alt="iPhone 7" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>iPhone 7</h3>
-          <p class="spec">Storage 32 GB SIM Card Unlocked Screen size (inches) 6.5 Processor Core 6 OS IOS Connector Lightning eSIM Yes Double SIM Yes Network 4G Release Date 2</p>
+          <h3 data-open="32">iPhone 7</h3>
+          <p class="spec">Storage
+32 GB
+
+SIM Card
+Unlocked
+
+Screen size (inches)
+6.5
+
+Processor Core
+6
+
+OS
+IOS 
+
+Connector
+Lightning
+
+eSIM
+Yes
+
+Double SIM
+Yes
+
+Network
+4G
+
+Release Date
+2017
+
+Camera Type
+Double (2x)
+
+Memory
+4 GB
+
+Brand
+Apple</p>
           <div class="priceline"><span class="price">R 3,100</span></div>
+          <button class="viewbtn" data-open="32">View details</button>
           <button class="add" data-i="32">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Accessories" data-brand="Other" data-price="1296" data-band="u3" data-title="indoor hydroponic plant growing machine">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Indoor%20Hydroponic%20Plant%20Growing%20Machine%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/ed7815a2-3708-49b3-9688-0bbdc37a3b2c.jpg?v=1775563927&width=1080" alt="Indoor Hydroponic Plant Growing Machine" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="33" data-cat="Accessories" data-brand="Other" data-price="1296" data-band="u3" data-title="indoor hydroponic plant growing machine">
+        <div class="imgwrap" data-open="33">
+          <button class="fav" data-fav="33" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/ed7815a2-3708-49b3-9688-0bbdc37a3b2c.jpg?v=1775563927&width=1080" alt="Indoor Hydroponic Plant Growing Machine" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Indoor Hydroponic Plant Growing Machine</h3>
-          <p class="spec">Overview Hydroponic System: Soilless cultivation technology for clean indoor gardening Smart Function: Automated lighting and water circulation for op</p>
+          <h3 data-open="33">Indoor Hydroponic Plant Growing Machine</h3>
+          <p class="spec">Overview
+
+Hydroponic System: Soilless cultivation technology for clean indoor gardening
+
+Smart Function: Automated lighting and water circulation for optimal plant growth
+
+Multi-Capacity Options: 3 to 12 planting holes with adjustable power (6W-24W)
+
+Plant Compatibility: Supports herbs, vegetables, flowers (e.g., roses), and ornamental plants
+
+Nutrient Supply: Includes dedicated nutrient solutions for accelerated germination
+
+Specifications
+
+Material: ABS plastic + aluminum alloy
+
+Power: 6W/15W/20W/24W (varies by model)
+
+Voltage: 100-240V AC (plug adaptors available)
+
+Planting Holes: 3/6/9/12 slots (model-dependent)
+
+Light Source: LED grow lights with adjustable intensity
+
+Packing List
+
+hydroponic growing machine*1
+
+planting cottonvaries (36/88/119 units)
+
+planting basketvaries (36/88/119 units)
+
+nutrient solutionvaries (6/8/11 sets)
+
+power adapter*1</p>
           <div class="priceline"><span class="price">R 1,296</span></div>
+          <button class="viewbtn" data-open="33">View details</button>
           <button class="add" data-i="33">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Accessories" data-brand="Other" data-price="496" data-band="u3" data-title="wireless noise cancelling bluetooth headset with microphone">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Wireless%20Noise%20Cancelling%20Bluetooth%20Headset%20with%20Microphone%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/369d20ec-92a4-49df-adec-b0b9c365b9d8.jpg?v=1775564386&width=1080" alt="Wireless Noise Cancelling Bluetooth Headset with Microphone" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="34" data-cat="Accessories" data-brand="Other" data-price="496" data-band="u3" data-title="wireless noise cancelling bluetooth headset with microphone">
+        <div class="imgwrap" data-open="34">
+          <button class="fav" data-fav="34" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/369d20ec-92a4-49df-adec-b0b9c365b9d8.jpg?v=1775564386&width=1080" alt="Wireless Noise Cancelling Bluetooth Headset with Microphone" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Wireless Noise Cancelling Bluetooth Headset with Microphone</h3>
-          <p class="spec">Overview Noise Cancellation: Advanced noise reduction technology for clear communication in busy environments Bluetooth Connectivity: Wireless operati</p>
+          <h3 data-open="34">Wireless Noise Cancelling Bluetooth Headset with Microphone</h3>
+          <p class="spec">Overview
+
+Noise Cancellation: Advanced noise reduction technology for clear communication in busy environments
+
+Bluetooth Connectivity: Wireless operation with 5.3 Bluetooth version and 15-meter range
+
+Comfort Design: Non-in-ear microphone rod design with head-mounted wearing style
+
+Battery Performance: 150mAh battery providing 7 hours continuous usage
+
+Stereo Sound: Bilateral stereo sound delivery for immersive audio experience
+
+Specifications
+
+Bluetooth Version: 5.3
+
+Transmission Range: 15 meters
+
+Battery Capacity: 150mAh
+
+Working Time: 7 hours
+
+Standby Time: 10 days
+
+Waterproof Rating: IPX6
+
+Material: PC+ABS
+
+Weight: 26g
+
+Chip Type: Jerry
+
+Certifications: CE, ROHS, FCC
+
+Colors: Black, Apricot
+
+Packing List
+
+wireless headset*1
+
+charging cable*1
+
+user manual*1</p>
           <div class="priceline"><span class="price">R 496</span></div>
+          <button class="viewbtn" data-open="34">View details</button>
           <button class="add" data-i="34">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Laptops" data-brand="HP" data-price="360" data-band="u3" data-title="hp laptop charger mode no ppp012hs">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Hp%20Laptop%20Charger%20Mode%20No%20Ppp012hs%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/chager.webp?v=1775562799&width=1080" alt="Hp Laptop Charger Mode No Ppp012hs" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="35" data-cat="Laptops" data-brand="HP" data-price="360" data-band="u3" data-title="hp laptop charger mode no ppp012hs">
+        <div class="imgwrap" data-open="35">
+          <button class="fav" data-fav="35" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/chager.webp?v=1775562799&width=1080" alt="Hp Laptop Charger Mode No Ppp012hs" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Hp Laptop Charger Mode No Ppp012hs</h3>
-          <p class="spec">The HP Laptop Charger P0012HS is a compatible AC power adapter designed to safely charge HP laptops, featuring precise voltage and amperage specificat</p>
+          <h3 data-open="35">Hp Laptop Charger Mode No Ppp012hs</h3>
+          <p class="spec">The HP Laptop Charger P0012HS is a compatible AC power adapter designed to safely charge HP laptops, featuring precise voltage and amperage specifications, Smart Pin technology, and various connector options for optimal safety and performance.</p>
           <div class="priceline"><span class="price">R 360</span></div>
+          <button class="viewbtn" data-open="35">View details</button>
           <button class="add" data-i="35">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Accessories" data-brand="Other" data-price="288" data-band="u3" data-title="wireless sports bluetooth headphones">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Wireless%20Sports%20Bluetooth%20Headphones%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/941a0be0-e240-4bc8-9d98-887ea0c1d496.jpg?v=1775564054&width=1080" alt="Wireless Sports Bluetooth Headphones" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="36" data-cat="Accessories" data-brand="Other" data-price="288" data-band="u3" data-title="wireless sports bluetooth headphones">
+        <div class="imgwrap" data-open="36">
+          <button class="fav" data-fav="36" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/941a0be0-e240-4bc8-9d98-887ea0c1d496.jpg?v=1775564054&width=1080" alt="Wireless Sports Bluetooth Headphones" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Wireless Sports Bluetooth Headphones</h3>
-          <p class="spec">Overview Bluetooth 5.4: Latest protocol for stable connectivity and low power consumption. Air-bone conduction: Open-ear design for situational awaren</p>
+          <h3 data-open="36">Wireless Sports Bluetooth Headphones</h3>
+          <p class="spec">Overview
+
+Bluetooth 5.4: Latest protocol for stable connectivity and low power consumption.
+
+Air-bone conduction: Open-ear design for situational awareness during activities.
+
+Long battery life: Up to 8 hours of continuous playback or calls.
+
+Stereo sound: Bilateral audio with 360� surround effect for immersive experience.
+
+Lightweight build: Ergonomic ear-mounted design for comfort during sports.
+
+Specifications
+
+Bluetooth version: 5.4
+
+Battery life: 4-8 hours
+
+Transmission range: 10 meters
+
+Charging type: USB (details not specified)
+
+Material: PC+ABS
+
+Water resistance: Life waterproof (splash-resistant)
+
+Packing List
+
+Wireless headphones*1
+
+USB charging cable*1
+
+User manual*1</p>
           <div class="priceline"><span class="price">R 288</span></div>
+          <button class="viewbtn" data-open="36">View details</button>
           <button class="add" data-i="36">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Accessories" data-brand="Other" data-price="275" data-band="u3" data-title="himalayan crystal salt lamp">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Himalayan%20crystal%20salt%20lamp%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/images.jpg?v=1777307082&width=1080" alt="Himalayan crystal salt lamp" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="37" data-cat="Accessories" data-brand="Other" data-price="275" data-band="u3" data-title="himalayan crystal salt lamp">
+        <div class="imgwrap" data-open="37">
+          <button class="fav" data-fav="37" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/images.jpg?v=1777307082&width=1080" alt="Himalayan crystal salt lamp" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Himalayan crystal salt lamp</h3>
-          <p class="spec">Himalayan crystal salt lamps are natural, hand-carved lamps from Pakistan’s Khewra Salt Mine that emit a warm, soft glow . They function as ambient li</p>
+          <h3 data-open="37">Himalayan crystal salt lamp</h3>
+          <p class="spec">Himalayan crystal salt lamps are natural, hand-carved lamps from Pakistan’s Khewra Salt Mine that emit a warm, soft glow. They function as ambient lighting, acting as air cleansers and natural ionizers to neutralize electromagnetic radiation. These lamps are popular for reducing stress, improving air quality, and promoting relaxation
+
+Key Features and Benefits:
+
+• Unique Aesthetic: Natural pink-to-orange hues, ranging from raw shapes to polished designs.
+
+• Air Cleansing: As hygroscopic items, they attract moisture, which is said to help trap dust, allergens, and smoke.
+
+• Ambiance & Wellbeing: Known for enhancing the atmosphere in yoga studios, spas, or homes to improve mood.
+
+• 
+Durability: Typically come with a wooden base and a 15W bulb to heat the salt.</p>
           <div class="priceline"><span class="price">R 275</span></div>
+          <button class="viewbtn" data-open="37">View details</button>
           <button class="add" data-i="37">Add to Cart</button>
         </div>
       </article>
-      <article class="card" data-cat="Accessories" data-brand="Other" data-price="208" data-band="u3" data-title="bluetooth earphones">
-        <a class="imgwrap" href="https://wa.me/27636110970?text={Hi%20M%26H,%20is%20the%20Bluetooth%20earphones%20available%3F}" target="_blank">
-          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/ffdce3a5-b214-4d92-951f-a5d0d3e9e17e.jpg?v=1775564275&width=1080" alt="Bluetooth earphones" loading="lazy" onerror="this.style.visibility='hidden'">
+      <article class="card" data-idx="38" data-cat="Accessories" data-brand="Other" data-price="208" data-band="u3" data-title="bluetooth earphones">
+        <div class="imgwrap" data-open="38">
+          <button class="fav" data-fav="38" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="https://cdn.shopify.com/s/files/1/0816/6781/7712/files/ffdce3a5-b214-4d92-951f-a5d0d3e9e17e.jpg?v=1775564275&width=1080" alt="Bluetooth earphones" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
           <span class="grade">Certified Pre-Owned</span>
-        </a>
+        </div>
         <div class="cbody">
-          <h3>Bluetooth earphones</h3>
-          <p class="spec">Overview Noise Reduction: Advanced noise reduction technology for clear audio. Bluetooth 5.4: Latest Bluetooth protocol for stable and fast connectivi</p>
+          <h3 data-open="38">Bluetooth earphones</h3>
+          <p class="spec">Overview
+
+Noise Reduction: Advanced noise reduction technology for clear audio.
+
+Bluetooth 5.4: Latest Bluetooth protocol for stable and fast connectivity.
+
+Battery Life: 4-8 hours of continuous usage on a single charge.
+
+Binaural Stereo: True wireless design with bilateral stereo sound.
+
+Compact & Lightweight: Ultra-small and mini design for comfort and portability.
+
+Multi-Point Connection: Connect to multiple devices simultaneously.
+
+Life Waterproof: Resistant to splashes and sweat.
+
+Specifications
+
+Bluetooth Protocol: 5.4
+
+Transmission Range: 10m
+
+Usage Type: Earplug-style
+
+Material: Silicone
+
+Color Options: Off-white, Black, White
+
+Battery Indicator: Display for real-time battery status.
+
+Functions: Call support, music playback, noise reduction.
+
+Packing List
+
+Bluetooth earphones*1
+
+Charging case*1
+
+USB cable*1
+
+Ear tips (various sizes)*3
+
+User manual*1</p>
           <div class="priceline"><span class="price">R 208</span></div>
+          <button class="viewbtn" data-open="38">View details</button>
           <button class="add" data-i="38">Add to Cart</button>
         </div>
       </article>
@@ -808,19 +1763,39 @@ footer a:hover{color:#fff}
   <div class="ditems" id="ditems"></div>
   <div class="dfoot" id="dfoot" style="display:none">
     <div class="dtotal"><span>Total</span><span id="dtotal">R 0</span></div>
-    <p class="dnote">Pay securely by card, or send your cart to us on WhatsApp to arrange payment &amp; delivery.</p>
-    <input id="custEmail" class="cemail" type="email" placeholder="Your email (for card payment)">
+    <p class="dnote">Enter your email and pay securely by card. Your order is confirmed the moment payment succeeds.</p>
+    <input id="custEmail" class="cemail" type="email" placeholder="Your email (for your receipt)">
     <button class="paystack" id="payNow">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
-      Pay now by card (Paystack)
+      Pay securely by card
     </button>
-    <div class="ordiv">or</div>
-    <a class="wa" id="waCheckout" href="#" target="_blank">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.5-.8-2.5-1.4-3.5-3.1-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3z"/></svg>
-      Checkout on WhatsApp
-    </a>
+    <p style="text-align:center;font-size:11.5px;color:var(--muted);margin-top:10px">🔒 Secure payment by Paystack · Visa, Mastercard &amp; Amex</p>
+  </div>
   </div>
 </aside>
+
+<div class="pmodal-bg" id="pmodalbg">
+  <div class="pmodal">
+    <button class="pclose" id="pmClose">&times;</button>
+    <div class="pmgrid">
+      <div class="pmimg" id="pmImgWrap">
+        <img id="pmImg" alt="">
+        <span class="grade">Certified Pre-Owned</span>
+      </div>
+      <div class="pminfo">
+        <h2 id="pmTitle"></h2>
+        <div class="priceline"><span class="price" id="pmPrice"></span><span id="pmSave"></span></div>
+        <div class="pmcond">✔ Tested &amp; certified pre-owned</div>
+        <h4>Description</h4>
+        <div class="pmdesc" id="pmDesc"></div>
+        <div class="pmbtns">
+          <button class="add" id="pmAdd">Add to Cart</button>
+          <button class="add" id="pmBuy" style="background:var(--ink)">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="rmodal-bg" id="rmodalbg">
   <div class="rmodal">
@@ -841,13 +1816,20 @@ footer a:hover{color:#fff}
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
-const WA='27636110970';const PRODUCTS=[{"t": "Macbook Air M1 Apple Laptop", "p": 11000.0}, {"t": "Macbook Air M1 Apple Laptop", "p": 11000.0}, {"t": "Apple Macbook Neo 13 A 18", "p": 10000.0}, {"t": "Macbook Pro 15-Inch, 2017 Touchbar", "p": 9500.0}, {"t": "HP Elitebook 830 G7 Core-i5 10th Gen", "p": 9200.0}, {"t": "iPhone 14 128 GB", "p": 8300.0}, {"t": "IPhone 13 128 GB", "p": 8200.0}, {"t": "Macbook Pro 2017 I5", "p": 7600.0}, {"t": "iPhone 13", "p": 7300.0}, {"t": "HP Elitebook 1040 G1 Core i5 - 4th Gen", "p": 6700.0}, {"t": "Macbook Pro A1398 Intel Core I7 Late 2013 Model", "p": 6000.0}, {"t": "HP Elitebook 640 G4 Core-i5 8th Gen", "p": 6000.0}, {"t": "iPhone 12 64 GB", "p": 5800.0}, {"t": "iPhone XR", "p": 5500.0}, {"t": "Lenovo Thinkpad T450 Core i5 - 5th Gen", "p": 5500.0}, {"t": "Macbook Pro A1398 Intel Core I7 2013 Model Laptop", "p": 5500.0}, {"t": "Macbook Air Computer", "p": 5200.0}, {"t": "iPhone 11 64 GB", "p": 5000.0}, {"t": "Macbook Air A1466 I5 Laptop", "p": 5000.0}, {"t": "Macbook Air (13-Inch,2017)", "p": 5000.0}, {"t": "iPhone 11", "p": 4900.0}, {"t": "Dell Latitude 5480 Core i5 - 6th Gen", "p": 4700.0}, {"t": "iPhone X", "p": 4600.0}, {"t": "Lenovo Thinkpad T470 Core i5 - 6th Gen", "p": 4600.0}, {"t": "Apple Macbook Pro", "p": 4500.0}, {"t": "Apple Macbook Air | Intel Core I5 | 256Gb Storage", "p": 4000.0}, {"t": "Hp Notebook Laptop", "p": 3900.0}, {"t": "Dell Laptop T9kb76t", "p": 3900.0}, {"t": "iPhone 8", "p": 3700.0}, {"t": "Apple Macbook Air Laptop", "p": 3700.0}, {"t": "Apple Macbook Pro (13-Inch) Mid 2012", "p": 3400.0}, {"t": "Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen", "p": 3200.0}, {"t": "iPhone 7", "p": 3100.0}, {"t": "Indoor Hydroponic Plant Growing Machine", "p": 1296.0}, {"t": "Wireless Noise Cancelling Bluetooth Headset with Microphone", "p": 496.0}, {"t": "Hp Laptop Charger Mode No Ppp012hs", "p": 360.0}, {"t": "Wireless Sports Bluetooth Headphones", "p": 288.0}, {"t": "Himalayan crystal salt lamp", "p": 275.0}, {"t": "Bluetooth earphones", "p": 208.0}];
+const WA='27636110970';const PRODUCTS=[{"t": "Macbook Air M1 Apple Laptop", "p": 11000.0, "c": 11500.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/mac_done.png?v=1776941773", "d": "8-Core CPU\n7-Core GPU\n13.3 Inch\nRetina LED with True tone\n2560 by 1600 Pixels\nTwo thunderbolt\n4 USB Ports\nHead Jack\nStereo Speakers\nTouch ID\nFull size backlit Magic Keyboard\nWi-Fi 6 and Bluetooth 5.0\nFaceTime Hd Camera\n256 GB SSD\n+Charger\n\nThe Apple MacBook Air delivers reliable performance for work, study, and everyday use \u2014 now paired with an exclusive dining experience to complete your purchase.\n\n\ud83d\udcbb What You Get\n\n\u2714 Apple MacBook Pro (Refurbished, tested & fully functional)\n\u2714 Charger included\n\u2714 \ud83c\udf81 Complimentary Dining Voucher of R250\n\n\ud83c\udf81 Exclusive Bonus\n\nEnjoy more than just technology.\n\nWith your purchase, receive a complimentary dining voucher to elevate your experience.\n\nImagine working, streaming, or relaxing on your MacBook \u2014 then stepping out to enjoy a well-deserved dinner.\n\n\ud83d\udccd Voucher Availability\nAvailable in selected areas across South Africa\nCoverage depends on participating restaurants\nBest suited for major cities and surrounding areas\n\ud83d\udce9 Delivery of Voucher\nSent via email after successful order\nEasy to redeem\nTerms and conditions apply\n\ud83d\ude9a Delivery\n\nOrders are processed within 1\u20137 business days\nNationwide delivery available across South Africa", "cat": "Apple"}, {"t": "Macbook Air M1 Apple Laptop", "p": 11000.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BBRH286744-3242415-1.webp?v=1775559214", "d": "8-Core CPU\n7-Core GPU\n13.3 Inch\nRetina LED with True tone\n2560 by 1600 Pixels\nTwo thunderbolt\n4 USB Ports\nHead Jack\nStereo Speakers\nTouch ID\nFull size backlit Magic Keyboard\nWi-Fi 6 and Bluetooth 5.0\nFaceTime Hd Camera\n256 GB SSD\n+Charger\n\nCondition good\nComes in a box\nStill looks neat\nComes with a charger", "cat": "Apple"}, {"t": "Apple Macbook Neo 13 A 18", "p": 10000.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/neo_eef5b3ea-b107-4a6a-b409-4b61854863ac.webp?v=1779003038", "d": "Specifications\nBrand: Apple\nModel: MacBook Neo 13\nDisplay Size: 13-inch Retina Display\nColour: Rose Gold / Pink\nOperating System: macOS\nStorage: SSD Storage\nConnectivity: Wi-Fi and Bluetooth\nKeyboard: Full-size backlit keyboard\nTrackpad: Large precision multi-touch trackpad\nBattery: Long-lasting rechargeable battery\nDesign: Slim, lightweight aluminium body\nFeatures\nStylish ultra-slim premium design\nBright and vibrant Retina display\nSmooth and responsive performance\nLightweight and travel-friendly\nExcellent battery life for daily use\nFast wireless connectivity\nIdeal for students, professionals, and everyday users\nPremium Apple build quality", "cat": "Apple"}, {"t": "Macbook Pro 15-Inch, 2017 Touchbar", "p": 9500.0, "c": 10000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MACB1.webp?v=1775558654", "d": "Processor 2,8 GHz Quad-Core Intel Core i7\nGraphics Intel HD Graphics 630 1536 MB\nMemory 16 GB 2133 MHz LPDDR3\nmacOS Ventura 13.7.8\nCycle count-534\nBattery condition-Normal", "cat": "Apple"}, {"t": "HP Elitebook 830 G7 Core-i5 10th Gen", "p": 9200.0, "c": 9600.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Untitled_design.png?v=1776940564", "d": "he HP Elitebook 830 G7 is a powerful and versatile laptop designed for professionals who require reliability and performance. With its sleek design and advanced features, it is well-suited for both office and remote work.\n\n\u2022 \nProcessor:\u00a0Equipped with an Intel Core i5 10th Generation processor for efficient multitasking and performance.\n\n\u2022 \nDisplay:\u00a0Features a 13.3-inch Full HD display for clear visuals and vibrant colors.\n\n\u2022 \nRAM:\u00a0Available in different configurations to meet various performance needs.\n\n\u2022 \nStorage:\u00a0Comes with different storage options to accommodate your data and applications.\n\n\u2022 \nOperating System:\u00a0Pre-installed with Windows 10 Pro for enhanced productivity and security.\n\n\u2022 \nConnectivity:\u00a0Offers multiple USB ports, HDMI, and Thunderbolt 3 for versatile connectivity options.\n\n\u2022 \nSecurity Features:\u00a0Includes a fingerprint reader and HP Sure Start for enhanced security.\n\n\u2022 \nAudio:\u00a0Features high-quality audio with dual speakers and HP Noise Cancellation technology.\n\n\u2022 \nWeight:\u00a0Lightweight design for easy portability.\n\nThe HP Elitebook 830 G7 is a reliable choice for professionals seeking a balance of performance and portability in their computing devices.\n\nHP Elitebook 830 G7 Core-i5 10th Gen + Complimentary Dining Voucher (Limited Offer)\n\n\ud83c\udf81 As part of this promotion, customers may receive a complimentary dining voucher valued up to R250.\n\nVoucher is purchased from a third-party provider and shared after successful order completion.\n\nTerms and conditions apply.", "cat": "Laptops"}, {"t": "iPhone 14 128 GB", "p": 8300.0, "c": 8700.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Blue_1_60eed0cb-07ac-4698-824d-b9f0a9db59b9.webp?v=1775565899", "d": "The iPhone 14 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a06.1-inch Super Retina XDR display for vibrant colors and sharp details.\n\n\u2022 \nCamera System:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \nProcessor:\u00a0A15 Bionic chip for fast performance and efficient multitasking.\n\n\u2022 \nStorage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nRAM:\u00a0Available in different configurations to enhance performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a smooth and intuitive user experience.\n\n\u2022 \n5G Capability:\u00a0Supports 5G networks for faster download and streaming speeds.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy unlocking and secure payments.\n\nThe iPhone 14 is designed to meet the demands of modern users, offering a blend of performance and functionality.", "cat": "iPhones"}, {"t": "IPhone 13 128 GB", "p": 8200.0, "c": 8500.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Bllue.webp?v=1775564920", "d": "The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a06.1-inch Super Retina XDR display for vibrant colors and sharp details.\n\n\u2022 \nCamera System:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \nProcessor:\u00a0A15 Bionic chip for fast performance and efficient power management.\n\n\u2022 \nStorage:\u00a0Available in different configurations to suit your storage needs.\n\n\u2022 \nRAM:\u00a0Available in different configurations to enhance multitasking capabilities.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a smooth and intuitive user experience.\n\n\u2022 \n5G Connectivity:\u00a0Supports 5G for faster download speeds and improved streaming quality.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy and secure unlocking.\n\n\u2022 \nDurability:\u00a0Ceramic Shield front cover for improved drop performance.", "cat": "iPhones"}, {"t": "Macbook Pro 2017 I5", "p": 7600.0, "c": 7800.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/RI.webp?v=1775557544", "d": "Processor: Intel core i5\n8GB Ram\nMacOS Ventura\n256GB Storage\nCycle Count:903", "cat": "Apple"}, {"t": "iPhone 13", "p": 7300.0, "c": 8000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MUGm.png?v=1776943792", "d": "The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a06.1-inch Super Retina XDR display for vibrant colors and sharp details.\n\n\u2022 \nCamera System:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \nProcessor:\u00a0A15 Bionic chip for fast performance and efficient power management.\n\n\u2022 \n128 GB Storage:\u00a0Available in different configurations to suit your storage needs.\n\n\u2022 \nRAM:\u00a0Available in different configurations to enhance multitasking capabilities.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a smooth and intuitive user experience.\n\n\u2022 \n5G Connectivity:\u00a0Supports 5G for faster download speeds and improved streaming quality.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy and secure unlocking.\n\n\u2022 \nDurability:\u00a0Ceramic Shield front cover for improved drop performance.\n\n\u2022 \n\u00a0As part of this promotion, customers may receive a complimentary Mug& Bean\u00a0 voucher valued up to R300.\n\nVoucher is purchased from a third-party provider and shared after successful order completion.\n\nThe iPhone 13 combines cutting-edge technology with practical features, making it a solid choice for users seeking reliability and performance.", "cat": "iPhones"}, {"t": "HP Elitebook 1040 G1 Core i5 - 4th Gen", "p": 6700.0, "c": 7000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Frame_15_58_ea1b5f41-7ddb-4e14-ad50-539cdfe51377.webp?v=1775566639", "d": "The HP Elitebook 1040 G1 is a reliable and efficient laptop designed for professionals who need performance on the go.\n\n\u2022 \nProcessor:\u00a0Powered by an Intel Core i5 - 4th Generation processor for smooth multitasking.\n\n\u2022 \nDisplay:\u00a0Features a 14-inch Full HD display for clear visuals and vibrant colors.\n\n\u2022 \n8GBRAM:\u00a0Available in different configurations to meet your performance needs.\n\n\u2022 \n128 GB SSD Storage:\u00a0Available in different configurations, providing ample space for your files and applications.\n\n\u2022 \nOperating System:\u00a0Comes with Windows 10 Pro for a familiar and productive user experience.\n\n\u2022 \nConnectivity:\u00a0Equipped with multiple USB ports, HDMI, and Ethernet for versatile connectivity options.\n\n\u2022 \nSecurity Features:\u00a0Includes HP's security suite to protect your data and privacy.\n\n\u2022 \nDesign:\u00a0Sleek and lightweight design makes it easy to carry for business travel.\n\nThe HP Elitebook 1040 G1 is a solid choice for professionals seeking a balance of performance and portability.", "cat": "Laptops"}, {"t": "Macbook Pro A1398 Intel Core I7 Late 2013 Model", "p": 6000.0, "c": 6800.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/macmac.webp?v=1776521925", "d": "MacOS Big Sur\n8Gb RAM\n2.0GHz processor\n256Gb SSD\nUsed in good working condition\n6 months warranty", "cat": "Apple"}, {"t": "HP Elitebook 640 G4 Core-i5 8th Gen", "p": 6000.0, "c": 6400.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Frame_15_73_63432ffd-9f8f-4ea3-b0b6-b114187b2ba2.webp?v=1775567833", "d": "The HP EliteBook 640 G4 is a reliable and efficient laptop designed for professionals seeking performance and portability.\n\n\u2022 \nProcessor:\u00a0Powered by an Intel Core i5 8th Generation processor for smooth multitasking.\n\n\u2022 \nDisplay:\u00a0Features a 15.6-inch Full HD display for clear visuals and comfortable viewing.\n\n\u2022 \nRAM:\u00a0Available in different configurations to meet various performance needs.\n\n\u2022 \nStorage:\u00a0Offers different storage options to accommodate your data and applications.\n\n\u2022 \nOperating System:\u00a0Comes with Windows 10 Pro for a familiar and secure user experience.\n\n\u2022 \nConnectivity:\u00a0Equipped with multiple USB ports, HDMI, and Ethernet for versatile connectivity.\n\n\u2022 \nSecurity Features:\u00a0Includes advanced security features like a fingerprint reader and TPM for data protection.\n\n\u2022 \nWeight:\u00a0Lightweight design for easy portability, making it suitable for on-the-go professionals.\n\nOverall, the HP EliteBook 640 G4 is a solid choice for business users looking for a dependable laptop with essential features.", "cat": "Laptops"}, {"t": "iPhone 12 64 GB", "p": 5800.0, "c": 6000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_1_b6c9b236-cb9c-4d33-98f0-39412dd918c9.webp?v=1775565238", "d": "The iPhone 12 combines advanced technology with a sleek design, offering users a powerful smartphone experience.\n\n\u2022 \nDisplay:\u00a06.1-inch Super Retina XDR display for vibrant colors and sharp details.\n\n\u2022 \nProcessor:\u00a0A14 Bionic chip for high performance and efficiency.\n\n\u2022 \nCameras:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \n5G Capability:\u00a0Supports 5G networks for faster download and streaming speeds.\n\n\u2022 \nStorage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nRAM:\u00a0Generous RAM for smooth multitasking and app performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a user-friendly interface and regular updates.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy unlocking and secure payments.\n\nThe iPhone 12 is designed to meet the demands of modern users, delivering performance and functionality in a stylish package", "cat": "iPhones"}, {"t": "iPhone XR", "p": 5500.0, "c": 8600.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_3_de07f0ba-d841-4f42-b0a2-762f5bc7776a.webp?v=1780304416", "d": "\u2022 \nDisplay:\u00a06.1-inch Liquid Retina HD display for vibrant colors and sharp details.\n\n\u2022 \nCamera:\u00a012 MP rear camera with Smart HDR for stunning photos in various lighting conditions.\n\n\u2022 \nProcessor:\u00a0A12 Bionic chip for efficient performance and smooth multitasking.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy and secure unlocking.\n\n\u2022 \nWater and Dust Resistance:\u00a0Rated IP67, providing protection against splashes and dust.\n\n\u2022 \nStorage and RAM:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, offering a seamless user experience with regular updates.\n\n\u2022 \nAudio:\u00a0Spatial audio and stereo speakers for an immersive sound experience.", "cat": "iPhones"}, {"t": "Lenovo Thinkpad T450 Core i5 - 5th Gen", "p": 5500.0, "c": 6000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/i5_done.png?v=1776941555", "d": "The Lenovo Thinkpad T450 is a reliable laptop designed for professionals who need performance and portability. With its robust build and efficient components, it is suitable for various business tasks.\n\n\u2022 \nProcessor:\u00a0Equipped with an Intel Core i5 - 5th Gen processor for efficient multitasking and performance.\n\n\u2022 \nDisplay:\u00a0Features a 15.6-inch display with a resolution of 1366 x 768 pixels, providing clear visuals for work and entertainment.\n\n\u2022 \n8gbRAM:\u00a0Available in different configurations to meet your memory needs, ensuring smooth operation of applications.\n\n\u2022 \n256 SSDStorage:\u00a0Comes with various storage options, allowing you to choose the right amount of space for your files and applications.\n\n\u2022 \nOperating System:\u00a0Pre-installed with Windows 10, offering a familiar interface and access to a wide range of software.\n\n\u2022 \nConnectivity:\u00a0Includes multiple USB ports, HDMI, and Ethernet for versatile connectivity options.\n\n\u2022 \nKeyboard:\u00a0Features a spill-resistant keyboard designed for comfort and durability during extended use.\n\n\u2022 \nWeight:\u00a0Lightweight design, making it easy to carry for on-the-go professionals.\n\n\u2022 \nGet more value with your purchase at M&H Dynamic Tech.\n\nSelected products include a complimentary R150 Takealot voucher, giving you the freedom to shop a wide range of items online at Takealot.\n\nThis digital voucher can be used personally or shared with someone else, making it a flexible and rewarding bonus.\n\nThe voucher is delivered via email after successful order confirmation and can be redeemed easily at checkout on Takealot.\n\nAvailable on selected deals only. Terms and conditions apply.", "cat": "Laptops"}, {"t": "Macbook Pro A1398 Intel Core I7 2013 Model Laptop", "p": 5500.0, "c": 5700.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MACBB.webp?v=1775557812", "d": "MacOS Mojave\n8GB ram\n2.3GHz processor\n256GB SSD\nUsed in good working condition\n6 months warranty", "cat": "Apple"}, {"t": "Macbook Air Computer", "p": 5200.0, "c": 5700.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/imaq.webp?v=1775558082", "d": "Used But New = Processor: 1.6 GHz Intel Core i5 Dual-Core with a maximum boost speed of 3.6 GHz.\nRAM: 8 GB of installed RAM.\nDisplay: 13.3-inch Retina display.\nPorts: Two Thunderbolt / USB 4 ports.", "cat": "Apple"}, {"t": "iPhone 11 64 GB", "p": 5000.0, "c": 5500.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/black_3_513360e6-3bba-40ab-94d7-2ec5ba0e7a22.webp?v=1775565582", "d": "The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a06.1-inch Liquid Retina HD display for vibrant colors and sharp details.\n\n\u2022 \nCamera:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \nProcessor:\u00a0A13 Bionic chip for exceptional performance and efficiency.\n\n\u2022 \nStorage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nRAM:\u00a0Generous RAM for smooth multitasking and app performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a seamless and intuitive user experience.\n\n\u2022 \nWater Resistance:\u00a0Rated IP68 for water and dust resistance, ensuring durability.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy unlocking and secure payments.\n\nOverall, the iPhone 11 is designed to meet the demands of modern users with its robust features and reliable performance", "cat": "iPhones"}, {"t": "Macbook Air A1466 I5 Laptop", "p": 5000.0, "c": 5400.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CACPG075977-3237090-1.webp?v=1775559540", "d": "Good condition\nSuperficial scratches along surface and small dent in bottom left corner\nIntel Core i5 / 1.6GHz\n4GB RAM / 121GB Macintosh HD\nmacOS Monterey\nCycle count: 447", "cat": "Apple"}, {"t": "Macbook Air (13-Inch,2017)", "p": 5000.0, "c": 5300.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CAVNV026618-3247134-1.webp?v=1775557245", "d": "Processor : 1.8GHz intel core i5\nMemory : 8GB\nGraphics : intel HD Graphics 6000 1536 MB\nStorage : 121GB\nBATTERY HEALTH : Cycle count 563", "cat": "Apple"}, {"t": "iPhone 11", "p": 4900.0, "c": 5500.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/donedeal.png?v=1777033166", "d": "The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a06.1-inch Liquid Retina HD display for vibrant colors and sharp details.\n\n\u2022 \nCamera:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \nProcessor:\u00a0A13 Bionic chip for exceptional performance and efficiency.\n\n\u2022 \n64 Gb Storage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nRAM:\u00a0Generous RAM for smooth multitasking and app performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a seamless and intuitive user experience.\n\n\u2022 \nWater Resistance:\u00a0Rated IP68 for water and dust resistance, ensuring durability.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy unlocking and secure payments.\n\nOverall, the iPhone 11 is designed to meet the demands of modern users with its robust features and reliable performance.", "cat": "iPhones"}, {"t": "Dell Latitude 5480 Core i5 - 6th Gen", "p": 4700.0, "c": 5000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Untitled_design.png_2.png?v=1776941011", "d": "The Dell Latitude 5480 is a reliable laptop designed for professionals who need performance and portability. With its robust features, it is suitable for various business applications.\n\n\u2022 \nProcessor:\u00a0Equipped with an Intel Core i5 6th Generation processor for efficient multitasking.\n\n\u2022 \nDisplay:\u00a0Features a 15.6-inch Full HD display for clear visuals and comfortable viewing.\n\n\u2022 \n8GBRAM:\u00a0Available in different configurations to meet your performance needs.\n\n\u2022 \n256 GB SSD Storage:\u00a0Offers various storage options to accommodate your files and applications.\n\n\u2022 \nGraphics:\u00a0Integrated Intel HD Graphics for everyday tasks and light multimedia use.\n\n\u2022 \nConnectivity:\u00a0Includes multiple USB ports, HDMI, and Ethernet for versatile connectivity.\n\n\u2022 \nOperating System:\u00a0Comes with Windows 10 Pro for a professional experience.\n\n\u2022 \nSecurity Features:\u00a0Equipped with a fingerprint reader and TPM for enhanced security.\n\n\u2022 \nBuild Quality:\u00a0Durable design that meets military-grade specifications for reliability.\n\nThe Dell Latitude 5480 is a solid choice for professionals seeking a dependable laptop with essential features.\n\nGet more value with your purchase at M&H Dynamic Tech.\n\nSelected products include a complimentary R150 Takealot voucher, giving you the freedom to shop a wide range of items online at Takealot.\n\nThis digital voucher can be used personally or shared with someone else, making it a flexible and rewarding bonus.\n\nThe voucher is delivered electronically after successful order confirmation and can be redeemed easily at checkout on Takealot.\n\nAvailable on selected deals only. Terms and conditions apply.", "cat": "Laptops"}, {"t": "iPhone X", "p": 4600.0, "c": 6900.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/SpaceGrey_1_bc96d053-d475-4949-8d1d-eaf43de2981c.webp?v=1780304007", "d": "\u2022 \nDisplay:\u00a05.8-inch Super Retina display with a resolution of 1125 x 2436 pixels for vibrant colors and sharp images.\n\n\u2022 \nCamera:\u00a0Dual 12 MP rear cameras with optical image stabilization for high-quality photos and videos.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy and secure unlocking of the device.\n\n\u2022 \nProcessor:\u00a0A11 Bionic chip with 64-bit architecture for fast performance and efficient multitasking.\n\n\u2022 \n64GBStorage:\u00a0Available in different configurations to suit various storage needs.\n\n\u2022 \n\u00a0Generous RAM capacity for smooth operation and app performance.\n\n\u2022 \nOperating System:\u00a0Ships with iOS, providing access to a wide range of apps and features.\n\n\u2022 \nWater and Dust Resistance:\u00a0Rated IP67, offering protection against water and dust ingress.\n\n\u2022 \nWireless Charging:\u00a0Supports Qi wireless charging for convenient power options.", "cat": "iPhones"}, {"t": "Lenovo Thinkpad T470 Core i5 - 6th Gen", "p": 4600.0, "c": 5000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/PROMONET.png?v=1780247950", "d": "The Lenovo Thinkpad T470 is a reliable business laptop designed for professionals who need performance and portability. With its robust features, it is well-suited for various tasks.\n\n\u2022 \nProcessor:\u00a0Powered by Intel Core i5 - 6th Gen for efficient multitasking and performance.\n\n\u2022 \nDisplay:\u00a014-inch Full HD display with a resolution of 1920 x 1080 for clear visuals.\n\n\u2022 \n8 GB RAM:\u00a0Available in different configurations to meet your memory needs.\n\n\u2022 \n256 GB Storage:\u00a0Available in different configurations, providing ample space for your files and applications.\n\n\u2022 \nOperating System:\u00a0Comes with Windows 10 Pro, offering a familiar and secure environment.\n\n\u2022 \nConnectivity:\u00a0Features multiple USB ports, HDMI, and Ethernet for versatile connectivity options.\n\n\u2022 \nKeyboard:\u00a0Equipped with a spill-resistant keyboard for durability and comfort during typing.\n\n\u2022 \nWeight:\u00a0Lightweight design, making it easy to carry for on-the-go professionals.\n\n\u2022 \nSecurity:\u00a0Includes a fingerprint reader and TPM for enhanced security features.\n\n\u2022 \u00a0One Netflix promotional reward per order buy a Thinkpad Laptop and win a Premium4K + HDR\n\n\u2022 \n\nMonthly price\n\nZAR\u00a0229\n\n\u2022 \n\nVideo and sound quality\n\nBest\n\n\u2022 \n\nResolution\n\n4K (Ultra HD) + HDR\n\n\u2022 \n\nSpatial audio (immersive sound)\n\nIncluded\n\n\u2022 \n\nSupported devices\n\nTV, computer, mobile phone, tablet\n\n\u2022 \n\nDevices your household can watch at the same time\n\n4\n\n\u2022 \n\nDownload devices\n\n6\n\n\u2022 Reward granted after successful delivery\n\u2022 Customer must not already have an active Netflix Premium plan to qualify for the free one-month\nNetflix offer\n\u2022 Customers without an active Netflix Premium plan may qualify.", "cat": "Laptops"}, {"t": "Apple Macbook Pro", "p": 4500.0, "c": 4800.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/MAC2.webp?v=1775558386", "d": "Condition \u2013 Good\nmacOS High Sierra\nVersion 10.13.6\nProcessor: 2,7 GHz Intel core i7\nRAM: 4GB\nStorage: 480GB", "cat": "Apple"}, {"t": "Apple Macbook Air | Intel Core I5 | 256Gb Storage", "p": 4000.0, "c": 4800.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Silver_10_b92838b0-eeb0-42ae-87d8-b7577e8f2226.webp?v=1776719442", "d": "Apple Macbook Air\nModel No -A1370\nProcessor \u2013 Intel Core i5\nProcessor Speed \u2013 1.6Ghz\nStorage \u2013 256GB\nRam \u2013 8GB\nOperating System \u2013 MacOS Monterey\nCharging Cable\nGreat Working Condition\nGood Condition\n\nNb \u2013 Slight Crack On Screen", "cat": "Apple"}, {"t": "Hp Notebook Laptop", "p": 3900.0, "c": 4100.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BCTR055006-2886805-1.webp?v=1775567619", "d": "Device Name : Hp\nProcessor : Intel Celeron\nInstalled Ram : 4GB\nStorage : 430GB HDD\nNo Box\nCharger Only", "cat": "Apple"}, {"t": "Dell Laptop T9kb76t", "p": 3900.0, "c": 4000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/CAMNT046123-3248538-1-scaled.jpg?v=1775567091", "d": "Dell Laptop T9KB76T for sale . In a good and working condition backed by a six month guarantee. 4GB RAM, 500GB storage, Intel Celeron N4000 1.10GHz, Windows 10. Black in colour", "cat": "Laptops"}, {"t": "iPhone 8", "p": 3700.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/red82.webp?v=1780303307", "d": "he iPhone 8 combines powerful performance with a sleek design, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a04.7-inch Retina HD display with True Tone technology for vibrant colors.\n\n\u2022 \nCamera:\u00a012 MP rear camera with optical image stabilization for high-quality photos and videos.\n\n\u2022 \nProcessor:\u00a0A11 Bionic chip for fast performance and efficient multitasking.\n\n\u2022 \n64GBStorage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \n\u00a0Generous RAM capacity for smooth operation and app performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing access to a wide range of apps and features.\n\n\u2022 \nWater and Dust Resistance:\u00a0Rated IP67 for protection against water and dust ingress.\n\n\u2022 \nWireless Charging:\u00a0Supports Qi wireless charging for convenient power-ups.\n\nThe iPhone 8 is a solid choice for users seeking a blend of performance and functionality in a compact device.", "cat": "iPhones"}, {"t": "Apple Macbook Air Laptop", "p": 3700.0, "c": 4000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/BAVU.jpg?v=1775560180", "d": "APPLE MACBOOK AIR\nMACOS MONTEREY VERSION 12.7.6\n4GB MHZ DDR3 1.6 GHZ DUAL-CORE INTEL CORE I5 121GB HDD", "cat": "Apple"}, {"t": "Apple Macbook Pro (13-Inch) Mid 2012", "p": 3400.0, "c": 4000.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/mac_mac.webp?v=1778944481", "d": "The 13-inch Mid-2012 MacBook Pro (model A1278) features a\u00a02.5GHz or 2.9GHz Intel Core i5/i7 processor,\u00a0 1600MHz DDR3L RAM\u00a0 16GB), 500GB/750GB\u00a0 \u00a0SSD, and Intel HD Graphics 4000. It includes a 13.3\" 1280x800 display, SuperDrive, and 2x USB 3.0 ports.", "cat": "Apple"}, {"t": "Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen", "p": 3200.0, "c": 3990.0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/AcerLaptops_1_78be7e76-9c30-48f1-8bf5-00baecb82180.webp?v=1775566250", "d": "The Acer Chromebook R11 is a versatile 2-in-1 device designed for both productivity and entertainment. Its convertible design and touch capabilities make it suitable for various tasks.\n\n\u2022 \nProcessor:\u00a0Powered by a 6th generation Intel Celeron processor for efficient performance.\n\n\u2022 \nDisplay:\u00a0Features an 11.6-inch HD touchscreen display for vibrant visuals and easy navigation.\n\n\u2022 \nConvertible Design:\u00a0Easily transforms between laptop and tablet modes to suit your needs.\n\n\u2022 \n4GBRAM:\u00a0Available in different configurations to handle multitasking effectively.\n\n\u2022 \n16 GB SSD Storage:\u00a0Comes with various storage options to accommodate your files and applications.\n\n\u2022 \nOperating System:\u00a0Runs on Chrome OS, providing a fast and secure user experience.\n\n\u2022 \nConnectivity:\u00a0Includes multiple ports such as USB 3.0, HDMI, and a microSD card reader for versatile connectivity.\n\n\u2022 \nBattery Life:\u00a0Designed for all-day use, ensuring you stay productive without frequent recharging.\n\n\u2022 \nWeight:\u00a0Lightweight design for easy portability, making it ideal for on-the-go use.", "cat": "Laptops"}, {"t": "iPhone 7", "p": 3100.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/Black_4cdd944e-1ebe-4fef-acc7-0b6499ec0497.webp?v=1780303684", "d": "Storage\n32 GB\n\nSIM Card\nUnlocked\n\nScreen size (inches)\n6.5\n\nProcessor Core\n6\n\nOS\nIOS\u00a0\n\nConnector\nLightning\n\neSIM\nYes\n\nDouble SIM\nYes\n\nNetwork\n4G\n\nRelease Date\n2017\n\nCamera Type\nDouble (2x)\n\nMemory\n4 GB\n\nBrand\nApple", "cat": "iPhones"}, {"t": "Indoor Hydroponic Plant Growing Machine", "p": 1296.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/ed7815a2-3708-49b3-9688-0bbdc37a3b2c.jpg?v=1775563927", "d": "Overview\n\nHydroponic System: Soilless cultivation technology for clean indoor gardening\n\nSmart Function: Automated lighting and water circulation for optimal plant growth\n\nMulti-Capacity Options: 3 to 12 planting holes with adjustable power (6W-24W)\n\nPlant Compatibility: Supports herbs, vegetables, flowers (e.g., roses), and ornamental plants\n\nNutrient Supply: Includes dedicated nutrient solutions for accelerated germination\n\nSpecifications\n\nMaterial: ABS plastic + aluminum alloy\n\nPower: 6W/15W/20W/24W (varies by model)\n\nVoltage: 100-240V AC (plug adaptors available)\n\nPlanting Holes: 3/6/9/12 slots (model-dependent)\n\nLight Source: LED grow lights with adjustable intensity\n\nPacking List\n\nhydroponic growing machine*1\n\nplanting cottonvaries (36/88/119 units)\n\nplanting basketvaries (36/88/119 units)\n\nnutrient solutionvaries (6/8/11 sets)\n\npower adapter*1", "cat": "Accessories"}, {"t": "Wireless Noise Cancelling Bluetooth Headset with Microphone", "p": 496.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/369d20ec-92a4-49df-adec-b0b9c365b9d8.jpg?v=1775564386", "d": "Overview\n\nNoise Cancellation: Advanced noise reduction technology for clear communication in busy environments\n\nBluetooth Connectivity: Wireless operation with 5.3 Bluetooth version and 15-meter range\n\nComfort Design: Non-in-ear microphone rod design with head-mounted wearing style\n\nBattery Performance: 150mAh battery providing 7 hours continuous usage\n\nStereo Sound: Bilateral stereo sound delivery for immersive audio experience\n\nSpecifications\n\nBluetooth Version: 5.3\n\nTransmission Range: 15 meters\n\nBattery Capacity: 150mAh\n\nWorking Time: 7 hours\n\nStandby Time: 10 days\n\nWaterproof Rating: IPX6\n\nMaterial: PC+ABS\n\nWeight: 26g\n\nChip Type: Jerry\n\nCertifications: CE, ROHS, FCC\n\nColors: Black, Apricot\n\nPacking List\n\nwireless headset*1\n\ncharging cable*1\n\nuser manual*1", "cat": "Accessories"}, {"t": "Hp Laptop Charger Mode No Ppp012hs", "p": 360.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/chager.webp?v=1775562799", "d": "The HP Laptop Charger P0012HS is a compatible AC power adapter designed to safely charge HP laptops, featuring precise voltage and amperage specifications, Smart Pin technology, and various connector options for optimal safety and performance.", "cat": "Laptops"}, {"t": "Wireless Sports Bluetooth Headphones", "p": 288.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/941a0be0-e240-4bc8-9d98-887ea0c1d496.jpg?v=1775564054", "d": "Overview\n\nBluetooth 5.4: Latest protocol for stable connectivity and low power consumption.\n\nAir-bone conduction: Open-ear design for situational awareness during activities.\n\nLong battery life: Up to 8 hours of continuous playback or calls.\n\nStereo sound: Bilateral audio with 360\ufffd surround effect for immersive experience.\n\nLightweight build: Ergonomic ear-mounted design for comfort during sports.\n\nSpecifications\n\nBluetooth version: 5.4\n\nBattery life: 4-8 hours\n\nTransmission range: 10 meters\n\nCharging type: USB (details not specified)\n\nMaterial: PC+ABS\n\nWater resistance: Life waterproof (splash-resistant)\n\nPacking List\n\nWireless headphones*1\n\nUSB charging cable*1\n\nUser manual*1", "cat": "Accessories"}, {"t": "Himalayan crystal salt lamp", "p": 275.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/images.jpg?v=1777307082", "d": "Himalayan crystal salt lamps are\u00a0natural, hand-carved lamps from Pakistan\u2019s Khewra Salt Mine that emit a warm, soft glow. They function as ambient lighting, acting as air cleansers and natural ionizers to neutralize electromagnetic radiation. These lamps are popular for reducing stress, improving air quality, and promoting relaxation\n\nKey Features and Benefits:\n\n\u2022 Unique Aesthetic:\u00a0Natural pink-to-orange hues, ranging from raw shapes to polished designs.\n\n\u2022 Air Cleansing:\u00a0As hygroscopic items, they attract moisture, which is said to help trap dust, allergens, and smoke.\n\n\u2022 Ambiance & Wellbeing:\u00a0Known for enhancing the atmosphere in yoga studios, spas, or homes to improve mood.\n\n\u2022 \nDurability:\u00a0Typically come with a wooden base and a 15W bulb to heat the salt.", "cat": "Accessories"}, {"t": "Bluetooth earphones", "p": 208.0, "c": 0, "img": "https://cdn.shopify.com/s/files/1/0816/6781/7712/files/ffdce3a5-b214-4d92-951f-a5d0d3e9e17e.jpg?v=1775564275", "d": "Overview\n\nNoise Reduction: Advanced noise reduction technology for clear audio.\n\nBluetooth 5.4: Latest Bluetooth protocol for stable and fast connectivity.\n\nBattery Life: 4-8 hours of continuous usage on a single charge.\n\nBinaural Stereo: True wireless design with bilateral stereo sound.\n\nCompact & Lightweight: Ultra-small and mini design for comfort and portability.\n\nMulti-Point Connection: Connect to multiple devices simultaneously.\n\nLife Waterproof: Resistant to splashes and sweat.\n\nSpecifications\n\nBluetooth Protocol: 5.4\n\nTransmission Range: 10m\n\nUsage Type: Earplug-style\n\nMaterial: Silicone\n\nColor Options: Off-white, Black, White\n\nBattery Indicator: Display for real-time battery status.\n\nFunctions: Call support, music playback, noise reduction.\n\nPacking List\n\nBluetooth earphones*1\n\nCharging case*1\n\nUSB cable*1\n\nEar tips (various sizes)*3\n\nUser manual*1", "cat": "Accessories"}];
 const PAYSTACK_KEY='pk_live_b07f0d8b9ee7305c57362ec9bbb89fe1eb0f9433';
 let cart=[];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const grid=$('#grid');
 const cards=$$('.card');
-const state={cat:'All',brands:[],bands:[],q:'',sort:'rel'};
+const state={cat:'All',brands:[],bands:[],q:'',sort:'rel',favOnly:false};
+let favSet=new Set();
+try{const sv=localStorage.getItem('mh_favs');if(sv)favSet=new Set(JSON.parse(sv));}catch(e){}
+function saveFavs(){try{localStorage.setItem('mh_favs',JSON.stringify([...favSet]));}catch(e){}}
+function updateFavUI(){
+  document.querySelectorAll('.fav').forEach(b=>b.classList.toggle('on',favSet.has(b.dataset.fav)));
+  const c=$('#favCount');c.textContent=favSet.size;c.style.display=favSet.size?'grid':'none';
+}
 
 function apply(){
   state.q=($('#search').value||'').toLowerCase().trim();
@@ -859,7 +1841,8 @@ function apply(){
     const okBrand=!state.brands.length||state.brands.includes(c.dataset.brand);
     const okBand=!state.bands.length||state.bands.includes(c.dataset.band);
     const okQ=!state.q||c.dataset.title.includes(state.q);
-    const show=okCat&&okBrand&&okBand&&okQ;
+    const okFav=!state.favOnly||favSet.has(c.dataset.idx);
+    const show=okCat&&okBrand&&okBand&&okQ&&okFav;
     c.style.display=show?'':'none';
     if(show)shown++;
   });
@@ -904,14 +1887,10 @@ function money(n){return 'R\u00a0'+n.toLocaleString('en-ZA')}
 function renderCart(){
   const box=$('#ditems');$('#cartCount').textContent=cart.length;
   $('#cartCount').style.display=cart.length?'grid':'none';
-  if(!cart.length){box.innerHTML='<div class="dempty">Your cart is empty.<br>Add devices and order in seconds on WhatsApp.</div>';$('#dfoot').style.display='none';return;}
+  if(!cart.length){box.innerHTML='<div class="dempty">Your cart is empty.<br>Add devices to check out securely by card.</div>';$('#dfoot').style.display='none';return;}
   $('#dfoot').style.display='block';let total=0;
   box.innerHTML=cart.map((i,ix)=>{total+=i.p;return `<div class="ditem"><div><div class="nm">${i.t}</div><div class="pr">${money(i.p)}</div></div><button class="rm" data-x="${ix}">Remove</button></div>`}).join('');
   $('#dtotal').textContent=money(total);
-  let msg='Hi M&H Dynamic Tech! I would like to order:%0A%0A';
-  cart.forEach(i=>{msg+='\u2022 '+encodeURIComponent(i.t)+' \u2013 '+encodeURIComponent(money(i.p))+'%0A'});
-  msg+='%0ATotal: '+encodeURIComponent(money(total))+'%0A%0APlease confirm availability, payment & delivery.';
-  $('#waCheckout').href=`https://wa.me/${WA}?text=${msg}`;
   box.querySelectorAll('.rm').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.x,1);renderCart();});
 }
 $$('.add').forEach(btn=>btn.addEventListener('click',()=>{
@@ -932,7 +1911,7 @@ $('#payNow').onclick=function(){
   const h=PaystackPop.setup({
     key:PAYSTACK_KEY,email:email,amount:Math.round(total*100),currency:'ZAR',
     metadata:{custom_fields:[{display_name:'Items',variable_name:'items',value:items}]},
-    callback:function(resp){window.location.href='https://wa.me/'+WA+'?text='+encodeURIComponent('Hi M&H Dynamic Tech, I just paid by card. Reference: '+resp.reference+'. Order: '+items+'. Total: R'+total.toLocaleString('en-ZA')+'. Please confirm and arrange delivery.');},
+    callback:function(resp){cart=[];renderCart();$('#ditems').innerHTML='<div class="dempty"><div style="font-size:34px;margin-bottom:8px">\u2705</div><b style="color:var(--ink)">Payment successful!</b><br><br>Reference:<br><b style="color:var(--ink)">'+resp.reference+'</b><br><br>Thank you for your order. We\'ll arrange delivery and be in touch shortly.</div>';},
     onClose:function(){}
   });
   h.openIframe();
@@ -953,6 +1932,43 @@ $('#rvSubmit').onclick=()=>{
   window.open('https://wa.me/'+WA+'?text='+msg,'_blank');
   $('#rmodalbg').classList.remove('open');
 };
+// product detail view
+function openProduct(i){
+  const p=PRODUCTS[i];
+  const wrap=$('#pmImgWrap');wrap.classList.remove('noimg');
+  const img=$('#pmImg');img.style.display='';img.src=(p.img||'')+'&width=1080';img.alt=p.t;
+  img.onerror=function(){wrap.classList.add('noimg');img.style.display='none';};
+  $('#pmTitle').textContent=p.t;
+  $('#pmPrice').textContent=money(p.p);
+  const sv=$('#pmSave');
+  if(p.c&&p.c>p.p){sv.innerHTML='<span class="was">'+money(p.c)+'</span> <span class="savetag">Save '+money(p.c-p.p)+'</span>';}
+  else{sv.innerHTML='';}
+  $('#pmDesc').textContent=p.d||'No description available — message us on WhatsApp for full details.';
+  $('#pmAdd').onclick=function(){cart.push({t:p.t,p:p.p});renderCart();$('#pmAdd').textContent='Added \u2713';setTimeout(()=>{$('#pmAdd').textContent='Add to Cart';},1100);};
+  $('#pmBuy').onclick=function(){cart.push({t:p.t,p:p.p});renderCart();closeProduct();openCart();};
+  $('#pmodalbg').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeProduct(){$('#pmodalbg').classList.remove('open');document.body.style.overflow='';}
+$$('[data-open]').forEach(el=>el.addEventListener('click',()=>openProduct(+el.dataset.open)));
+$('#pmClose').onclick=closeProduct;
+$('#pmodalbg').onclick=e=>{if(e.target.id==='pmodalbg')closeProduct();};
+// favourites
+document.querySelectorAll('.fav').forEach(b=>{
+  b.addEventListener('click',e=>{
+    e.stopPropagation();
+    const id=b.dataset.fav;
+    if(favSet.has(id))favSet.delete(id);else favSet.add(id);
+    saveFavs();updateFavUI();
+    if(state.favOnly)apply();
+  });
+});
+$('#openFav').onclick=()=>{
+  state.favOnly=!state.favOnly;
+  $('#openFav').classList.toggle('on',state.favOnly);
+  $('#ptitle').textContent=state.favOnly?'My favourites':(state.cat==='All'?'All products':state.cat);
+  apply();
+};
+updateFavUI();
 renderCart();apply();
 </script>
 </body>
