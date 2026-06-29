@@ -32,7 +32,6 @@ img{display:block;max-width:100%}
 .strip b{color:#fff}
 .strip:hover .mtrack{animation-play-state:paused}
 @keyframes mscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(prefers-reduced-motion:reduce){.mtrack{animation:none}}
 /* voucher banner */
 .voucherbar{background:var(--surface);padding:14px 0 2px}
 .vcard{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:0 4px 16px rgba(17,34,58,.05)}
@@ -90,6 +89,13 @@ header{background:var(--navy);position:sticky;top:0;z-index:50}
 /* department nav */
 .dept{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:70px;z-index:40}
 .dept .wrap{display:flex;gap:4px;overflow-x:auto}
+.dept a.navright{color:var(--blue)}
+.dept a.navauto{margin-left:auto}
+@media(max-width:620px){
+  .dept .wrap{flex-wrap:wrap;overflow-x:visible}
+  .dept a.navauto{margin-left:0}
+  .dept a.navright{font-weight:700}
+}
 .dept a{padding:13px 16px;font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:3px solid transparent;cursor:pointer}
 .dept a:hover{color:var(--blue)}
 .dept a.on{color:var(--blue);border-bottom-color:var(--blue)}
@@ -339,8 +345,8 @@ footer a:hover{color:#fff}
   <a data-cat="Apple">MacBooks &amp; Apple</a>
   <a data-cat="Laptops">Laptops</a>
   <a data-cat="Accessories">Accessories</a>
-  <a href="about.html" style="margin-left:auto;color:var(--blue)">About</a>
-  <a href="tracking.html" style="color:var(--blue)">📦 Track Order</a>
+  <a href="about.html" class="navright navauto">About</a>
+  <a href="tracking.html" class="navright">📦 Track Order</a>
 </div></nav>
 
 <div class="crumb"><div class="wrap">Home <span>›</span> <b>All Products</b></div></div>
@@ -409,8 +415,7 @@ Touch ID
 Full size backlit Magic Keyboard
 Wi-Fi 6 and Bluetooth 5.0
 FaceTime Hd Camera
-8GB RAM
-245 GB SSD
+256 GB SSD
 +Charger
 
 Condition good
@@ -915,7 +920,7 @@ Version 10.13.6
 Processor: 2,7 GHz Intel core i7
 RAM: 4GB
 Storage: 480GB</p>
-          <div class="priceline"><span class="price">R 4,500</span></div>
+          <div class="priceline"><span class="price">R 6,500</span></div>
           <button class="viewbtn" data-open="17">View details</button>
           <button class="add" data-i="17">Add to Cart</button>
         </div>
@@ -998,10 +1003,10 @@ Camera: 12 MP rear camera with optical image stabilization for high-quality pho
 Processor: A11 Bionic chip for fast performance and efficient multitasking.
 
 • 
-1TBStorage: Available in different configurations to suit your needs.
+64GBStorage: Available in different configurations to suit your needs.
 
 • 
- Generous 4GB RAM capacity for smooth operation and app performance.
+ Generous RAM capacity for smooth operation and app performance.
 
 • 
 Operating System: Runs on iOS, providing access to a wide range of apps and features.
@@ -1013,7 +1018,7 @@ Water and Dust Resistance: Rated IP67 for protection against water and dust ing
 Wireless Charging: Supports Qi wireless charging for convenient power-ups.
 
 The iPhone 8 is a solid choice for users seeking a blend of performance and functionality in a compact device.</p>
-          <div class="priceline"><span class="price">R 3,600</span></div>
+          <div class="priceline"><span class="price">R 3,700</span></div>
           <button class="viewbtn" data-open="21">View details</button>
           <button class="add" data-i="21">Add to Cart</button>
         </div>
@@ -1029,7 +1034,7 @@ The iPhone 8 is a solid choice for users seeking a blend of performance and func
           <p class="spec">APPLE MACBOOK AIR
 MACOS MONTEREY VERSION 12.7.6
 4GB MHZ DDR3 1.6 GHZ DUAL-CORE INTEL CORE I5 121GB HDD</p>
-          <div class="priceline"><span class="price">R 4,900</span><span class="was">R 5,000</span><span class="savetag">Save R 300</span></div>
+          <div class="priceline"><span class="price">R 3,700</span><span class="was">R 4,000</span><span class="savetag">Save R 300</span></div>
           <button class="viewbtn" data-open="22">View details</button>
           <button class="add" data-i="22">Add to Cart</button>
         </div>
@@ -1043,7 +1048,7 @@ MACOS MONTEREY VERSION 12.7.6
         <div class="cbody">
           <h3 data-open="23">Apple Macbook Pro (13-Inch) Mid 2012</h3>
           <p class="spec">The 13-inch Mid-2012 MacBook Pro (model A1278) features a 2.5GHz or 2.9GHz Intel Core i5/i7 processor,  1600MHz DDR3L RAM  16GB), 500GB/750GB   SSD, and Intel HD Graphics 4000. It includes a 13.3&quot; 1280x800 display, SuperDrive, and 2x USB 3.0 ports.</p>
-          <div class="priceline"><span class="price">R 5,300</span><span class="was">R 6,000</span><span class="savetag">Save R 600</span></div>
+          <div class="priceline"><span class="price">R 3,400</span><span class="was">R 4,000</span><span class="savetag">Save R 600</span></div>
           <button class="viewbtn" data-open="23">View details</button>
           <button class="add" data-i="23">Add to Cart</button>
         </div>
@@ -1084,7 +1089,7 @@ Battery Life: Designed for all-day use, ensuring you stay productive without fr
 
 • 
 Weight: Lightweight design for easy portability, making it ideal for on-the-go use.</p>
-          <div class="priceline"><span class="price">R 3,000</span><span class="was">R 3,990</span><span class="savetag">Save R 1,090</span></div>
+          <div class="priceline"><span class="price">R 2,900</span><span class="was">R 3,990</span><span class="savetag">Save R 1,090</span></div>
           <button class="viewbtn" data-open="24">View details</button>
           <button class="add" data-i="24">Add to Cart</button>
         </div>
@@ -1605,6 +1610,7 @@ $('#vList').addEventListener('click',()=>{grid.classList.add('list');$('#vList')
 // cart
 function money(n){return 'R\u00a0'+n.toLocaleString('en-ZA')}
 function renderCart(){
+  cart=cart.filter(function(i){return i&&typeof i.p==='number';});
   const box=$('#ditems');$('#cartCount').textContent=cart.length;
   $('#cartCount').style.display=cart.length?'grid':'none';
   if(!cart.length){box.innerHTML='<div class="dempty">Your cart is empty.<br>Add devices to check out securely by card.</div>';$('#dfoot').style.display='none';return;}
@@ -1615,7 +1621,8 @@ function renderCart(){
   $('#dtotal').textContent=money(total+DELIVERY_FEE);
   box.querySelectorAll('.rm').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.x,1);renderCart();});
 }
-$$('.add').forEach(btn=>btn.addEventListener('click',()=>{
+$$('#grid .add').forEach(btn=>btn.addEventListener('click',()=>{
+  if(btn.dataset.i===undefined)return;
   cart.push(PRODUCTS[+btn.dataset.i]);
   btn.textContent='Added \u2713';btn.classList.add('added');
   setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added')},1100);
