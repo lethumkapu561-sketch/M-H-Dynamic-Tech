@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Track Your Order — M&amp;H Dynamic Tech</title>
-<meta name="description" content="Track your M&H Dynamic Tech order in real time. Enter your tracking number for live delivery updates.">
+<meta name="description" content="Track your M&H Dynamic Tech order in real time with The Courier Guy or DHL.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,19 +26,22 @@ header{background:var(--navy);position:sticky;top:0;z-index:30}
 .hero p{color:var(--muted);font-size:15px;max-width:46ch;margin:0 auto}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 6px 24px rgba(17,34,58,.06);padding:24px;margin:22px auto 0}
 .card label{display:block;font-size:13px;font-weight:700;margin-bottom:8px;color:var(--ink)}
-.trackrow{display:flex;gap:10px}
-.trackrow input{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:14px 15px;font-size:15px;font-family:inherit;outline:none}
-.trackrow input:focus{border-color:var(--blue)}
-.trackrow button{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:0 26px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;white-space:nowrap}
-.trackrow button:hover{background:var(--blue-deep)}
-.hint{font-size:12.5px;color:var(--muted);margin-top:12px}
+.tinput{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:14px 15px;font-size:15px;font-family:inherit;outline:none}
+.tinput:focus{border-color:var(--blue)}
+.hint{font-size:12.5px;color:var(--muted);margin-top:10px}
+.couriers{margin-top:16px}
+.couriers .clab{font-size:13px;font-weight:700;margin-bottom:9px}
+.cbtns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cbtn{border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:14px 8px;font-family:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:.15s}
+.cbtn:hover{border-color:var(--blue);background:var(--sky-soft);color:var(--blue-deep)}
+.cbtn small{font-weight:500;font-size:11px;color:var(--muted)}
+.copied{display:none;margin-top:14px;background:#E8F7EF;border:1px solid #BFE6CF;color:#155e3b;border-radius:10px;padding:11px 13px;font-size:13px;text-align:center}
 
-/* Takealot-style stepper */
-.journey{margin-top:18px}
+.journey{margin-top:22px}
 .journey h2{font-size:15px;font-weight:700;margin-bottom:22px;text-align:center;color:var(--ink)}
 .stepper{display:flex;align-items:flex-start;justify-content:space-between;position:relative;max-width:680px;margin:0 auto}
 .stepper::before{content:'';position:absolute;top:21px;left:9%;right:9%;height:3px;background:var(--line);z-index:1;border-radius:3px}
-.stepper .progress{position:absolute;top:21px;left:9%;height:3px;background:var(--green);z-index:1;border-radius:3px;transition:width .5s ease}
+.stepper .progress{position:absolute;top:21px;left:9%;height:3px;background:var(--green);z-index:1;border-radius:3px;transition:width .5s ease;width:0}
 .step{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;z-index:2}
 .step .dot{width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid var(--line);display:grid;place-items:center;color:#A9B8C9;transition:.3s}
 .step .dot svg{width:20px;height:20px}
@@ -46,19 +49,18 @@ header{background:var(--navy);position:sticky;top:0;z-index:30}
 .step.active .dot{border-color:var(--blue);color:var(--blue);box-shadow:0 0 0 5px var(--sky-soft)}
 .step span{font-size:12px;margin-top:9px;color:var(--muted);text-align:center;font-weight:600;line-height:1.25;max-width:84px}
 .step.done span,.step.active span{color:var(--ink)}
-.livehint{text-align:center;font-size:13px;color:var(--blue);font-weight:600;margin-top:22px}
 
 .help{margin:22px auto 0;background:var(--sky-soft);border:1px solid #CFE2FA;border-radius:var(--radius);padding:18px 20px}
 .help h3{font-size:15px;margin-bottom:6px;color:#0A3B7A}
 .help p{font-size:13.5px;color:#143b66}
-.fallback{text-align:center;margin:18px auto 50px;font-size:13px;color:var(--muted)}
+.foot{text-align:center;margin:26px auto 50px;font-size:13px;color:var(--muted)}
 footer{background:var(--navy);color:#9FB8D4;padding:26px 0;font-size:13px;text-align:center}
 footer a{color:#cfe0f2}
 @media(max-width:560px){
-  .trackrow{flex-direction:column}.trackrow button{padding:13px}
   .step .dot{width:36px;height:36px}.step .dot svg{width:16px;height:16px}
   .step span{font-size:10.5px;max-width:58px}
   .stepper::before,.stepper .progress{top:17px}
+  .cbtn{font-size:13px;padding:12px 6px}
 }
 </style>
 </head>
@@ -70,72 +72,70 @@ footer a{color:#cfe0f2}
 
 <section class="hero">
   <h1>Track Your Order</h1>
-  <p>Enter your tracking number for live delivery updates from our courier partners across South Africa.</p>
+  <p>Enter your tracking number, choose your courier, and we'll open its live tracking for you.</p>
 </section>
 
 <div class="wrap">
   <div class="card">
-    <label for="trackNum">Tracking number</label>
-    <div class="trackrow">
-      <input id="trackNum" type="text" placeholder="Enter your tracking number" autocomplete="off">
-      <button onclick="mhTrack()">Track</button>
+    <label for="trackNum">Tracking / waybill number</label>
+    <input id="trackNum" class="tinput" type="text" placeholder="Enter your tracking number" autocomplete="off">
+    <p class="hint">Your number is in the WhatsApp message or email we send once your order ships.</p>
+
+    <div class="couriers">
+      <div class="clab">Choose your courier to track:</div>
+      <div class="cbtns">
+        <button class="cbtn" onclick="track('cg')">The Courier Guy<small>Track live</small></button>
+        <button class="cbtn" onclick="track('dhl')">DHL<small>Track live</small></button>
+      </div>
+      <div class="copied" id="copied">✓ Your number is copied — just paste it into the box on the courier's page.</div>
     </div>
-    <p class="hint">Tip: your tracking number is in the WhatsApp message or email we send once your order ships.</p>
 
     <div class="journey">
       <h2>Your order's journey</h2>
       <div class="stepper" id="stepper">
-        <div class="progress" id="prog" style="width:0%"></div>
+        <div class="progress" id="prog"></div>
         <div class="step" data-i="1"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span>Ordered</span></div>
         <div class="step" data-i="2"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="14" height="10" rx="1"/><path d="M16 10h4l2 3v4h-6z"/></svg></div><span>Shipped</span></div>
         <div class="step" data-i="3"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><span>In Transit</span></div>
         <div class="step" data-i="4"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4.5 8-11a8 8 0 1 0-16 0c0 6.5 8 11 8 11z"/><circle cx="12" cy="11" r="2.5"/></svg></div><span>Out for Delivery</span></div>
         <div class="step" data-i="5"><div class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><span>Delivered</span></div>
       </div>
-      <p class="livehint" id="livehint" style="display:none">↓ Your exact live status is shown below</p>
     </div>
   </div>
 
   <div class="help">
     <h3>Where do I find my tracking number?</h3>
-    <p>After your order ships, M&amp;H Dynamic Tech sends you a tracking number by WhatsApp or email. Enter it above to follow your parcel in real time. Need help? <a href="https://wa.me/27636110970">Message us on WhatsApp</a>.</p>
+    <p>After your order ships, M&amp;H Dynamic Tech sends you a tracking number by WhatsApp or email. Enter it above, choose your courier, and track in real time. Need help? <a href="https://wa.me/27636110970">Message us on WhatsApp</a>.</p>
   </div>
 
-  <div class="fallback">
-    Trouble loading the live view? <a id="altlink" href="https://t.17track.net/en" target="_blank" rel="noopener">Open it in a new tab</a>.
-  </div>
+  <div class="foot">Tracked by your courier — The Courier Guy · DHL</div>
 </div>
 
 <footer>
   © 2026 M&amp;H Dynamic Tech · <a href="index.html">Back to store</a> · <a href="https://wa.me/27636110970">WhatsApp 063 611 0970</a>
 </footer>
 
-<script src="//www.17track.net/externalcall.js" charset="UTF-8"></script>
 <script>
 var STEPS=document.querySelectorAll('.step');
-function setStage(n){ // n = 1..5
+function setStage(n){
   var pct=((n-1)/(STEPS.length-1))*100;
   document.getElementById('prog').style.width=pct+'%';
-  STEPS.forEach(function(s){
-    var i=+s.dataset.i; s.classList.remove('done','active');
-    if(i<n)s.classList.add('done'); else if(i===n)s.classList.add('active');
-  });
+  STEPS.forEach(function(s){var i=+s.dataset.i;s.classList.remove('done','active');if(i<n)s.classList.add('done');else if(i===n)s.classList.add('active');});
 }
-setStage(1); // default before tracking
-function mhTrack(){
+setStage(1);
+function track(which){
   var n=document.getElementById('trackNum').value.trim();
   if(!n){document.getElementById('trackNum').focus();return;}
-  // a tracking number means it has at least shipped & is on its way
   setStage(3);
-  document.getElementById('livehint').style.display='block';
-  document.getElementById('altlink').href='https://t.17track.net/en#nums='+encodeURIComponent(n);
-  if(window.YQV5 && YQV5.add){
-    YQV5.add({YQ_num:n, YQ_order:"", YQ_height:560, YQ_fett:"f", YQ_ots:"", YQ_lang:"en"});
-  }else{
-    window.open('https://t.17track.net/en#nums='+encodeURIComponent(n),'_blank');
-  }
+  try{ if(navigator.clipboard){navigator.clipboard.writeText(n);} }catch(e){}
+  var urls={
+    cg:'https://thecourierguy.co.za/tracking/',
+    dhl:'https://www.dhl.com/za-en/home/tracking/tracking-express.html?submit=1&tracking-id='+encodeURIComponent(n)
+  };
+  document.getElementById('copied').style.display='block';
+  window.open(urls[which],'_blank');
 }
-document.getElementById('trackNum').addEventListener('keydown',function(e){if(e.key==='Enter')mhTrack();});
+document.getElementById('trackNum').addEventListener('keydown',function(e){if(e.key==='Enter')track('cg');});
 </script>
 </body>
 </html>
