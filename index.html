@@ -2,742 +2,1753 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sky Blueprint — Your Digital Life, Unified</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" href="/Sky-Blueprint/favicon.png"><link rel="shortcut icon" href="/Sky-Blueprint/favicon.png">
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M&amp;H Dynamic Tech — Certified Pre-Owned Laptops &amp; Phones in South Africa</title>
+<meta name="description" content="Shop certified pre-owned iPhones, MacBooks and business laptops. Tested, warranted and delivered across South Africa.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#04122B; --navy2:#0A1E40; --ink:#11223A; --muted:#5B6B7E; --line:#E3E8EF;
+  --surface:#F1F3F6; --card:#FFFFFF;
+  --blue:#0E63D6; --blue-deep:#0A4DAB; --sky:#2E9BE6; --sky-soft:#E7F1FC;
+  --save:#E0102B; --gold:#F5A623; --green:#1B9E63;
+  --radius:10px; --shadow:0 1px 3px rgba(17,34,58,.08),0 6px 20px rgba(17,34,58,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--surface);line-height:1.45;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 18px}
+
+/* top strip */
+.strip{background:var(--navy2);color:#BFD4EC;font-size:12.5px;overflow:hidden}
+.marquee{overflow:hidden;white-space:nowrap}
+.mtrack{display:inline-flex;gap:46px;padding:8px 0;animation:mscroll 28s linear infinite;will-change:transform}
+.mtrack span{display:inline-flex;align-items:center;gap:7px}
+.strip b{color:#fff}
+.strip:hover .mtrack{animation-play-state:paused}
+@keyframes mscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* voucher banner */
+.voucherbar{background:var(--surface);padding:14px 0 2px}
+.vcard{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:0 4px 16px rgba(17,34,58,.05)}
+.vicon{width:46px;height:46px;border-radius:11px;background:linear-gradient(135deg,#FFE9B8,#F5A623);display:grid;place-items:center;color:#7a4b00;flex:none}
+.vtext{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.vtext b{font-size:15px}
+.vtext span{font-size:13px;color:var(--muted)}
+.vclaim{background:var(--sky);color:#fff;border:0;border-radius:999px;padding:10px 26px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;flex:none}
+.vclaim:hover{background:#1f86cf}
+@media(max-width:560px){.vtext span{font-size:12px}.vclaim{padding:9px 18px}}
+/* claim modal */
+.vmodal{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:18px}
+.vmodal[hidden]{display:none}
+.vmodal-bg{position:absolute;inset:0;background:rgba(4,18,43,.55)}
+.vmodal-card{position:relative;background:#fff;border-radius:16px;max-width:440px;width:100%;padding:26px;max-height:92vh;overflow:auto;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.vmodal-x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:26px;line-height:1;color:var(--muted);cursor:pointer}
+.vhead{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.vhead .vicon{width:42px;height:42px}
+.vhead h2{font-size:20px;font-weight:800}
+.vsub{color:var(--muted);font-size:14px;margin-bottom:16px}
+.vsteps{margin:0 0 16px;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.vsteps b{color:var(--ink)}
+.vnote{background:#FFF6E5;border:1px solid #F3D38A;color:#7a5200;font-size:12.5px;border-radius:10px;padding:11px 13px;margin-bottom:16px}
+.vmodal-card label{display:block;font-size:13px;font-weight:700;margin:0 0 6px}
+.vmodal-card input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;font-size:14px;font-family:inherit;margin-bottom:14px;outline:none}
+.vmodal-card input:focus{border-color:var(--blue)}
+.vsubmit{width:100%;background:var(--green);color:#fff;border:0;border-radius:10px;padding:14px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit}
+.vsubmit:hover{filter:brightness(1.05)}
+.vfine{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+.vok{background:#E8F7EF;border:1px solid #BFE6CF;color:#155e3b;border-radius:10px;padding:13px;font-size:13.5px;text-align:center;margin-top:6px}
+.pmthumbs{display:flex;flex-direction:column;gap:9px}
+.pmthumb{width:58px;height:58px;border:2px solid var(--line);border-radius:10px;overflow:hidden;padding:0;cursor:pointer;background:#fff;flex:none}
+.pmthumb img{width:100%;height:100%;object-fit:contain;background:#f4f7f9;display:block}
+.pmthumb.on{border-color:var(--blue)}
+.pmthumb:hover{border-color:var(--sky)}
+
+/* header */
+header{background:var(--navy);position:sticky;top:0;z-index:50}
+.hbar{display:flex;align-items:center;gap:20px;max-width:1240px;margin:0 auto;padding:12px 18px}
+.logo img{height:46px;width:auto}
+.logofallback{color:#fff;font-weight:800;font-size:19px;letter-spacing:-.01em}
+.imgwrap.noimg{background:#EDF1F6}
+.imgwrap.noimg::after{content:'M&H';position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:24px;color:#A9B8C9;letter-spacing:-.03em}
+.searchwrap{flex:1;display:flex;max-width:680px}
+.searchwrap input{flex:1;border:0;outline:none;font-size:15px;padding:12px 16px;border-radius:8px 0 0 8px;font-family:inherit}
+.searchwrap button{border:0;background:var(--blue);color:#fff;padding:0 22px;border-radius:0 8px 8px 0;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:7px;font-family:inherit}
+.searchwrap button:hover{background:var(--blue-deep)}
+.hactions{display:flex;align-items:center;gap:18px;margin-left:auto;color:#fff}
+.hact{display:flex;flex-direction:column;font-size:11px;color:#AFC6E2;cursor:pointer;line-height:1.2}
+.hact b{font-size:13px;color:#fff}
+.cartbtn{position:relative;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:9px;padding:9px 15px;cursor:pointer;font-weight:600;font-size:14px;font-family:inherit}
+.cartbtn:hover{background:rgba(255,255,255,.16)}
+.cartbtn .count{position:absolute;top:-7px;right:-7px;background:var(--save);color:#fff;font-size:11px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:grid;place-items:center;padding:0 5px}
+
+/* department nav */
+.dept{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:70px;z-index:40}
+.dept .wrap{display:flex;gap:4px;overflow-x:auto}
+.dept a.navright{color:var(--blue)}
+.dept a.navauto{margin-left:auto}
+@media(max-width:620px){
+  .dept .wrap{flex-wrap:wrap;overflow-x:visible}
+  .dept a.navauto{margin-left:0}
+  .dept a.navright{font-weight:700}
+}
+.dept a{padding:13px 16px;font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap;border-bottom:3px solid transparent;cursor:pointer}
+.dept a:hover{color:var(--blue)}
+.dept a.on{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* breadcrumb */
+.crumb{padding:16px 0 6px}
+.crumb .wrap{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.crumb b{color:var(--ink)}
+.ptitle{padding:2px 0 18px}
+.ptitle h1{font-size:24px;font-weight:700;letter-spacing:-.01em}
+.ptitle p{color:var(--muted);font-size:14px;margin-top:3px}
+
+/* layout */
+.body .wrap{display:grid;grid-template-columns:240px 1fr;gap:22px;align-items:start;padding-bottom:60px}
+aside{background:#fff;border:1px solid var(--line);border-radius:var(--radius);position:sticky;top:130px}
+.fhead{display:flex;justify-content:space-between;align-items:center;padding:15px 16px;border-bottom:1px solid var(--line)}
+.fhead h2{font-size:15px}
+.fhead button{background:none;border:0;color:var(--blue);font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.fgroup{padding:15px 16px;border-bottom:1px solid var(--line)}
+.fgroup:last-child{border-bottom:0}
+.fgroup h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:11px}
+.fopt{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:14px;cursor:pointer;color:var(--ink)}
+.fopt input{width:16px;height:16px;accent-color:var(--blue);cursor:pointer}
+
+/* toolbar */
+.toolbar{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.toolbar .count{font-size:14px;color:var(--muted)}
+.toolbar .count b{color:var(--ink)}
+.tright{display:flex;align-items:center;gap:12px}
+.tright label{font-size:13px;color:var(--muted)}
+.tright select{border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:13.5px;font-family:inherit;color:var(--ink);background:#fff;cursor:pointer}
+.viewtog{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.viewtog button{border:0;background:#fff;padding:8px 10px;cursor:pointer;color:var(--muted);display:grid;place-items:center}
+.viewtog button.on{background:var(--sky-soft);color:var(--blue)}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(214px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .15s,border-color .15s}
+.card:hover{box-shadow:var(--shadow);border-color:#CDD8E6}
+.imgwrap{position:relative;aspect-ratio:1/1;background:#fff;display:block;padding:14px}
+.imgwrap img{width:100%;height:100%;object-fit:contain;filter:brightness(1.05) contrast(1.05) saturate(1.06)}
+.logotext{color:#fff;font-weight:800;font-size:18px;letter-spacing:-.01em;white-space:nowrap}
+.grade{position:absolute;top:9px;left:9px;background:var(--sky-soft);color:var(--blue-deep);font-size:10.5px;font-weight:700;letter-spacing:.01em;padding:4px 8px;border-radius:6px}
+.cbody{padding:13px 14px 15px;display:flex;flex-direction:column;gap:8px;flex:1;border-top:1px solid var(--line)}
+.cbody h3{font-size:14.5px;font-weight:500;line-height:1.3;color:var(--ink);min-height:38px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card:hover h3{color:var(--blue)}
+.spec{font-size:12px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.priceline{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-top:2px}
+.price{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.was{font-size:12.5px;color:var(--muted);text-decoration:line-through}
+.savetag{font-size:11px;font-weight:700;color:var(--save)}
+.add{margin-top:4px;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:11px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:inherit;transition:background .12s}
+.add:hover{background:var(--blue-deep)}
+.add.added{background:var(--green)}
+.empty{grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:var(--radius)}
+
+/* list view */
+.grid.list{grid-template-columns:1fr;gap:12px}
+.grid.list .card{flex-direction:row}
+.grid.list .imgwrap{width:190px;flex:none;aspect-ratio:1/1}
+.grid.list .cbody{border-top:0;border-left:1px solid var(--line);justify-content:center}
+.grid.list .cbody h3{min-height:0;font-size:16px}
+.grid.list .add{align-self:flex-start;padding:11px 30px}
+
+/* footer */
+footer{background:var(--navy);color:#9FB8D4;padding:46px 0 26px}
+footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:30px;margin-bottom:30px}
+footer img.flogo{height:42px;margin-bottom:14px}
+footer h5{color:#fff;font-size:13px;margin-bottom:13px;letter-spacing:.02em;text-transform:uppercase}
+footer a,footer p{display:block;font-size:13.5px;margin-bottom:9px;color:#9FB8D4}
+footer a:hover{color:#fff}
+.pays{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pays .pchip{background:#fff;border-radius:6px;height:30px;padding:5px 9px;display:inline-flex;align-items:center;justify-content:center}
+.pays .pchip img{height:100%;width:auto;max-width:64px;object-fit:contain;display:block}
+.cemail{width:100%;border:1px solid var(--line);border-radius:9px;padding:12px 13px;font-size:14px;font-family:inherit;margin-bottom:9px;outline:none}
+.cemail:focus{border-color:var(--blue)}
+.paystack{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--blue);color:#fff;border:0;border-radius:10px;padding:14px;font-weight:700;font-size:15px;cursor:pointer;width:100%;font-family:inherit;margin-bottom:10px}
+.paystack:hover{background:var(--blue-deep)}
+.ordiv{text-align:center;font-size:12px;color:var(--muted);margin:2px 0 10px;position:relative}
+.ordiv::before,.ordiv::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--line)}
+.ordiv::before{left:0}.ordiv::after{right:0}
+.copy{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#7E97B5}
+
+/* cart drawer */
+.overlay{position:fixed;inset:0;background:rgba(4,18,43,.55);opacity:0;visibility:hidden;transition:.2s;z-index:80}
+.overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;height:100%;width:400px;max-width:90vw;background:#fff;z-index:90;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.18)}
+.drawer.open{transform:translateX(0)}
+.dhead{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:#fff}
+.dhead h3{font-size:17px}
+.dhead button{background:none;border:0;font-size:26px;cursor:pointer;color:#fff;line-height:1}
+.ditems{flex:1;overflow-y:auto;padding:4px 20px}
+.ditem{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ditem .nm{font-size:14px;font-weight:600}.ditem .pr{font-size:13px;color:var(--muted)}
+.ditem .rm{background:none;border:0;color:var(--save);cursor:pointer;font-size:12.5px;font-weight:600}
+.dempty{text-align:center;color:var(--muted);padding:50px 20px;font-size:14px}
+.dfoot{padding:18px 20px;border-top:1px solid var(--line)}
+.dline{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:5px}
+.dtotal{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin:8px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
+.dnote{font-size:12px;color:var(--muted);margin-bottom:13px}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;border:0;border-radius:10px;padding:14px;font-weight:700;font-size:15px;cursor:pointer;width:100%;font-family:inherit;text-decoration:none}
+
+.logo-text{color:#fff;font-weight:800;font-size:20px;letter-spacing:-.02em;white-space:nowrap}
+.logo-text b{color:#2E9BE6;font-weight:800}
+.flogo-text{color:#fff;font-weight:800;font-size:19px;display:block;margin-bottom:14px}
+.reviews{background:#fff;border-top:1px solid var(--line);padding:46px 0}
+.reviews .rhead{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;margin-bottom:24px}
+.rscoreblock{text-align:center;flex:none}
+.rbars{flex:1;max-width:420px;min-width:240px;display:flex;flex-direction:column;gap:7px}
+.rbar{display:flex;align-items:center;gap:10px}
+.rbar .rl{font-size:12.5px;font-weight:700;color:var(--muted);width:30px;white-space:nowrap}
+.rbar .rtrack{flex:1;height:11px;background:#E7ECF2;border-radius:6px;overflow:hidden}
+.rbar .rfill{height:100%;background:var(--green);border-radius:6px}
+.rbar .rc{font-size:12.5px;font-weight:700;color:var(--ink);width:22px;text-align:right}
+.rscore{font-size:46px;font-weight:800;color:var(--ink);line-height:1}
+.rscore span{font-size:20px;color:var(--muted);font-weight:600}
+.stars{color:var(--gold);letter-spacing:1px}
+.stars.big{font-size:20px;margin:6px 0}
+.btn-review{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:13px 22px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:inherit}
+.btn-review:hover{background:var(--blue-deep)}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rev{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.rev .stars{font-size:15px;margin-bottom:9px}
+.rev p{font-size:14px;color:#2C3A4C;margin-bottom:12px}
+.rev .who{font-size:13.5px;font-weight:700;color:var(--ink)}
+.rev .who span{color:var(--green);font-weight:500;font-size:12px;display:block;margin-top:2px}
+.socials{display:flex;gap:10px;margin-top:12px}
+.socials a{width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;color:#cfe0f2}
+.socials a:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rmodal-bg{position:fixed;inset:0;background:rgba(4,18,43,.6);display:none;place-items:center;z-index:100;padding:18px}
+.rmodal-bg.open{display:grid}
+.rmodal{background:#fff;border-radius:14px;width:100%;max-width:440px;padding:24px}
+.rmodal h3{font-size:20px;margin-bottom:4px}
+.rmodal p.sub{color:var(--muted);font-size:13.5px;margin-bottom:6px}
+.rmodal label{display:block;font-size:13px;font-weight:600;margin:14px 0 5px}
+.rmodal input,.rmodal textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px;font-size:14px;font-family:inherit;outline:none}
+.rmodal input:focus,.rmodal textarea:focus{border-color:var(--blue)}
+.starpick{display:flex;gap:5px;font-size:30px;color:#D5DDE6;cursor:pointer}
+.starpick span.on{color:var(--gold)}
+.rmodal .row{display:flex;gap:10px;margin-top:18px}
+.rmodal .submit{flex:1;background:#25D366;color:#fff;border:0;border-radius:9px;padding:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.rmodal .cancel{background:none;border:1px solid var(--line);border-radius:9px;padding:13px 18px;cursor:pointer;font-family:inherit;font-weight:600;color:var(--muted)}
+.fav{position:absolute;top:9px;right:9px;z-index:3;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--line);display:grid;place-items:center;cursor:pointer;color:#90A2B4;box-shadow:0 1px 4px rgba(17,34,58,.12)}
+.fav svg{fill:currentColor;transition:transform .12s}
+.fav:hover{color:var(--save)}
+.fav:hover svg{transform:scale(1.12)}
+.fav.on{color:var(--save)}
+.favbtn{position:relative;display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:9px;padding:9px 12px;cursor:pointer}
+.favbtn svg{fill:currentColor}
+.favbtn:hover{background:rgba(255,255,255,.16)}
+.favbtn.on{background:var(--save);border-color:var(--save)}
+.favbtn .count{position:absolute;top:-7px;right:-7px;background:var(--save);color:#fff;font-size:11px;font-weight:700;min-width:19px;height:19px;border-radius:10px;display:grid;place-items:center;padding:0 5px}
+.favbtn.on .count{background:#fff;color:var(--save)}
+.imgwrap[data-open],.cbody h3[data-open]{cursor:pointer}
+.cbody h3[data-open]:hover{color:var(--blue)}
+.viewbtn{margin-top:2px;background:#fff;color:var(--blue);border:1px solid var(--blue);border-radius:8px;padding:9px;font-weight:600;font-size:13px;cursor:pointer;font-family:inherit}
+.viewbtn:hover{background:var(--sky-soft)}
+.pmodal-bg{position:fixed;inset:0;background:rgba(4,18,43,.6);display:none;z-index:95;overflow-y:auto;padding:24px 16px}
+.pmodal-bg.open{display:block}
+.pmodal{background:#fff;border-radius:14px;max-width:860px;margin:0 auto;position:relative;overflow:hidden}
+.pclose{position:absolute;top:12px;right:14px;z-index:3;background:#fff;border:1px solid var(--line);width:36px;height:36px;border-radius:50%;font-size:22px;line-height:1;cursor:pointer;color:var(--ink)}
+.pmgrid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pmmedia{display:flex;gap:12px;padding:24px;border-right:1px solid var(--line);align-items:flex-start}
+.pmimg{position:relative;background:#fff;aspect-ratio:1/1;flex:1;display:grid;place-items:center;padding:8px}
+.pmimg img{width:100%;height:100%;object-fit:contain}
+.pmimg.noimg{background:#EDF1F6}
+.pmimg.noimg::after{content:'M&H';position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:40px;color:#A9B8C9}
+.pminfo{padding:26px 28px}
+.pminfo h2{font-size:23px;font-weight:800;line-height:1.25;margin-bottom:12px}
+.pminfo .priceline{margin-bottom:10px}
+.pminfo .price{font-size:26px}
+.pmcond{display:inline-flex;align-items:center;gap:7px;background:var(--sky-soft);color:var(--blue-deep);font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:7px;margin-bottom:18px}
+.pminfo h4{font-size:14px;font-weight:700;margin:14px 0 8px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.pmdesc{font-size:14px;color:#2C3A4C;line-height:1.6;white-space:pre-line;max-height:230px;overflow-y:auto;padding-right:6px}
+.pmbtns{display:flex;gap:10px;margin-top:20px}
+.pmbtns .add{flex:1;margin:0;padding:14px}
+.pmbtns .wa{flex:1;padding:14px;font-size:14px}
+@media(max-width:680px){.pmgrid{grid-template-columns:1fr}.pmmedia{border-right:0;border-bottom:1px solid var(--line);flex-direction:column-reverse;align-items:stretch}.pmthumbs{flex-direction:row;flex-wrap:wrap}.pmimg{aspect-ratio:16/10}}
+@media(max-width:820px){.rgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){
+  .body .wrap{grid-template-columns:1fr}
+  aside{position:static;order:-1}
+  .fgroup.collapsible{display:none}
+  footer .cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .hbar{flex-wrap:wrap;gap:12px}
+  .searchwrap{order:3;flex-basis:100%;max-width:none}
+  .hactions .hact{display:none}
+  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .grid.list .card{flex-direction:column}
+  .grid.list .imgwrap{width:100%}
+  .grid.list .cbody{border-left:0;border-top:1px solid var(--line)}
+  footer .cols{grid-template-columns:1fr}
+  .logo img{height:38px}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-inner">
-    <div class="logo" onclick="showPage('home')">
-      <svg class="fp-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
-        <path d="M16 2C10 2 5 7 5 13c0 4 2 7.5 5 9.5v6.5h2v-5.5c1.2.3 2.6.5 4 .5s2.8-.2 4-.5V29h2v-6.5c3-2 5-5.5 5-9.5 0-6-5-11-11-11z" fill="url(#fpgrad)"/>
-        <path d="M11 13c0-2.8 2.2-5 5-5s5 2.2 5 5c0 1.5-.7 2.9-1.7 3.8" stroke="#fff" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-        <path d="M13 13c0-1.7 1.3-3 3-3s3 1.3 3 3" stroke="#fff" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.7"/>
-        <circle cx="16" cy="13" r="1.2" fill="#fff"/>
-        <defs>
-          <linearGradient id="fpgrad" x1="5" y1="2" x2="27" y2="30">
-            <stop offset="0%" stop-color="#38bdf8"/>
-            <stop offset="100%" stop-color="#6366f1"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      Sky <span>Blueprint</span>
-    </div>
-    <div class="nav-links">
-      <a href="#tools" onclick="event.preventDefault();navTo('tools')">Tools</a>
-      <a href="#pricing" onclick="event.preventDefault();navTo('pricing')">Pricing</a>
-      <a href="#about" onclick="event.preventDefault();navTo('about')">About</a>
-    </div>
-    <div class="nav-actions" id="nav-logged-out">
-      <button class="btn-ghost-sm" onclick="showPage('login')">Log In</button>
-      <button class="btn-primary-sm" onclick="showPage('signup')">Get Started</button>
-    </div>
-    <div class="nav-actions" id="nav-logged-in" style="display:none;align-items:center;gap:12px">
-      <span id="nav-trial-badge" style="font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;background:rgba(56,189,248,0.15);color:#38bdf8;white-space:nowrap"></span>
-      <button class="btn-ghost-sm" onclick="showPage('dashboard')" id="nav-username" style="display:flex;align-items:center;gap:6px"></button>
-      <button class="btn-ghost-sm" onclick="doLogout()">Log Out</button>
-    </div>
-    <button class="hamburger" onclick="toggleMobileNav()">
-      <span></span><span></span><span></span>
+<div class="strip"><div class="marquee"><div class="mtrack">
+  <span>🚚 <b>Fast delivery</b> across South Africa</span>
+  <span>✅ <b>Tested &amp; certified</b> devices</span>
+  <span>🛡️ <b>6-month warranty</b> included</span>
+  <span>🎁 <b>Free voucher offers</b> on selected products</span>
+  <span>🔒 <b>Secure checkout</b></span>
+  <span>🚚 <b>Fast delivery</b> across South Africa</span>
+  <span>✅ <b>Tested &amp; certified</b> devices</span>
+  <span>🛡️ <b>6-month warranty</b> included</span>
+  <span>🎁 <b>Free voucher offers</b> on selected products</span>
+  <span>🔒 <b>Secure checkout</b></span>
+</div></div></div>
+
+<header><div class="hbar">
+  <a class="logo" href="#"><span class="logo-text">M&amp;H <b>Dynamic Tech</b></span></a>
+  <div class="searchwrap">
+    <input id="search" type="search" placeholder="Search for iPhones, MacBooks, laptops…">
+    <button onclick="document.getElementById('search').focus()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Search</button>
+  </div>
+  <div class="hactions">
+    <a class="hact" href="https://wa.me/27636110970" target="_blank"><span>Need help?</span><b>063 611 0970</b></a>
+    <button class="favbtn" id="openFav" title="Favourites">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg>
+      <span class="count" id="favCount" style="display:none">0</span>
+    </button>
+    <button class="cartbtn" id="openCart">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      Cart<span class="count" id="cartCount" style="display:none">0</span>
     </button>
   </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#tools" onclick="closeMobileNav();document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Tools</a>
-    <a href="#pricing" onclick="closeMobileNav();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Pricing</a>
-    <a href="#about" onclick="closeMobileNav();document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a>
-    <button class="btn-ghost-sm" onclick="showPage('login');closeMobileNav()">Log In</button>
-    <button class="btn-primary-sm" onclick="showPage('signup');closeMobileNav()">Get Started</button>
-  </div>
-</nav>
+</div></header>
 
-<!-- PAGES CONTAINER -->
-<div id="pages">
-
-  <!-- HOME PAGE -->
-  <div class="page active" id="page-home">
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-glow g1"></div>
-      <div class="hero-glow g2"></div>
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg width="14" height="14" viewBox="0 0 32 32" fill="none"><path d="M16 2C10 2 5 7 5 13c0 4 2 7.5 5 9.5v6.5h2v-5.5c1.2.3 2.6.5 4 .5s2.8-.2 4-.5V29h2v-6.5c3-2 5-5.5 5-9.5 0-6-5-11-11-11z" fill="#38bdf8"/></svg>
-          🇿🇦 Made for South Africa
-        </div>
-        <h1>Build. Protect.<br><span class="grad-text">Grow.</span></h1>
-        <p class="hero-p">Sky Blueprint gives South African entrepreneurs, job seekers and professionals eight powerful tools — all in one platform — for one simple monthly fee.</p>
-        <div class="hero-ctas">
-          <button class="btn-primary" onclick="showPage('signup')">Get Started — R55/month</button>
-          <button class="btn-outline" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">See All Tools</button>
-        </div>
-        <div class="trust-row">
-          <span>✅ No contracts</span>
-          <span>✅ Cancel anytime</span>
-          <span>✅ Pay with Paystack</span>
-        </div>
-      </div>
-      <div class="hero-cards">
-        <div class="hc hc1">
-          <span>📧</span>
-          <div><strong>Email Cleaner</strong><small>3 spam emails removed</small></div>
-        </div>
-        <div class="hc hc2">
-          <span>📍</span>
-          <div><strong>Phone Located</strong><small>Cape Town, 2 mins ago</small></div>
-        </div>
-        <div class="hc hc3">
-          <span>💼</span>
-          <div><strong>Jobs Found</strong><small>12 matches for your CV</small></div>
-        </div>
-        <div class="hc hc4">
-          <span>🤖</span>
-          <div><strong>AI Mentor</strong><small>Business plan ready</small></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TOOLS -->
-    <section class="tools-sec" id="tools">
-      <div class="sec-label">WHAT YOU GET</div>
-      <h2 class="sec-title">Six Powerful Tools.<br>One Monthly Price.</h2>
-      <div class="tools-grid">
-        <div class="tool-card" onclick="requireAuth('website-builder')">
-          <div class="tc-top">
-            <div class="tc-icon" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)">🌐</div>
-            <div class="tc-badge">Popular</div>
-          </div>
-          <h3>Website Builder</h3>
-          <p>Create a professional website for your business in minutes. No coding required.</p>
-          <div class="tc-arrow">Open Tool →</div>
-        </div>
-        <div class="tool-card" onclick="requireAuth('email-cleaner')">
-          <div class="tc-top">
-            <div class="tc-icon" style="background:linear-gradient(135deg,#10b981,#059669)">📧</div>
-          </div>
-          <h3>AI Email Secretary</h3>
-          <p>AI automatically separates important emails from spam. Never miss what matters.</p>
-          <div class="tc-arrow">Open Tool →</div>
-        </div>
-        <div class="tool-card" onclick="requireAuth('find-phone')" style="opacity:0.7">
-          <div class="tc-top">
-            <div class="tc-icon" style="background:linear-gradient(135deg,#64748b,#475569)">📍</div>
-            <div class="tc-badge" style="background:rgba(245,158,11,0.2);color:#f59e0b">Coming Soon</div>
-          </div>
-          <h3>Find My Phone</h3>
-          <p>Track, ring and lock your lost phone on a South African map. Launching soon!</p>
-          <div class="tc-arrow" style="color:#f59e0b">Coming Soon →</div>
-        </div>
-        <div class="tool-card" onclick="requireAuth('ai-mentor')">
-          <div class="tc-top">
-            <div class="tc-icon" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">🤖</div>
-          </div>
-          <h3>AI Business Mentor</h3>
-          <p>24/7 AI coach that helps young SA entrepreneurs plan, launch and grow their business.</p>
-          <div class="tc-arrow">Open Tool →</div>
-        </div>
-        <div class="tool-card" onclick="requireAuth('cv-builder')">
-          <div class="tc-top">
-            <div class="tc-icon" style="background:linear-gradient(135deg,#14b8a6,#0ea5e9)">📄</div>
-          </div>
-          <h3>CV Builder & Jobs</h3>
-          <p>Build your CV and search matching jobs on LinkedIn and Indeed — all in one place.</p>
-          <div class="tc-arrow">Open Tool →</div>
-        </div>
-        <div class="tool-card" onclick="openTool('sa-map')">
-          <div class="tc-top">
-            <div class="tc-icon" style="background:linear-gradient(135deg,#22c55e,#16a34a)">🗺️</div>
-          </div>
-          <h3>SA Map & Location</h3>
-          <p>Live South African map. Search any province, city or suburb instantly.</p>
-          <div class="tc-arrow">Open Tool →</div>
-        </div>
-        <div class="tool-card" onclick="requireAuth('reminders')">
-          <div class="tc-top">
-            <div class="tc-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">🔔</div>
-            <span class="tc-badge">New</span>
-          </div>
-          <h3>Reminders & Tasks</h3>
-          <p>Never forget a meeting, task, habit or family event. Get notified when it is due.</p>
-          <div class="tc-arrow">Open Tool →</div>
-        </div>
-        <div class="tool-card" onclick="requireAuth('learnerships')">
-          <div class="tc-top">
-            <div class="tc-icon" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">🎓</div>
-            <span class="tc-badge">New</span>
-          </div>
-          <h3>Learnerships & Internships</h3>
-          <p>Check if you qualify, then get matching learnerships and internships emailed to you with apply links.</p>
-          <div class="tc-arrow">Open Tool →</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="pricing-sec" id="pricing">
-      <div class="sec-label">TRANSPARENT PRICING</div>
-      <h2 class="sec-title">Simple Plans.<br>No Hidden Costs.</h2>
-
-      <div class="pricing-grid">
-
-        <!-- FREE TRIAL -->
-        <div class="price-card">
-          <div class="pc-badge">FREE FOREVER</div>
-          <div class="pc-name">Pay As You Go</div>
-          <div class="pc-price">R0</div>
-          <div class="pc-period">Start using tools today</div>
-          <div class="pc-features">
-            <div class="pc-feat">✅ Live South African map</div>
-            <div class="pc-feat">✅ Search any province or city</div>
-            <div class="pc-feat">✅ No login required</div>
-            <div class="pc-feat">✅ 100% free, forever</div>
-            <div class="pc-feat">✅ Available to everyone</div>
-            <div class="pc-feat">✅ SA Map (always free)</div>
-          </div>
-          <button class="btn-primary" onclick="showPage('signup')" style="width:100%;box-sizing:border-box">Get Started</button>
-        </div>
-
-        <!-- MONTHLY -->
-        <div class="price-card featured">
-          <div class="pc-badge popular">MOST POPULAR</div>
-          <div class="pc-name">Monthly Plan</div>
-          <div class="pc-price">R55</div>
-          <div class="pc-period">per month • auto-debit</div>
-          <div class="pc-features">
-            <div class="pc-feat">✅ All 8 tools — full access</div>
-            <div class="pc-feat">✅ Email Cleaner (Gmail, Outlook, Yahoo)</div>
-            <div class="pc-feat">✅ AI Business Mentor 24/7</div>
-            <div class="pc-feat">✅ CV Builder & Job Matching</div>
-            <div class="pc-feat">✅ SA Map — always free</div>
-            <div class="pc-feat">✅ Cancel anytime</div>
-            <div class="pc-feat">✅ Deducted on subscription date monthly</div>
-          </div>
-          <button class="btn-primary" onclick="startPaystack('monthly')" style="width:100%;box-sizing:border-box;background:linear-gradient(135deg,#38bdf8,#6366f1)">Subscribe R55/month</button>
-        </div>
-
-        <!-- 3 YEAR -->
-        <div class="price-card">
-          <div class="pc-badge save">BEST VALUE</div>
-          <div class="pc-name">3-Year Plan</div>
-          <div class="pc-price">R1,980</div>
-          <div class="pc-period">once-off • 36 months access</div>
-          <div class="pc-features">
-            <div class="pc-feat">✅ Everything in Monthly</div>
-            <div class="pc-feat">✅ Pay once — use for 3 years</div>
-            <div class="pc-feat">✅ No monthly deductions</div>
-            <div class="pc-feat">✅ Save R1,000 vs monthly</div>
-            <div class="pc-feat">✅ Priority support</div>
-            <div class="pc-feat">✅ All future tool updates included</div>
-          </div>
-          <button class="btn-primary" onclick="startPaystack('yearly')" style="width:100%;box-sizing:border-box">Pay R1,980 Once-Off</button>
-        </div>
-
-      </div>
-
-      <!-- WEBSITE & ADD-ON PRICING -->
-      <div style="margin-top:48px">
-        <div class="sec-label">ADD-ON SERVICES</div>
-        <h3 style="text-align:center;font-size:22px;font-weight:700;color:var(--text);margin-bottom:24px">Website & Device Services</h3>
-        <div class="pricing-grid">
-
-          <!-- WEBSITE BUILD -->
-          <div class="price-card">
-            <div class="pc-badge">ONCE-OFF</div>
-            <div class="pc-name">Website Build Only</div>
-            <div class="pc-price">R450</div>
-            <div class="pc-period">delivered in 72 hours</div>
-            <div class="pc-features">
-              <div class="pc-feat">✅ Professional business website</div>
-              <div class="pc-feat">✅ Mobile & desktop friendly</div>
-              <div class="pc-feat">✅ Contact & WhatsApp button</div>
-              <div class="pc-feat">✅ Free hosting on Sky Blueprint link</div>
-              <div class="pc-feat">✅ No domain needed</div>
-            </div>
-            <button class="btn-primary" onclick="requireAuth('website-builder')" style="width:100%;box-sizing:border-box">Order Website</button>
-          </div>
-
-          <!-- WEBSITE + DOMAIN -->
-          <div class="price-card featured">
-            <div class="pc-badge popular">RECOMMENDED</div>
-            <div class="pc-name">Website + Domain</div>
-            <div class="pc-price">R750</div>
-            <div class="pc-period">.com domain • 72 hours</div>
-            <div class="pc-features">
-              <div class="pc-feat">✅ Everything in Website Build</div>
-              <div class="pc-feat">✅ .com domain included (e.g. mybiz.com)</div>
-              <div class="pc-feat">✅ Professional business email address</div>
-              <div class="pc-feat">✅ Custom domain linked to your site</div>
-              <div class="pc-feat" style="color:#38bdf8">🇿🇦 Want .co.za? Only R950 total</div>
-            </div>
-            <button class="btn-primary" onclick="requireAuth('website-builder')" style="width:100%;box-sizing:border-box;background:linear-gradient(135deg,#38bdf8,#6366f1)">Order with Domain</button>
-          </div>
-
-          <!-- FIND MY PHONE - COMING SOON -->
-          <div class="price-card" style="opacity:0.75">
-            <div class="pc-badge" style="background:rgba(245,158,11,0.2);color:#f59e0b">COMING SOON</div>
-            <div class="pc-name">Find My Phone</div>
-            <div class="pc-price">R450</div>
-            <div class="pc-period">activation + R55/month</div>
-            <div class="pc-features">
-              <div class="pc-feat">📍 Live GPS tracking on SA Map</div>
-              <div class="pc-feat">🔔 Ring, lock or wipe remotely</div>
-              <div class="pc-feat">🕐 7 days location history</div>
-              <div class="pc-feat">📱 Register unlimited devices</div>
-              <div class="pc-feat" style="color:#f59e0b">🚧 Launching soon — stay tuned!</div>
-            </div>
-            <button class="btn-primary" style="width:100%;box-sizing:border-box;background:rgba(100,116,139,0.3);cursor:default" disabled>Coming Soon</button>
-          </div>
-
-        </div>
-
-        <!-- SA MAP FREE BANNER -->
-        <div style="margin-top:24px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:14px;padding:20px;text-align:center">
-          <div style="font-size:24px;margin-bottom:8px">🗺️</div>
-          <div style="font-size:16px;font-weight:700;color:#10b981;margin-bottom:6px">SA Map is 100% FREE</div>
-          <div style="font-size:13px;color:var(--muted)">No account needed. No payment. Open to everyone in South Africa.</div>
-          <button onclick="openTool('sa-map')" style="margin-top:14px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#10b981;border-radius:10px;padding:10px 24px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font)">Open SA Map Free →</button>
-        </div>
-      </div>
-    </section>
-
-<!-- ABOUT -->
-    <section class="about-sec" id="about">
-      <div class="about-inner">
-        <div class="sec-label">ABOUT SKY BLUEPRINT</div>
-        <h2 class="sec-title">Built by a South African,<br>for South Africans.</h2>
-        <p>Sky Blueprint was created to give every South African — whether you are a student, entrepreneur, job seeker or professional — access to powerful digital tools that big companies take for granted. We believe technology should be affordable, simple, and built for the African context.</p>
-
-        <!-- FOUNDER STORY -->
-        <div style="background:linear-gradient(135deg,rgba(56,189,248,0.06),rgba(99,102,241,0.06));border:1px solid rgba(56,189,248,0.2);border-radius:20px;padding:32px;margin:32px 0;text-align:left">
-          <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px;flex-wrap:wrap">
-            <div style="width:84px;height:84px;border-radius:50%;flex-shrink:0;border:3px solid #38bdf8;overflow:hidden;background:linear-gradient(135deg,#38bdf8,#6366f1);display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;color:#fff">
-              <img src="/Sky-Blueprint/founder.jpg" alt="Wongalethu Mkapu" style="width:100%;height:100%;object-fit:cover" onerror="if(!this.dataset.t){this.dataset.t='1';this.src='/Sky-Blueprint/founder.jpeg';}else if(this.dataset.t=='1'){this.dataset.t='2';this.src='/Sky-Blueprint/founder.png';}else{this.style.display='none';this.parentNode.innerHTML='WM';}">
-            </div>
-            <div>
-              <div style="font-size:20px;font-weight:800;color:#fff">Wongalethu Mkapu</div>
-              <div style="font-size:13px;color:#38bdf8;font-weight:600">Founder &amp; Visionary</div>
-            </div>
-          </div>
-          <p style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:16px">Sky Blueprint was founded by <strong style="color:#fff">Wongalethu Mkapu</strong>, a young South African entrepreneur born on <strong style="color:#fff">20 August 2000</strong>. Driven by a deep belief that talent and ambition are evenly spread across South Africa — but opportunity is not — Wongalethu set out to close that gap.</p>
-          <p style="color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:16px">He saw too many capable people held back simply because they could not afford a website, did not have the tools to build a professional CV, or struggled to manage the digital side of their lives and businesses. Sky Blueprint is his answer: a single, affordable platform that puts world-class digital tools into the hands of every South African, no matter their background.</p>
-          <p style="color:var(--muted);font-size:15px;line-height:1.8;margin:0">As a member of the new generation of African founders, Wongalethu built Sky Blueprint on one principle — <strong style="color:#38bdf8">when you give people the right tools, you give them the power to build their own future.</strong></p>
-        </div>
-
-        <div class="about-stats">
-          <div class="as"><strong>8</strong><span>Powerful Tools</span></div>
-          <div class="as"><strong>24/7</strong><span>Always Available</span></div>
-          <div class="as"><strong>R55</strong><span>Per Month Only</span></div>
-          <div class="as"><strong>🇿🇦</strong><span>SA Built</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-inner">
-        <div class="logo" style="justify-content:center;margin-bottom:12px">
-          <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 2C10 2 5 7 5 13c0 4 2 7.5 5 9.5v6.5h2v-5.5c1.2.3 2.6.5 4 .5s2.8-.2 4-.5V29h2v-6.5c3-2 5-5.5 5-9.5 0-6-5-11-11-11z" fill="url(#fpgrad2)"/><defs><linearGradient id="fpgrad2" x1="5" y1="2" x2="27" y2="30"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs></svg>
-          Sky <span>Blueprint</span>
-        </div>
-        <p style="color:#475569;font-size:13px;margin-bottom:20px">Your digital life, unified. Built for South Africa.</p>
-        <div class="footer-links">
-          <a href="#tools" onclick="event.preventDefault();document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Tools</a>
-          <a href="#pricing" onclick="event.preventDefault();document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Pricing</a>
-          <a href="#about" onclick="event.preventDefault();document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a>
-          <a href="mailto:lethumkapu561@gmail.com">Contact</a>
-        </div>
-        <p style="color:#1e293b;font-size:12px;margin-top:24px">© 2026 Sky Blueprint. All rights reserved.</p>
-      </div>
-    </footer>
-  </div>
-
-  <!-- LOGIN PAGE -->
-  <div class="page" id="page-login">
-    <div class="auth-wrap">
-      <div class="auth-box">
-        <div class="logo" style="justify-content:center;margin-bottom:28px;font-size:20px">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 2C10 2 5 7 5 13c0 4 2 7.5 5 9.5v6.5h2v-5.5c1.2.3 2.6.5 4 .5s2.8-.2 4-.5V29h2v-6.5c3-2 5-5.5 5-9.5 0-6-5-11-11-11z" fill="url(#fpg3)"/><defs><linearGradient id="fpg3" x1="5" y1="2" x2="27" y2="30"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs></svg>
-          Sky <span>Blueprint</span>
-        </div>
-        <h2 class="auth-title">Welcome back</h2>
-        <p class="auth-sub">Log in to access your tools</p>
-        <div class="form-group"><label>Email Address</label><input type="email" id="login-email" placeholder="your@email.com"></div>
-        <div class="form-group"><label>Password</label><div style="position:relative">
-          <input type="password" id="login-pass" placeholder="Enter your password" style="width:100%;box-sizing:border-box;padding-right:44px">
-          <button type="button" onclick="togglePass('login-pass',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;padding:4px">👁️</button>
-        </div></div>
-        <button class="btn-primary" style="width:100%;margin-top:8px" onclick="doLogin()">Log In</button>
-        <div class="auth-alt">Don't have an account? <a href="#" onclick="showPage('signup')">Sign up free</a></div>
-        <button class="back-link" onclick="showPage('home')">← Back to home</button>
-      </div>
+<div class="voucherbar"><div class="wrap">
+  <div class="vcard">
+    <div class="vicon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+    <div class="vtext">
+      <b>R200 Meal Voucher Included</b>
+      <span>Buy any laptop, MacBook, or iPhone and claim your meal voucher after delivery.</span>
     </div>
+    <button class="vclaim" id="openVoucher">Claim</button>
   </div>
+</div></div>
 
-  <!-- SIGNUP PAGE -->
-  <div class="page" id="page-signup">
-    <div class="auth-wrap">
-      <div class="auth-box">
-        <div class="logo" style="justify-content:center;margin-bottom:28px;font-size:20px">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 2C10 2 5 7 5 13c0 4 2 7.5 5 9.5v6.5h2v-5.5c1.2.3 2.6.5 4 .5s2.8-.2 4-.5V29h2v-6.5c3-2 5-5.5 5-9.5 0-6-5-11-11-11z" fill="url(#fpg4)"/><defs><linearGradient id="fpg4" x1="5" y1="2" x2="27" y2="30"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs></svg>
-          Sky <span>Blueprint</span>
-        </div>
-        <h2 class="auth-title">Start free today</h2>
-        <p class="auth-sub">All tools for R55/month · Cancel anytime</p>
-        <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" id="su-fname" placeholder="Sipho"></div>
-          <div class="form-group"><label>Last Name</label><input type="text" id="su-lname" placeholder="Dlamini"></div>
-        </div>
-        <div class="form-group"><label>Email Address</label><input type="email" id="su-email" placeholder="your@email.com"></div>
-        <div class="form-group"><label>Phone Number</label><input type="tel" id="su-phone" placeholder="082 345 6789"></div>
-        <div class="form-group"><label>Password</label><div style="position:relative">
-          <input type="password" id="su-pass" placeholder="Create a strong password" style="width:100%;box-sizing:border-box;padding-right:44px">
-          <button type="button" onclick="togglePass('su-pass',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;padding:4px">👁️</button>
-        </div></div>
-        <button class="btn-primary" style="width:100%;margin-top:8px" onclick="doSignup()">Create Free Account</button>
-        <div class="auth-alt">Already have an account? <a href="#" onclick="showPage('login')">Log in</a></div>
-        <button class="back-link" onclick="showPage('home')">← Back to home</button>
-      </div>
+<nav class="dept"><div class="wrap">
+  <a data-cat="All" class="on">All Products</a>
+  <a data-cat="iPhones">iPhones</a>
+  <a data-cat="Apple">MacBooks &amp; Apple</a>
+  <a data-cat="Laptops">Laptops</a>
+  <a data-cat="Accessories">Accessories</a>
+  <a href="about.html" class="navright navauto">About</a>
+  <a href="tracking.html" class="navright">📦 Track Order</a>
+</div></nav>
+
+<div class="crumb"><div class="wrap">Home <span>›</span> <b>All Products</b></div></div>
+<div class="ptitle"><div class="wrap"><h1 id="ptitle">All products</h1><p>Certified pre-owned tech, tested and ready to ship across South Africa.</p></div></div>
+
+<div class="body"><div class="wrap">
+  <aside>
+    <div class="fhead"><h2>Filters</h2><button id="clearF">Clear all</button></div>
+    <div class="fgroup">
+      <h3>Brand</h3>
+      <label class="fopt"><input type="checkbox" class="fbrand" value="Acer"><span>Acer</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="Apple"><span>Apple</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="Dell"><span>Dell</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="HP"><span>HP</span></label>
+<label class="fopt"><input type="checkbox" class="fbrand" value="Other"><span>Other</span></label>
     </div>
-  </div>
+    <div class="fgroup">
+      <h3>Price</h3>
+      <label class="fopt"><input type="checkbox" class="fband" value="u3"><span>Under R3,000</span></label>
+      <label class="fopt"><input type="checkbox" class="fband" value="36"><span>R3,000 – R6,000</span></label>
+      <label class="fopt"><input type="checkbox" class="fband" value="610"><span>R6,000 – R10,000</span></label>
+      <label class="fopt"><input type="checkbox" class="fband" value="o10"><span>Over R10,000</span></label>
+    </div>
+    <div class="fgroup">
+      <h3>Condition</h3>
+      <label class="fopt"><input type="checkbox" checked disabled><span>Certified Pre-Owned</span></label>
+    </div>
+  </aside>
 
-  <!-- DASHBOARD -->
-  <div class="page" id="page-dashboard">
-    <div class="dash-wrap">
-      <div class="dash-header">
-        <div class="logo">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 2C10 2 5 7 5 13c0 4 2 7.5 5 9.5v6.5h2v-5.5c1.2.3 2.6.5 4 .5s2.8-.2 4-.5V29h2v-6.5c3-2 5-5.5 5-9.5 0-6-5-11-11-11z" fill="url(#fpg5)"/><defs><linearGradient id="fpg5" x1="5" y1="2" x2="27" y2="30"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs></svg>
-          Sky <span>Blueprint</span>
-        </div>
-        <div class="dash-user">
-          <span id="dash-greeting">Welcome!</span>
-          <button class="btn-ghost-sm" onclick="showAccount()" style="margin-right:8px">👤 My Account</button>
-          <button class="btn-ghost-sm" onclick="doLogout()">Log Out</button>
-        </div>
-      </div>
-      <div class="dash-body">
-        <div class="trial-banner" id="trial-banner">
-          🔒 <strong>Subscribe to unlock all tools</strong> — just R55/month, cancel anytime.
-          <button onclick="startPaystack('monthly')">Subscribe R55/month</button>
-        </div>
-        <h2 class="dash-title">Your Tools</h2>
-        <div class="tools-grid">
-          <div class="tool-card" onclick="requireAuth('website-builder')"><div class="tc-top"><div class="tc-icon" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)">🌐</div><div class="tc-badge">Popular</div></div><h3>Website Builder</h3><p>Create your business website in minutes.</p><div class="tc-arrow">Open →</div></div>
-          <div class="tool-card" onclick="requireAuth('email-cleaner')"><div class="tc-top"><div class="tc-icon" style="background:linear-gradient(135deg,#10b981,#059669)">📧</div></div><h3>AI Email Secretary</h3><p>Sort your inbox by priority automatically.</p><div class="tc-arrow">Open →</div></div>
-          <div class="tool-card" onclick="requireAuth('find-phone')" style="opacity:0.7"><div class="tc-top"><div class="tc-icon" style="background:linear-gradient(135deg,#64748b,#475569)">📍</div><div class="tc-badge" style="background:rgba(245,158,11,0.2);color:#f59e0b">Soon</div></div><h3>Find My Phone</h3><p>Coming soon — launching shortly.</p><div class="tc-arrow" style="color:#f59e0b">Coming Soon →</div></div>
-          <div class="tool-card" onclick="requireAuth('ai-mentor')"><div class="tc-top"><div class="tc-icon" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">🤖</div></div><h3>AI Business Mentor</h3><p>Get 24/7 business coaching from AI.</p><div class="tc-arrow">Open →</div></div>
-          <div class="tool-card" onclick="requireAuth('cv-builder')"><div class="tc-top"><div class="tc-icon" style="background:linear-gradient(135deg,#14b8a6,#0ea5e9)">📄</div></div><h3>CV Builder & Jobs</h3><p>Build CV and find matching jobs.</p><div class="tc-arrow">Open →</div></div>
-          <div class="tool-card" onclick="openTool('sa-map')"><div class="tc-top"><div class="tc-icon" style="background:linear-gradient(135deg,#22c55e,#16a34a)">🗺️</div></div><h3>SA Map</h3><p>Explore South Africa on live map.</p><div class="tc-arrow">Open →</div></div>
-          <div class="tool-card" onclick="requireAuth('reminders')"><div class="tc-top"><div class="tc-icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">🔔</div><span class="tc-badge">New</span></div><h3>Reminders & Tasks</h3><p>Never miss a meeting, task or family event.</p><div class="tc-arrow">Open →</div></div>
-          <div class="tool-card" onclick="requireAuth('learnerships')"><div class="tc-top"><div class="tc-icon" style="background:linear-gradient(135deg,#8b5cf6,#6366f1)">🎓</div><span class="tc-badge">New</span></div><h3>Learnerships & Internships</h3><p>Find learnerships & internships you qualify for.</p><div class="tc-arrow">Open →</div></div>
+  <main>
+    <div class="toolbar">
+      <div class="count"><b id="shown">32</b> products found</div>
+      <div class="tright">
+        <label for="sort">Sort by</label>
+        <select id="sort">
+          <option value="rel">Relevance</option>
+          <option value="plow">Price: Low to High</option>
+          <option value="phigh">Price: High to Low</option>
+          <option value="az">Name: A to Z</option>
+        </select>
+        <div class="viewtog">
+          <button id="vGrid" class="on" title="Grid view"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+          <button id="vList" title="List view"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="4" width="18" height="3" rx="1"/><rect x="3" y="10.5" width="18" height="3" rx="1"/><rect x="3" y="17" width="18" height="3" rx="1"/></svg></button>
         </div>
       </div>
     </div>
-  </div>
+    <div class="grid" id="grid">
+      <article class="card" data-idx="0" data-cat="Apple" data-brand="Apple" data-price="9500" data-band="610" data-title="macbook air m1 apple laptop">
+        <div class="imgwrap" data-open="0">
+          <button class="fav" data-fav="0" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="BBRH286744-3242415-1.webp" alt="Macbook Air M1 Apple Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="0">Macbook Air M1 Apple Laptop</h3>
+          <p class="spec">8-Core CPU
+7-Core GPU
+13.3 Inch
+Retina LED with True tone
+2560 by 1600 Pixels
+Two thunderbolt
+4 USB Ports
+Head Jack
+Stereo Speakers
+Touch ID
+Full size backlit Magic Keyboard
+Wi-Fi 6 and Bluetooth 5.0
+FaceTime Hd Camera
+256 GB SSD
++Charger
 
-  <!-- MY ACCOUNT PAGE -->
-  <div class="page" id="page-account">
-    <div class="dash-wrap">
-      <div class="dash-header">
-        <div class="logo">
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 2C10 2 5 7 5 13c0 4 2 7.5 5 9.5v6.5h2v-5.5c1.2.3 2.6.5 4 .5s2.8-.2 4-.5V29h2v-6.5c3-2 5-5.5 5-9.5 0-6-5-11-11-11z" fill="url(#acpg)"/><defs><linearGradient id="acpg" x1="5" y1="2" x2="27" y2="30"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs></svg>
-          Sky <span>Blueprint</span>
+Condition good
+Comes in a box
+Still looks neat
+Comes with a charger</p>
+          <div class="priceline"><span class="price">R 9,500</span></div>
+          <button class="viewbtn" data-open="0">View details</button>
+          <button class="add" data-i="0">Add to Cart</button>
         </div>
-        <div class="dash-user">
-          <button class="btn-ghost-sm" onclick="showPage('dashboard')" style="margin-right:8px">← Back to Tools</button>
-          <button class="btn-ghost-sm" onclick="doLogout()">Log Out</button>
+      </article>
+      <article class="card" data-idx="1" data-cat="Apple" data-brand="Apple" data-price="18000" data-band="o10" data-title="apple macbook neo 13 a 18">
+        <div class="imgwrap" data-open="1">
+          <button class="fav" data-fav="1" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="neo_eef5b3ea-b107-4a6a-b409-4b61854863ac.webp" alt="Apple Macbook Neo 13 A 18" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
         </div>
+        <div class="cbody">
+          <h3 data-open="1">Apple Macbook Neo 13 A 18</h3>
+          <p class="spec">Specifications
+Brand: Apple
+Model: MacBook Neo 13
+Display Size: 13-inch Retina Display
+Colour: Rose Gold / Pink
+Operating System: macOS
+Storage: SSD Storage
+Connectivity: Wi-Fi and Bluetooth
+Keyboard: Full-size backlit keyboard
+Trackpad: Large precision multi-touch trackpad
+Battery: Long-lasting rechargeable battery
+Design: Slim, lightweight aluminium body
+Features
+Stylish ultra-slim premium design
+Bright and vibrant Retina display
+Smooth and responsive performance
+Lightweight and travel-friendly
+Excellent battery life for daily use
+Fast wireless connectivity
+Ideal for students, professionals, and everyday users
+Premium Apple build quality</p>
+          <div class="priceline"><span class="price">R 18,000</span></div>
+          <button class="viewbtn" data-open="1">View details</button>
+          <button class="add" data-i="1">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="2" data-cat="Apple" data-brand="Apple" data-price="9000" data-band="610" data-title="macbook pro 15-inch, 2017 touchbar">
+        <div class="imgwrap" data-open="2">
+          <button class="fav" data-fav="2" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="MACB1.webp" alt="Macbook Pro 15-Inch, 2017 Touchbar" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="2">Macbook Pro 15-Inch, 2017 Touchbar</h3>
+          <p class="spec">Processor 2,8 GHz Quad-Core Intel Core i7
+Graphics Intel HD Graphics 630 1536 MB
+Memory 16 GB 2133 MHz LPDDR3
+macOS Ventura 13.7.8
+Cycle count-534
+Battery condition-Normal</p>
+          <div class="priceline"><span class="price">R 9,000</span><span class="was">R 10,000</span><span class="savetag">Save R 1,000</span></div>
+          <button class="viewbtn" data-open="2">View details</button>
+          <button class="add" data-i="2">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="3" data-cat="iPhones" data-brand="Apple" data-price="7800" data-band="610" data-title="iphone 14 128 gb">
+        <div class="imgwrap" data-open="3">
+          <button class="fav" data-fav="3" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="Blue_1_60eed0cb-07ac-4698-824d-b9f0a9db59b9.webp" alt="iPhone 14 128 GB" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="3">iPhone 14 128 GB</h3>
+          <p class="spec">The iPhone 14 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.
+
+• 
+Display: 6.1-inch Super Retina XDR display for vibrant colors and sharp details.
+
+• 
+Camera System: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+Processor: A15 Bionic chip for fast performance and efficient multitasking.
+
+• 
+Storage: Available in different configurations to suit your needs.
+
+• 
+RAM: Available in different configurations to enhance performance.
+
+• 
+Operating System: Runs on iOS, providing a smooth and intuitive user experience.
+
+• 
+5G Capability: Supports 5G networks for faster download and streaming speeds.
+
+• 
+Face ID: Secure facial recognition technology for easy unlocking and secure payments.
+
+The iPhone 14 is designed to meet the demands of modern users, offering a blend of performance and functionality.</p>
+          <div class="priceline"><span class="price">R 7,800</span><span class="was">R 8,700</span><span class="savetag">Save R 900</span></div>
+          <button class="viewbtn" data-open="3">View details</button>
+          <button class="add" data-i="3">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="4" data-cat="iPhones" data-brand="Apple" data-price="8100" data-band="610" data-title="iphone 13 128 gb">
+        <div class="imgwrap" data-open="4">
+          <button class="fav" data-fav="4" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="Bllue.webp" alt="IPhone 13 128 GB" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="4">IPhone 13 128 GB</h3>
+          <p class="spec">The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use.
+
+• 
+Display: 6.1-inch Super Retina XDR display for vibrant colors and sharp details.
+
+• 
+Camera System: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+Processor: A15 Bionic chip for fast performance and efficient power management.
+
+• 
+Storage: Available in different configurations to suit your storage needs.
+
+• 
+RAM: Available in different configurations to enhance multitasking capabilities.
+
+• 
+Operating System: Runs on iOS, providing a smooth and intuitive user experience.
+
+• 
+5G Connectivity: Supports 5G for faster download speeds and improved streaming quality.
+
+• 
+Face ID: Secure facial recognition technology for easy and secure unlocking.
+
+• 
+Durability: Ceramic Shield front cover for improved drop performance.</p>
+          <div class="priceline"><span class="price">R 8,100</span><span class="was">R 8,500</span><span class="savetag">Save R 400</span></div>
+          <button class="viewbtn" data-open="4">View details</button>
+          <button class="add" data-i="4">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="5" data-cat="Apple" data-brand="Apple" data-price="9500" data-band="610" data-title="macbook pro 2017 i5">
+        <div class="imgwrap" data-open="5">
+          <button class="fav" data-fav="5" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="RI.webp" alt="Macbook Pro 2017 I5" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="5">Macbook Pro 2017 I5</h3>
+          <p class="spec">Processor: Intel core i5
+8GB Ram
+MacOS Ventura
+256GB Storage
+Cycle Count:903</p>
+          <div class="priceline"><span class="price">R 9,500</span></div>
+          <button class="viewbtn" data-open="5">View details</button>
+          <button class="add" data-i="5">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="6" data-cat="Laptops" data-brand="HP" data-price="5500" data-band="36" data-title="hp elitebook 1040 g1 core i5 - 4th gen">
+        <div class="imgwrap" data-open="6">
+          <button class="fav" data-fav="6" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="Frame_15_58_ea1b5f41-7ddb-4e14-ad50-539cdfe51377.webp" alt="HP Elitebook 1040 G1 Core i5 - 4th Gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="6">HP Elitebook 1040 G1 Core i5 - 4th Gen</h3>
+          <p class="spec">The HP Elitebook 1040 G1 is a reliable and efficient laptop designed for professionals who need performance on the go.
+
+• 
+Processor: Powered by an Intel Core i5 - 4th Generation processor for smooth multitasking.
+
+• 
+Display: Features a 14-inch Full HD display for clear visuals and vibrant colors.
+
+• 
+8GBRAM: Available in different configurations to meet your performance needs.
+
+• 
+128 GB SSD Storage: Available in different configurations, providing ample space for your files and applications.
+
+• 
+Operating System: Comes with Windows 10 Pro for a familiar and productive user experience.
+
+• 
+Connectivity: Equipped with multiple USB ports, HDMI, and Ethernet for versatile connectivity options.
+
+• 
+Security Features: Includes HP's security suite to protect your data and privacy.
+
+• 
+Design: Sleek and lightweight design makes it easy to carry for business travel.
+
+The HP Elitebook 1040 G1 is a solid choice for professionals seeking a balance of performance and portability.</p>
+          <div class="priceline"><span class="price">R 5,500</span><span class="was">R 7,000</span><span class="savetag">Save R 1,500</span></div>
+          <button class="viewbtn" data-open="6">View details</button>
+          <button class="add" data-i="6">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="7" data-cat="Apple" data-brand="Apple" data-price="6300" data-band="610" data-title="macbook pro a1398 intel core i7 late 2013 model">
+        <div class="imgwrap" data-open="7">
+          <button class="fav" data-fav="7" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="macmac.webp" alt="Macbook Pro A1398 Intel Core I7 Late 2013 Model" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="7">Macbook Pro A1398 Intel Core I7 Late 2013 Model</h3>
+          <p class="spec">MacOS Big Sur
+8Gb RAM
+2.0GHz processor
+256Gb SSD
+Used in good working condition
+6 months warranty</p>
+          <div class="priceline"><span class="price">R 6,300</span><span class="was">R 6,800</span><span class="savetag">Save R 500</span></div>
+          <button class="viewbtn" data-open="7">View details</button>
+          <button class="add" data-i="7">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="8" data-cat="Laptops" data-brand="HP" data-price="5500" data-band="36" data-title="hp elitebook 640 g4 core-i5 8th gen">
+        <div class="imgwrap" data-open="8">
+          <button class="fav" data-fav="8" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="Frame_15_73_63432ffd-9f8f-4ea3-b0b6-b114187b2ba2.webp" alt="HP Elitebook 640 G4 Core-i5 8th Gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="8">HP Elitebook 640 G4 Core-i5 8th Gen</h3>
+          <p class="spec">The HP EliteBook 640 G4 is a reliable and efficient laptop designed for professionals seeking performance and portability.
+
+• 
+Processor: Powered by an Intel Core i5 8th Generation processor for smooth multitasking.
+
+• 
+Display: Features a 15.6-inch Full HD display for clear visuals and comfortable viewing.
+
+• 
+RAM: Available in different configurations to meet various performance needs.
+
+• 
+Storage: Offers different storage options to accommodate your data and applications.
+
+• 
+Operating System: Comes with Windows 10 Pro for a familiar and secure user experience.
+
+• 
+Connectivity: Equipped with multiple USB ports, HDMI, and Ethernet for versatile connectivity.
+
+• 
+Security Features: Includes advanced security features like a fingerprint reader and TPM for data protection.
+
+• 
+Weight: Lightweight design for easy portability, making it suitable for on-the-go professionals.
+
+Overall, the HP EliteBook 640 G4 is a solid choice for business users looking for a dependable laptop with essential features.</p>
+          <div class="priceline"><span class="price">R 5,500</span><span class="was">R 6,400</span><span class="savetag">Save R 900</span></div>
+          <button class="viewbtn" data-open="8">View details</button>
+          <button class="add" data-i="8">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="9" data-cat="iPhones" data-brand="Apple" data-price="5500" data-band="36" data-title="iphone 12 64 gb">
+        <div class="imgwrap" data-open="9">
+          <button class="fav" data-fav="9" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="Black_1_b6c9b236-cb9c-4d33-98f0-39412dd918c9.webp" alt="iPhone 12 64 GB" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="9">iPhone 12 64 GB</h3>
+          <p class="spec">The iPhone 12 combines advanced technology with a sleek design, offering users a powerful smartphone experience.
+
+• 
+Display: 6.1-inch Super Retina XDR display for vibrant colors and sharp details.
+
+• 
+Processor: A14 Bionic chip for high performance and efficiency.
+
+• 
+Cameras: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+5G Capability: Supports 5G networks for faster download and streaming speeds.
+
+• 
+Storage: Available in different configurations to suit your needs.
+
+• 
+RAM: Generous RAM for smooth multitasking and app performance.
+
+• 
+Operating System: Runs on iOS, providing a user-friendly interface and regular updates.
+
+• 
+Face ID: Secure facial recognition technology for easy unlocking and secure payments.
+
+The iPhone 12 is designed to meet the demands of modern users, delivering performance and functionality in a stylish package</p>
+          <div class="priceline"><span class="price">R 5,500</span><span class="was">R 6,000</span><span class="savetag">Save R 500</span></div>
+          <button class="viewbtn" data-open="9">View details</button>
+          <button class="add" data-i="9">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="10" data-cat="iPhones" data-brand="Apple" data-price="4900" data-band="36" data-title="iphone xr">
+        <div class="imgwrap" data-open="10">
+          <button class="fav" data-fav="10" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="Black_3_de07f0ba-d841-4f42-b0a2-762f5bc7776a.webp" alt="iPhone XR" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="10">iPhone XR</h3>
+          <p class="spec">• 
+Display: 6.1-inch Liquid Retina HD display for vibrant colors and sharp details.
+
+• 
+Camera: 12 MP rear camera with Smart HDR for stunning photos in various lighting conditions.
+
+• 
+Processor: A12 Bionic chip for efficient performance and smooth multitasking.
+
+• 
+Face ID: Secure facial recognition technology for easy and secure unlocking.
+
+• 
+Water and Dust Resistance: Rated IP67, providing protection against splashes and dust.
+
+• 
+Storage and RAM: Available in different configurations to suit your needs.
+
+• 
+Operating System: Runs on iOS, offering a seamless user experience with regular updates.
+
+• 
+Audio: Spatial audio and stereo speakers for an immersive sound experience.</p>
+          <div class="priceline"><span class="price">R 4,900</span><span class="was">R 8,600</span><span class="savetag">Save R 3,700</span></div>
+          <button class="viewbtn" data-open="10">View details</button>
+          <button class="add" data-i="10">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="11" data-cat="Apple" data-brand="Apple" data-price="7600" data-band="610" data-title="macbook pro a1398 intel core i7 2013 model laptop">
+        <div class="imgwrap" data-open="11">
+          <button class="fav" data-fav="11" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="MACBB.webp" alt="Macbook Pro A1398 Intel Core I7 2013 Model Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="11">Macbook Pro A1398 Intel Core I7 2013 Model Laptop</h3>
+          <p class="spec">MacOS Mojave
+8GB ram
+2.3GHz processor
+256GB SSD
+Used in good working condition
+6 months warranty</p>
+          <div class="priceline"><span class="price">R 7,600</span></div>
+          <button class="viewbtn" data-open="11">View details</button>
+          <button class="add" data-i="11">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="12" data-cat="Apple" data-brand="Apple" data-price="4500" data-band="36" data-title="macbook air computer">
+        <div class="imgwrap" data-open="12">
+          <button class="fav" data-fav="12" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="imaq.webp" alt="Macbook Air Computer" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="12">Macbook Air Computer</h3>
+          <p class="spec">Used But New = Processor: 1.6 GHz Intel Core i5 Dual-Core with a maximum boost speed of 3.6 GHz.
+RAM: 8 GB of installed RAM.
+Display: 13.3-inch Retina display.
+Ports: Two Thunderbolt / USB 4 ports.</p>
+          <div class="priceline"><span class="price">R 4,500</span><span class="was">R 5,700</span><span class="savetag">Save R 1,200</span></div>
+          <button class="viewbtn" data-open="12">View details</button>
+          <button class="add" data-i="12">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="13" data-cat="iPhones" data-brand="Apple" data-price="5200" data-band="36" data-title="iphone 11 64 gb">
+        <div class="imgwrap" data-open="13">
+          <button class="fav" data-fav="13" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="black_3_513360e6-3bba-40ab-94d7-2ec5ba0e7a22.webp" alt="iPhone 11 64 GB" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="13">iPhone 11 64 GB</h3>
+          <p class="spec">The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.
+
+• 
+Display: 6.1-inch Liquid Retina HD display for vibrant colors and sharp details.
+
+• 
+Camera: Dual 12 MP camera system with Night mode for stunning photos in low light.
+
+• 
+Processor: A13 Bionic chip for exceptional performance and efficiency.
+
+• 
+Storage: Available in different configurations to suit your needs.
+
+• 
+RAM: Generous RAM for smooth multitasking and app performance.
+
+• 
+Operating System: Runs on iOS, providing a seamless and intuitive user experience.
+
+• 
+Water Resistance: Rated IP68 for water and dust resistance, ensuring durability.
+
+• 
+Face ID: Secure facial recognition technology for easy unlocking and secure payments.
+
+Overall, the iPhone 11 is designed to meet the demands of modern users with its robust features and reliable performance</p>
+          <div class="priceline"><span class="price">R 5,200</span><span class="was">R 5,500</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="13">View details</button>
+          <button class="add" data-i="13">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="14" data-cat="Apple" data-brand="Apple" data-price="4300" data-band="36" data-title="macbook air a1466 i5 laptop">
+        <div class="imgwrap" data-open="14">
+          <button class="fav" data-fav="14" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="CACPG075977-3237090-1.webp" alt="Macbook Air A1466 I5 Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="14">Macbook Air A1466 I5 Laptop</h3>
+          <p class="spec">Good condition
+Superficial scratches along surface and small dent in bottom left corner
+Intel Core i5 / 1.6GHz
+4GB RAM / 121GB Macintosh HD
+macOS Monterey
+Cycle count: 447</p>
+          <div class="priceline"><span class="price">R 4,300</span><span class="was">R 5,400</span><span class="savetag">Save R 1,100</span></div>
+          <button class="viewbtn" data-open="14">View details</button>
+          <button class="add" data-i="14">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="15" data-cat="Apple" data-brand="Apple" data-price="5000" data-band="36" data-title="macbook air (13-inch,2017)">
+        <div class="imgwrap" data-open="15">
+          <button class="fav" data-fav="15" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="CAVNV026618-3247134-1.webp" alt="Macbook Air (13-Inch,2017)" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="15">Macbook Air (13-Inch,2017)</h3>
+          <p class="spec">Processor : 1.8GHz intel core i5
+Memory : 8GB
+Graphics : intel HD Graphics 6000 1536 MB
+Storage : 121GB
+BATTERY HEALTH : Cycle count 563</p>
+          <div class="priceline"><span class="price">R 5,000</span><span class="was">R 5,300</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="15">View details</button>
+          <button class="add" data-i="15">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="16" data-cat="iPhones" data-brand="Apple" data-price="4600" data-band="36" data-title="iphone x">
+        <div class="imgwrap" data-open="16">
+          <button class="fav" data-fav="16" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="SpaceGrey_1_bc96d053-d475-4949-8d1d-eaf43de2981c.webp" alt="iPhone X" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="16">iPhone X</h3>
+          <p class="spec">• 
+Display: 5.8-inch Super Retina display with a resolution of 1125 x 2436 pixels for vibrant colors and sharp images.
+
+• 
+Camera: Dual 12 MP rear cameras with optical image stabilization for high-quality photos and videos.
+
+• 
+Face ID: Secure facial recognition technology for easy and secure unlocking of the device.
+
+• 
+Processor: A11 Bionic chip with 64-bit architecture for fast performance and efficient multitasking.
+
+• 
+64GBStorage: Available in different configurations to suit various storage needs.
+
+• 
+ Generous RAM capacity for smooth operation and app performance.
+
+• 
+Operating System: Ships with iOS, providing access to a wide range of apps and features.
+
+• 
+Water and Dust Resistance: Rated IP67, offering protection against water and dust ingress.
+
+• 
+Wireless Charging: Supports Qi wireless charging for convenient power options.</p>
+          <div class="priceline"><span class="price">R 4,600</span><span class="was">R 6,900</span><span class="savetag">Save R 2,300</span></div>
+          <button class="viewbtn" data-open="16">View details</button>
+          <button class="add" data-i="16">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="17" data-cat="Apple" data-brand="Apple" data-price="6500" data-band="610" data-title="apple macbook pro">
+        <div class="imgwrap" data-open="17">
+          <button class="fav" data-fav="17" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="MAC2.webp" alt="Apple Macbook Pro" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="17">Apple Macbook Pro</h3>
+          <p class="spec">Condition – Good
+macOS High Sierra
+Version 10.13.6
+Processor: 2,7 GHz Intel core i7
+RAM: 4GB
+Storage: 480GB</p>
+          <div class="priceline"><span class="price">R 6,500</span></div>
+          <button class="viewbtn" data-open="17">View details</button>
+          <button class="add" data-i="17">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="18" data-cat="Apple" data-brand="Apple" data-price="4500" data-band="36" data-title="apple macbook air | intel core i5 | 256gb storage">
+        <div class="imgwrap" data-open="18">
+          <button class="fav" data-fav="18" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="Silver_10_b92838b0-eeb0-42ae-87d8-b7577e8f2226.webp" alt="Apple Macbook Air | Intel Core I5 | 256Gb Storage" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="18">Apple Macbook Air | Intel Core I5 | 256Gb Storage</h3>
+          <p class="spec">Apple Macbook Air
+Model No -A1370
+Processor – Intel Core i5
+Processor Speed – 1.6Ghz
+Storage – 256GB
+Ram – 8GB
+Operating System – MacOS Monterey
+Charging Cable
+Great Working Condition
+Good Condition
+
+Nb – Slight Crack On Screen</p>
+          <div class="priceline"><span class="price">R 4,500</span><span class="was">R 4,800</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="18">View details</button>
+          <button class="add" data-i="18">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="19" data-cat="Apple" data-brand="HP" data-price="4200" data-band="36" data-title="hp notebook laptop">
+        <div class="imgwrap" data-open="19">
+          <button class="fav" data-fav="19" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="BCTR055006-2886805-1.webp" alt="Hp Notebook Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="19">Hp Notebook Laptop</h3>
+          <p class="spec">Device Name : Hp
+Processor : Intel Celeron
+Installed Ram : 4GB
+Storage : 430GB HDD
+No Box
+Charger Only</p>
+          <div class="priceline"><span class="price">R 4,200</span></div>
+          <button class="viewbtn" data-open="19">View details</button>
+          <button class="add" data-i="19">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="20" data-cat="Laptops" data-brand="Dell" data-price="3900" data-band="36" data-title="dell laptop t9kb76t">
+        <div class="imgwrap" data-open="20">
+          <button class="fav" data-fav="20" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="CAMNT046123-3248538-1-scaled.jpg" alt="Dell Laptop T9kb76t" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="20">Dell Laptop T9kb76t</h3>
+          <p class="spec">Dell Laptop T9KB76T for sale . In a good and working condition backed by a six month guarantee. 4GB RAM, 500GB storage, Intel Celeron N4000 1.10GHz, Windows 10. Black in colour</p>
+          <div class="priceline"><span class="price">R 3,900</span><span class="was">R 4,000</span><span class="savetag">Save R 100</span></div>
+          <button class="viewbtn" data-open="20">View details</button>
+          <button class="add" data-i="20">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="21" data-cat="iPhones" data-brand="Apple" data-price="3700" data-band="36" data-title="iphone 8">
+        <div class="imgwrap" data-open="21">
+          <button class="fav" data-fav="21" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="red82.webp" alt="iPhone 8" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="21">iPhone 8</h3>
+          <p class="spec">he iPhone 8 combines powerful performance with a sleek design, making it a reliable choice for everyday use.
+
+• 
+Display: 4.7-inch Retina HD display with True Tone technology for vibrant colors.
+
+• 
+Camera: 12 MP rear camera with optical image stabilization for high-quality photos and videos.
+
+• 
+Processor: A11 Bionic chip for fast performance and efficient multitasking.
+
+• 
+64GBStorage: Available in different configurations to suit your needs.
+
+• 
+ Generous RAM capacity for smooth operation and app performance.
+
+• 
+Operating System: Runs on iOS, providing access to a wide range of apps and features.
+
+• 
+Water and Dust Resistance: Rated IP67 for protection against water and dust ingress.
+
+• 
+Wireless Charging: Supports Qi wireless charging for convenient power-ups.
+
+The iPhone 8 is a solid choice for users seeking a blend of performance and functionality in a compact device.</p>
+          <div class="priceline"><span class="price">R 3,700</span></div>
+          <button class="viewbtn" data-open="21">View details</button>
+          <button class="add" data-i="21">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="22" data-cat="Apple" data-brand="Apple" data-price="3700" data-band="36" data-title="apple macbook air laptop">
+        <div class="imgwrap" data-open="22">
+          <button class="fav" data-fav="22" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="BAVU.jpg" alt="Apple Macbook Air Laptop" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="22">Apple Macbook Air Laptop</h3>
+          <p class="spec">APPLE MACBOOK AIR
+MACOS MONTEREY VERSION 12.7.6
+4GB MHZ DDR3 1.6 GHZ DUAL-CORE INTEL CORE I5 121GB HDD</p>
+          <div class="priceline"><span class="price">R 3,700</span><span class="was">R 4,000</span><span class="savetag">Save R 300</span></div>
+          <button class="viewbtn" data-open="22">View details</button>
+          <button class="add" data-i="22">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="23" data-cat="Apple" data-brand="Apple" data-price="3400" data-band="36" data-title="apple macbook pro (13-inch) mid 2012">
+        <div class="imgwrap" data-open="23">
+          <button class="fav" data-fav="23" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="mac_mac.webp" alt="Apple Macbook Pro (13-Inch) Mid 2012" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="23">Apple Macbook Pro (13-Inch) Mid 2012</h3>
+          <p class="spec">The 13-inch Mid-2012 MacBook Pro (model A1278) features a 2.5GHz or 2.9GHz Intel Core i5/i7 processor,  1600MHz DDR3L RAM  16GB), 500GB/750GB   SSD, and Intel HD Graphics 4000. It includes a 13.3&quot; 1280x800 display, SuperDrive, and 2x USB 3.0 ports.</p>
+          <div class="priceline"><span class="price">R 3,400</span><span class="was">R 4,000</span><span class="savetag">Save R 600</span></div>
+          <button class="viewbtn" data-open="23">View details</button>
+          <button class="add" data-i="23">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="24" data-cat="Laptops" data-brand="Acer" data-price="2900" data-band="u3" data-title="acer chromebook-r11 convertible-2-in-1 touch-celeron 6th-gen">
+        <div class="imgwrap" data-open="24">
+          <button class="fav" data-fav="24" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="AcerLaptops_1_78be7e76-9c30-48f1-8bf5-00baecb82180.webp" alt="Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="24">Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen</h3>
+          <p class="spec">The Acer Chromebook R11 is a versatile 2-in-1 device designed for both productivity and entertainment. Its convertible design and touch capabilities make it suitable for various tasks.
+
+• 
+Processor: Powered by a 6th generation Intel Celeron processor for efficient performance.
+
+• 
+Display: Features an 11.6-inch HD touchscreen display for vibrant visuals and easy navigation.
+
+• 
+Convertible Design: Easily transforms between laptop and tablet modes to suit your needs.
+
+• 
+4GBRAM: Available in different configurations to handle multitasking effectively.
+
+• 
+16 GB SSD Storage: Comes with various storage options to accommodate your files and applications.
+
+• 
+Operating System: Runs on Chrome OS, providing a fast and secure user experience.
+
+• 
+Connectivity: Includes multiple ports such as USB 3.0, HDMI, and a microSD card reader for versatile connectivity.
+
+• 
+Battery Life: Designed for all-day use, ensuring you stay productive without frequent recharging.
+
+• 
+Weight: Lightweight design for easy portability, making it ideal for on-the-go use.</p>
+          <div class="priceline"><span class="price">R 2,900</span><span class="was">R 3,990</span><span class="savetag">Save R 1,090</span></div>
+          <button class="viewbtn" data-open="24">View details</button>
+          <button class="add" data-i="24">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="25" data-cat="iPhones" data-brand="Apple" data-price="2900" data-band="u3" data-title="iphone 7">
+        <div class="imgwrap" data-open="25">
+          <button class="fav" data-fav="25" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="Black_4cdd944e-1ebe-4fef-acc7-0b6499ec0497.webp" alt="iPhone 7" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="25">iPhone 7</h3>
+          <p class="spec">Storage
+32 GB
+
+SIM Card
+Unlocked
+
+Screen size (inches)
+6.5
+
+Processor Core
+6
+
+OS
+IOS 
+
+Connector
+Lightning
+
+eSIM
+Yes
+
+Double SIM
+Yes
+
+Network
+4G
+
+Release Date
+2017
+
+Camera Type
+Double (2x)
+
+Memory
+4 GB
+
+Brand
+Apple</p>
+          <div class="priceline"><span class="price">R 2,900</span></div>
+          <button class="viewbtn" data-open="25">View details</button>
+          <button class="add" data-i="25">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="26" data-cat="Accessories" data-brand="Other" data-price="1296" data-band="u3" data-title="indoor hydroponic plant growing machine">
+        <div class="imgwrap" data-open="26">
+          <button class="fav" data-fav="26" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="ed7815a2-3708-49b3-9688-0bbdc37a3b2c.jpg" alt="Indoor Hydroponic Plant Growing Machine" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="26">Indoor Hydroponic Plant Growing Machine</h3>
+          <p class="spec">Overview
+
+Hydroponic System: Soilless cultivation technology for clean indoor gardening
+
+Smart Function: Automated lighting and water circulation for optimal plant growth
+
+Multi-Capacity Options: 3 to 12 planting holes with adjustable power (6W-24W)
+
+Plant Compatibility: Supports herbs, vegetables, flowers (e.g., roses), and ornamental plants
+
+Nutrient Supply: Includes dedicated nutrient solutions for accelerated germination
+
+Specifications
+
+Material: ABS plastic + aluminum alloy
+
+Power: 6W/15W/20W/24W (varies by model)
+
+Voltage: 100-240V AC (plug adaptors available)
+
+Planting Holes: 3/6/9/12 slots (model-dependent)
+
+Light Source: LED grow lights with adjustable intensity
+
+Packing List
+
+hydroponic growing machine*1
+
+planting cottonvaries (36/88/119 units)
+
+planting basketvaries (36/88/119 units)
+
+nutrient solutionvaries (6/8/11 sets)
+
+power adapter*1</p>
+          <div class="priceline"><span class="price">R 1,296</span></div>
+          <button class="viewbtn" data-open="26">View details</button>
+          <button class="add" data-i="26">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="27" data-cat="Accessories" data-brand="Other" data-price="496" data-band="u3" data-title="wireless noise cancelling bluetooth headset with microphone">
+        <div class="imgwrap" data-open="27">
+          <button class="fav" data-fav="27" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="369d20ec-92a4-49df-adec-b0b9c365b9d8.jpg" alt="Wireless Noise Cancelling Bluetooth Headset with Microphone" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="27">Wireless Noise Cancelling Bluetooth Headset with Microphone</h3>
+          <p class="spec">Overview
+
+Noise Cancellation: Advanced noise reduction technology for clear communication in busy environments
+
+Bluetooth Connectivity: Wireless operation with 5.3 Bluetooth version and 15-meter range
+
+Comfort Design: Non-in-ear microphone rod design with head-mounted wearing style
+
+Battery Performance: 150mAh battery providing 7 hours continuous usage
+
+Stereo Sound: Bilateral stereo sound delivery for immersive audio experience
+
+Specifications
+
+Bluetooth Version: 5.3
+
+Transmission Range: 15 meters
+
+Battery Capacity: 150mAh
+
+Working Time: 7 hours
+
+Standby Time: 10 days
+
+Waterproof Rating: IPX6
+
+Material: PC+ABS
+
+Weight: 26g
+
+Chip Type: Jerry
+
+Certifications: CE, ROHS, FCC
+
+Colors: Black, Apricot
+
+Packing List
+
+wireless headset*1
+
+charging cable*1
+
+user manual*1</p>
+          <div class="priceline"><span class="price">R 496</span></div>
+          <button class="viewbtn" data-open="27">View details</button>
+          <button class="add" data-i="27">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="28" data-cat="Laptops" data-brand="HP" data-price="360" data-band="u3" data-title="hp laptop charger mode no ppp012hs">
+        <div class="imgwrap" data-open="28">
+          <button class="fav" data-fav="28" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="chager.webp" alt="Hp Laptop Charger Mode No Ppp012hs" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="28">Hp Laptop Charger Mode No Ppp012hs</h3>
+          <p class="spec">The HP Laptop Charger P0012HS is a compatible AC power adapter designed to safely charge HP laptops, featuring precise voltage and amperage specifications, Smart Pin technology, and various connector options for optimal safety and performance.</p>
+          <div class="priceline"><span class="price">R 360</span></div>
+          <button class="viewbtn" data-open="28">View details</button>
+          <button class="add" data-i="28">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="29" data-cat="Accessories" data-brand="Other" data-price="288" data-band="u3" data-title="wireless sports bluetooth headphones">
+        <div class="imgwrap" data-open="29">
+          <button class="fav" data-fav="29" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="941a0be0-e240-4bc8-9d98-887ea0c1d496.jpg" alt="Wireless Sports Bluetooth Headphones" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="29">Wireless Sports Bluetooth Headphones</h3>
+          <p class="spec">Overview
+
+Bluetooth 5.4: Latest protocol for stable connectivity and low power consumption.
+
+Air-bone conduction: Open-ear design for situational awareness during activities.
+
+Long battery life: Up to 8 hours of continuous playback or calls.
+
+Stereo sound: Bilateral audio with 360� surround effect for immersive experience.
+
+Lightweight build: Ergonomic ear-mounted design for comfort during sports.
+
+Specifications
+
+Bluetooth version: 5.4
+
+Battery life: 4-8 hours
+
+Transmission range: 10 meters
+
+Charging type: USB (details not specified)
+
+Material: PC+ABS
+
+Water resistance: Life waterproof (splash-resistant)
+
+Packing List
+
+Wireless headphones*1
+
+USB charging cable*1
+
+User manual*1</p>
+          <div class="priceline"><span class="price">R 288</span></div>
+          <button class="viewbtn" data-open="29">View details</button>
+          <button class="add" data-i="29">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="30" data-cat="Accessories" data-brand="Other" data-price="275" data-band="u3" data-title="himalayan crystal salt lamp">
+        <div class="imgwrap" data-open="30">
+          <button class="fav" data-fav="30" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="images.jpg" alt="Himalayan crystal salt lamp" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="30">Himalayan crystal salt lamp</h3>
+          <p class="spec">Himalayan crystal salt lamps are natural, hand-carved lamps from Pakistan’s Khewra Salt Mine that emit a warm, soft glow. They function as ambient lighting, acting as air cleansers and natural ionizers to neutralize electromagnetic radiation. These lamps are popular for reducing stress, improving air quality, and promoting relaxation
+
+Key Features and Benefits:
+
+• Unique Aesthetic: Natural pink-to-orange hues, ranging from raw shapes to polished designs.
+
+• Air Cleansing: As hygroscopic items, they attract moisture, which is said to help trap dust, allergens, and smoke.
+
+• Ambiance & Wellbeing: Known for enhancing the atmosphere in yoga studios, spas, or homes to improve mood.
+
+• 
+Durability: Typically come with a wooden base and a 15W bulb to heat the salt.</p>
+          <div class="priceline"><span class="price">R 275</span></div>
+          <button class="viewbtn" data-open="30">View details</button>
+          <button class="add" data-i="30">Add to Cart</button>
+        </div>
+      </article>
+      <article class="card" data-idx="31" data-cat="Accessories" data-brand="Other" data-price="208" data-band="u3" data-title="bluetooth earphones">
+        <div class="imgwrap" data-open="31">
+          <button class="fav" data-fav="31" aria-label="Save to favourites"><svg viewBox="0 0 24 24" width="19" height="19"><path d="M12 21s-7.5-4.6-10-9.3C.5 8.6 2 5 5.5 5 7.5 5 9 6.2 12 9c3-2.8 4.5-4 6.5-4C22 5 23.5 8.6 22 11.7 19.5 16.4 12 21 12 21z"/></svg></button>
+          <img src="ffdce3a5-b214-4d92-951f-a5d0d3e9e17e.jpg" alt="Bluetooth earphones" loading="lazy" onerror="this.closest('.imgwrap').classList.add('noimg');this.remove();">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
+        <div class="cbody">
+          <h3 data-open="31">Bluetooth earphones</h3>
+          <p class="spec">Overview
+
+Noise Reduction: Advanced noise reduction technology for clear audio.
+
+Bluetooth 5.4: Latest Bluetooth protocol for stable and fast connectivity.
+
+Battery Life: 4-8 hours of continuous usage on a single charge.
+
+Binaural Stereo: True wireless design with bilateral stereo sound.
+
+Compact & Lightweight: Ultra-small and mini design for comfort and portability.
+
+Multi-Point Connection: Connect to multiple devices simultaneously.
+
+Life Waterproof: Resistant to splashes and sweat.
+
+Specifications
+
+Bluetooth Protocol: 5.4
+
+Transmission Range: 10m
+
+Usage Type: Earplug-style
+
+Material: Silicone
+
+Color Options: Off-white, Black, White
+
+Battery Indicator: Display for real-time battery status.
+
+Functions: Call support, music playback, noise reduction.
+
+Packing List
+
+Bluetooth earphones*1
+
+Charging case*1
+
+USB cable*1
+
+Ear tips (various sizes)*3
+
+User manual*1</p>
+          <div class="priceline"><span class="price">R 208</span></div>
+          <button class="viewbtn" data-open="31">View details</button>
+          <button class="add" data-i="31">Add to Cart</button>
+        </div>
+      </article>
+    </div>
+    <div class="empty" id="empty" style="display:none">No products match your filters. Try clearing some, or <a href="#" onclick="document.getElementById('clearF').click();return false;" style="color:var(--blue);font-weight:600">reset all filters</a>.</div>
+  </main>
+</div></div>
+
+<section class="reviews"><div class="wrap">
+  <div class="rhead">
+    <div class="rscoreblock">
+      <div class="rscore">4.7<span>/5</span></div>
+      <div class="stars big">★★★★★</div>
+      <p style="color:var(--muted);font-size:14px;margin-top:4px">Based on 6 verified reviews</p>
+    </div>
+    <div class="rbars">
+      <div class="rbar"><span class="rl">5★</span><div class="rtrack"><div class="rfill" style="width:67%"></div></div><span class="rc">4</span></div>
+<div class="rbar"><span class="rl">4★</span><div class="rtrack"><div class="rfill" style="width:33%"></div></div><span class="rc">2</span></div>
+<div class="rbar"><span class="rl">3★</span><div class="rtrack"><div class="rfill" style="width:0%"></div></div><span class="rc">0</span></div>
+<div class="rbar"><span class="rl">2★</span><div class="rtrack"><div class="rfill" style="width:0%"></div></div><span class="rc">0</span></div>
+<div class="rbar"><span class="rl">1★</span><div class="rtrack"><div class="rfill" style="width:0%"></div></div><span class="rc">0</span></div>
+    </div>
+    <button class="btn-review" id="writeReview">+ Write a Review</button>
+  </div>
+  <div class="rgrid">
+    <div class="rev"><div class="stars">★★★★☆</div><p>“It's amazing I love it!!”</p><div class="who">BS<span>✓ Verified buyer · Port Elizabeth</span></div></div>
+<div class="rev"><div class="stars">★★★★☆</div><p>“Amazing!!”</p><div class="who">BS<span>✓ Verified buyer · Port Elizabeth</span></div></div>
+<div class="rev"><div class="stars">★★★★★</div><p>“M&H Dynamic Tech is good fast on delivery everything is working smoothly I'm so happy.”</p><div class="who">Miss Mbebe<span>✓ Verified buyer · Cape Town</span></div></div>
+<div class="rev"><div class="stars">★★★★★</div><p>“Received my Acer Chromebook for my child and it works perfectly!”</p><div class="who">Xolisa<span>✓ Verified buyer · Cape Town</span></div></div>
+<div class="rev"><div class="stars">★★★★★</div><p>“I'm happy!”</p><div class="who">Xolisa<span>✓ Verified buyer · Cape Town</span></div></div>
+<div class="rev"><div class="stars">★★★★★</div><p>“They service altogether was very good and professional, from buying process until it was delivered. I was very happy and the quality of the Chromebook an the color is exactly how you see it in the picture. Thank you M&H Dynamic Tech”</p><div class="who">Meme Kakana<span>✓ Verified buyer · East London</span></div></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div>
+      <span class="flogo-text">M&amp;H Dynamic Tech</span>
+      <p>Certified pre-owned laptops and phones, tested and delivered across South Africa.</p>
+      <div class="pays">
+        <span class="pchip"><img src="visa.svg" alt="Visa"></span>
+        <span class="pchip"><img src="mastercard.svg" alt="Mastercard"></span>
+        <span class="pchip"><img src="amex.png" alt="American Express"></span>
+        <span class="pchip"><img src="ozow.png" alt="Ozow EFT"></span>
+        <span class="pchip"><img src="mtn-momo.png" alt="MTN Mobile Money"></span>
+        <span class="pchip"><img src="mpesa.png" alt="M-Pesa"></span>
+        <span class="pchip"><img src="airtel.png" alt="Airtel Money"></span>
       </div>
-      <div class="dash-body">
-        <h2 class="dash-title">My Account</h2>
-        <div id="account-content"></div>
+    </div>
+    <div><h5>Shop</h5><a data-cat="iPhones" class="fcat">iPhones</a><a data-cat="Apple" class="fcat">MacBooks</a><a data-cat="Laptops" class="fcat">Laptops</a><a data-cat="All" class="fcat">All products</a></div>
+    <div><h5>Help</h5><a href="about.html">About us</a><a href="tracking.html">Track your order</a><a href="policies.html#returns">Returns &amp; refunds</a><a href="policies.html#shipping">Shipping</a><a href="policies.html#warranty">Warranty</a><a href="https://wa.me/27636110970">Contact us</a></div>
+    <div><h5>Get in touch</h5><a href="https://wa.me/27636110970">WhatsApp: 063 611 0970</a><a href="mailto:lethumkapu561@gmail.com">lethumkapu561@gmail.com</a>
+      <div class="socials">
+        <a href="https://www.facebook.com/profile.php?id=61563641226351" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.8 3.7-3.8 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
+        <a href="https://www.instagram.com/mhdynamictech" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.tiktok.com/@mh369737" target="_blank" rel="noopener" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8.2a5.7 5.7 0 0 0 3.5 1.2V6.7a3 3 0 0 1-3-3h-2.7v11.2a2.3 2.3 0 1 1-2.3-2.3l.6.1V9.9a5 5 0 1 0 4.4 5z"/></svg></a>
       </div>
     </div>
   </div>
+  <div class="copy"><span>© 2026 M&amp;H Dynamic Tech. All rights reserved.</span><span>Certified Pre-Owned · Proudly South African</span></div>
+</div></footer>
 
-  <!-- TOOL SCREEN -->
-  <div class="page" id="page-tool">
-    <div class="tool-page-wrap">
-      <div class="tool-page-header">
-        <button class="back-btn" onclick="goBack()" style="background:rgba(56,189,248,0.15);border:1px solid rgba(56,189,248,0.4);color:#38bdf8;border-radius:10px;padding:10px 18px;font-family:var(--font);cursor:pointer;font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px">← Back</button>
-        <div class="tool-page-title" id="tool-page-title">Tool</div>
-        <button onclick="showPage('home')" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#94a3b8;border-radius:10px;padding:10px 18px;font-family:var(--font);cursor:pointer;font-weight:600;font-size:14px">🏠 Home</button>
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="dhead"><h3>Your Cart</h3><button id="closeCart">&times;</button></div>
+  <div class="ditems" id="ditems"></div>
+  <div class="dfoot" id="dfoot" style="display:none">
+    <div class="dline"><span>Subtotal</span><span id="dsub">R 0</span></div>
+    <div class="dline"><span>Delivery</span><span id="ddel">R 0</span></div>
+    <div class="dtotal"><span>Total</span><span id="dtotal">R 0</span></div>
+    <p class="dnote">Enter your email and pay securely by card. Your order is confirmed the moment payment succeeds.</p>
+    <input id="custEmail" class="cemail" type="email" placeholder="Your email (for your receipt)">
+    <button class="paystack" id="payNow">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+      Pay securely by card
+    </button>
+    <p style="text-align:center;font-size:11.5px;color:var(--muted);margin-top:10px">🔒 Secure payment by Paystack · Visa, Mastercard &amp; Amex</p>
+  </div>
+  </div>
+</aside>
+
+<div class="pmodal-bg" id="pmodalbg">
+  <div class="pmodal">
+    <button class="pclose" id="pmClose">&times;</button>
+    <div class="pmgrid">
+      <div class="pmmedia">
+        <div class="pmthumbs" id="pmThumbs"></div>
+        <div class="pmimg" id="pmImgWrap">
+          <img id="pmImg" alt="">
+          <span class="grade">Certified Pre-Owned</span>
+        </div>
       </div>
-      <div class="tool-page-body" id="tool-page-body"></div>
+      <div class="pminfo">
+        <h2 id="pmTitle"></h2>
+        <div class="priceline"><span class="price" id="pmPrice"></span><span id="pmSave"></span></div>
+        <div class="pmcond">✔ Tested &amp; certified pre-owned</div>
+        <h4>Description</h4>
+        <div class="pmdesc" id="pmDesc"></div>
+        <div class="pmbtns">
+          <button class="add" id="pmAdd">Add to Cart</button>
+          <button class="add" id="pmBuy" style="background:var(--ink)">Buy Now</button>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>
 
-<!-- PAYSTACK MODAL -->
-<div class="modal-overlay hidden" id="pay-modal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div style="text-align:center;margin-bottom:24px">
-      <svg width="48" height="48" viewBox="0 0 32 32" fill="none"><path d="M16 2C10 2 5 7 5 13c0 4 2 7.5 5 9.5v6.5h2v-5.5c1.2.3 2.6.5 4 .5s2.8-.2 4-.5V29h2v-6.5c3-2 5-5.5 5-9.5 0-6-5-11-11-11z" fill="url(#fpgm)"/><defs><linearGradient id="fpgm" x1="5" y1="2" x2="27" y2="30"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#6366f1"/></linearGradient></defs></svg>
+<div class="rmodal-bg" id="rmodalbg">
+  <div class="rmodal">
+    <h3>Write a Review</h3>
+    <p class="sub">Share your experience — it's sent to us on WhatsApp so we can add it.</p>
+    <label>Your rating</label>
+    <div class="starpick" id="starpick"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
+    <label>Your name</label>
+    <input id="rvName" type="text" placeholder="e.g. Thandi M.">
+    <label>Your review</label>
+    <textarea id="rvBody" rows="3" placeholder="Tell others about the product and the service…"></textarea>
+    <div class="row">
+      <button class="cancel" id="rvCancel">Cancel</button>
+      <button class="submit" id="rvSubmit">Submit via WhatsApp</button>
     </div>
-    <h3 class="modal-title" id="modal-title">Subscribe to Sky Blueprint Pro</h3>
-    <p class="modal-sub" id="modal-sub">R55/month · Cancel anytime</p>
-    <div class="form-group"><label>Full Name</label><input type="text" id="pay-name" placeholder="Sipho Dlamini"></div>
-    <div class="form-group"><label>Email Address</label><input type="email" id="pay-email" placeholder="your@email.com"></div>
-    <div class="form-group"><label>Phone Number</label><input type="tel" id="pay-phone" placeholder="082 345 6789"></div>
-    <button class="pay-secure-btn" onclick="processPayment()">🔐 Pay Securely with Paystack</button>
-    <div class="pay-logos">
-      <span>Visa</span><span>Mastercard</span><span>EFT</span><span>Ozow</span>
-    </div>
-    <p style="text-align:center;font-size:11px;color:#475569;margin-top:12px">Your payment is processed securely by Paystack. Sky Blueprint never stores your card details.</p>
   </div>
 </div>
 
-<script src="app.js"></script>
-
-<!-- ══════════════════════════════════════
-     SKY BLUEPRINT AI GUIDE ASSISTANT
-     Optional step-by-step helper
-══════════════════════════════════════ -->
-
-<!-- Floating guide button -->
-<div id="guide-fab" onclick="toggleGuide()" title="Need help?">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="white"/>
-  </svg>
-  <span id="guide-fab-label">Need help?</span>
-</div>
-
-<!-- Guide chat window -->
-<div id="guide-window" class="guide-hidden">
-  <div id="guide-header">
-    <div style="display:flex;align-items:center;gap:10px">
-      <div id="guide-avatar">🤖</div>
-      <div>
-        <div style="font-weight:700;font-size:14px;color:#fff">Sky Guide</div>
-        <div style="font-size:11px;color:#10b981">● Always here to help</div>
-      </div>
+<div class="vmodal" id="voucherModal" hidden>
+  <div class="vmodal-bg" data-vclose></div>
+  <div class="vmodal-card">
+    <button class="vmodal-x" data-vclose aria-label="Close">×</button>
+    <div class="vhead">
+      <div class="vicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+      <h2>R200 Meal Voucher</h2>
     </div>
-    <button onclick="toggleGuide()" id="guide-close">✕</button>
-  </div>
-  <div id="guide-messages"></div>
-  <div id="guide-options"></div>
-  <div id="guide-input-row">
-    <input type="text" id="guide-input" placeholder="Type your answer or question..." onkeypress="if(event.key==='Enter')guideUserInput()">
-    <button onclick="guideUserInput()" id="guide-send">→</button>
+    <p class="vsub">Our thank-you for shopping with M&amp;H Dynamic Tech.</p>
+    <ol class="vsteps">
+      <li><b>Buy</b> any laptop, MacBook, or iPhone from our store.</li>
+      <li>Once your order is <b>delivered successfully</b>…</li>
+      <li>Enter your <b>order number</b> below and we'll email your R200 voucher.</li>
+    </ol>
+    <div class="vnote">⚠️ You can only claim after your order has been delivered. No purchase, no voucher — your order number is your proof of purchase.</div>
+    <div id="vForm">
+      <label for="vOrder">Your order number</label>
+      <input id="vOrder" type="text" placeholder="From your order confirmation">
+      <label for="vEmail">Email for your voucher</label>
+      <input id="vEmail" type="email" placeholder="you@email.com">
+      <button class="vsubmit" id="vSubmit">Submit claim</button>
+      <p class="vfine">We'll confirm your delivery, then email your voucher.</p>
+    </div>
+    <div id="vDone" class="vok" hidden></div>
   </div>
 </div>
 
-<style>
-/* ── FAB Button ── */
-#guide-fab {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: linear-gradient(135deg, #38bdf8, #6366f1);
-  color: #fff;
-  border-radius: 99px;
-  padding: 12px 20px 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  z-index: 8888;
-  box-shadow: 0 4px 20px rgba(56,189,248,0.4);
-  font-family: var(--font);
-  font-size: 13px;
-  font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s;
-  user-select: none;
-}
-#guide-fab:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(56,189,248,0.5);
-}
-#guide-fab-label { white-space: nowrap; }
-
-/* ── Guide window ── */
-#guide-window {
-  position: fixed;
-  bottom: 90px;
-  right: 24px;
-  width: 340px;
-  max-width: calc(100vw - 32px);
-  background: #0f1629;
-  border: 1px solid rgba(56,189,248,0.25);
-  border-radius: 20px;
-  overflow: hidden;
-  z-index: 8999;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(56,189,248,0.1);
-  display: flex;
-  flex-direction: column;
-  max-height: 520px;
-  transition: opacity 0.25s, transform 0.25s;
-}
-.guide-hidden {
-  opacity: 0 !important;
-  pointer-events: none !important;
-  transform: translateY(16px) !important;
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+const WA='27636110970';const PRODUCTS=[{"t": "Macbook Air M1 Apple Laptop", "p": 9500, "c": 0, "img": "BBRH286744-3242415-1.webp", "imgs": ["BBRH286744-3242415-1.webp", "mac-air_m1.avif", "mac-air_m2.avif", "mac-air_m3.avif"], "d": "8-Core CPU\n7-Core GPU\n13.3 Inch\nRetina LED with True tone\n2560 by 1600 Pixels\nTwo thunderbolt\n4 USB Ports\nHead Jack\nStereo Speakers\nTouch ID\nFull size backlit Magic Keyboard\nWi-Fi 6 and Bluetooth 5.0\nFaceTime Hd Camera\n256 GB SSD\n+Charger\n\nCondition good\nComes in a box\nStill looks neat\nComes with a charger", "cat": "Apple"}, {"t": "Apple Macbook Neo 13 A 18", "p": 18000, "c": 0, "img": "neo_eef5b3ea-b107-4a6a-b409-4b61854863ac.webp", "imgs": ["neo_eef5b3ea-b107-4a6a-b409-4b61854863ac.webp", "neo13-2.jpg", "neo13-3.jpg", "neo13-4.jpg"], "d": "Specifications\nBrand: Apple\nModel: MacBook Neo 13\nDisplay Size: 13-inch Retina Display\nColour: Rose Gold / Pink\nOperating System: macOS\nStorage: SSD Storage\nConnectivity: Wi-Fi and Bluetooth\nKeyboard: Full-size backlit keyboard\nTrackpad: Large precision multi-touch trackpad\nBattery: Long-lasting rechargeable battery\nDesign: Slim, lightweight aluminium body\nFeatures\nStylish ultra-slim premium design\nBright and vibrant Retina display\nSmooth and responsive performance\nLightweight and travel-friendly\nExcellent battery life for daily use\nFast wireless connectivity\nIdeal for students, professionals, and everyday users\nPremium Apple build quality", "cat": "Apple"}, {"t": "Macbook Pro 15-Inch, 2017 Touchbar", "p": 9000, "c": 10000.0, "img": "MACB1.webp", "imgs": ["MACB1.webp", "mbp15-2017-2.jpg", "mbp15-2017-3.jpg", "mbp15-2017-4.jpg"], "d": "Processor 2,8 GHz Quad-Core Intel Core i7\nGraphics Intel HD Graphics 630 1536 MB\nMemory 16 GB 2133 MHz LPDDR3\nmacOS Ventura 13.7.8\nCycle count-534\nBattery condition-Normal", "cat": "Apple"}, {"t": "iPhone 14 128 GB", "p": 7800, "c": 8700.0, "img": "Blue_1_60eed0cb-07ac-4698-824d-b9f0a9db59b9.webp", "imgs": ["Blue_1_60eed0cb-07ac-4698-824d-b9f0a9db59b9.webp", "iphone14-2.jpg", "iphone14-3.jpg", "iphone14-4.jpg"], "d": "The iPhone 14 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a06.1-inch Super Retina XDR display for vibrant colors and sharp details.\n\n\u2022 \nCamera System:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \nProcessor:\u00a0A15 Bionic chip for fast performance and efficient multitasking.\n\n\u2022 \nStorage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nRAM:\u00a0Available in different configurations to enhance performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a smooth and intuitive user experience.\n\n\u2022 \n5G Capability:\u00a0Supports 5G networks for faster download and streaming speeds.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy unlocking and secure payments.\n\nThe iPhone 14 is designed to meet the demands of modern users, offering a blend of performance and functionality.", "cat": "iPhones"}, {"t": "IPhone 13 128 GB", "p": 8100, "c": 8500.0, "img": "Bllue.webp", "imgs": ["Bllue.webp", "iphone13-2.jpg", "iphone13-3.jpg", "iphone13-4.jpg"], "d": "The iPhone 13 offers a blend of advanced technology and user-friendly features, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a06.1-inch Super Retina XDR display for vibrant colors and sharp details.\n\n\u2022 \nCamera System:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \nProcessor:\u00a0A15 Bionic chip for fast performance and efficient power management.\n\n\u2022 \nStorage:\u00a0Available in different configurations to suit your storage needs.\n\n\u2022 \nRAM:\u00a0Available in different configurations to enhance multitasking capabilities.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a smooth and intuitive user experience.\n\n\u2022 \n5G Connectivity:\u00a0Supports 5G for faster download speeds and improved streaming quality.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy and secure unlocking.\n\n\u2022 \nDurability:\u00a0Ceramic Shield front cover for improved drop performance.", "cat": "iPhones"}, {"t": "Macbook Pro 2017 I5", "p": 9500, "c": 0, "img": "RI.webp", "imgs": ["RI.webp", "mbp-2017-i5-2.jpg", "mbp-2017-i5-3.jpg", "mbp-2017-i5-4.jpg"], "d": "Processor: Intel core i5\n8GB Ram\nMacOS Ventura\n256GB Storage\nCycle Count:903", "cat": "Apple"}, {"t": "HP Elitebook 1040 G1 Core i5 - 4th Gen", "p": 5500, "c": 7000.0, "img": "Frame_15_58_ea1b5f41-7ddb-4e14-ad50-539cdfe51377.webp", "imgs": ["Frame_15_58_ea1b5f41-7ddb-4e14-ad50-539cdfe51377.webp", "hp-1040g1-2.jpg", "hp-1040g1-3.jpg", "hp-1040g1-4.jpg"], "d": "The HP Elitebook 1040 G1 is a reliable and efficient laptop designed for professionals who need performance on the go.\n\n\u2022 \nProcessor:\u00a0Powered by an Intel Core i5 - 4th Generation processor for smooth multitasking.\n\n\u2022 \nDisplay:\u00a0Features a 14-inch Full HD display for clear visuals and vibrant colors.\n\n\u2022 \n8GBRAM:\u00a0Available in different configurations to meet your performance needs.\n\n\u2022 \n128 GB SSD Storage:\u00a0Available in different configurations, providing ample space for your files and applications.\n\n\u2022 \nOperating System:\u00a0Comes with Windows 10 Pro for a familiar and productive user experience.\n\n\u2022 \nConnectivity:\u00a0Equipped with multiple USB ports, HDMI, and Ethernet for versatile connectivity options.\n\n\u2022 \nSecurity Features:\u00a0Includes HP's security suite to protect your data and privacy.\n\n\u2022 \nDesign:\u00a0Sleek and lightweight design makes it easy to carry for business travel.\n\nThe HP Elitebook 1040 G1 is a solid choice for professionals seeking a balance of performance and portability.", "cat": "Laptops"}, {"t": "Macbook Pro A1398 Intel Core I7 Late 2013 Model", "p": 6300, "c": 6800.0, "img": "macmac.webp", "imgs": ["macmac.webp", "mbp-late2013-2.jpg", "mbp-late2013-3.jpg", "mbp-late2013-4.jpg"], "d": "MacOS Big Sur\n8Gb RAM\n2.0GHz processor\n256Gb SSD\nUsed in good working condition\n6 months warranty", "cat": "Apple"}, {"t": "HP Elitebook 640 G4 Core-i5 8th Gen", "p": 5500, "c": 6400.0, "img": "Frame_15_73_63432ffd-9f8f-4ea3-b0b6-b114187b2ba2.webp", "imgs": ["Frame_15_73_63432ffd-9f8f-4ea3-b0b6-b114187b2ba2.webp", "hp-640g4-2.jpg", "hp-640g4-3.jpg", "hp-640g4-4.jpg"], "d": "The HP EliteBook 640 G4 is a reliable and efficient laptop designed for professionals seeking performance and portability.\n\n\u2022 \nProcessor:\u00a0Powered by an Intel Core i5 8th Generation processor for smooth multitasking.\n\n\u2022 \nDisplay:\u00a0Features a 15.6-inch Full HD display for clear visuals and comfortable viewing.\n\n\u2022 \nRAM:\u00a0Available in different configurations to meet various performance needs.\n\n\u2022 \nStorage:\u00a0Offers different storage options to accommodate your data and applications.\n\n\u2022 \nOperating System:\u00a0Comes with Windows 10 Pro for a familiar and secure user experience.\n\n\u2022 \nConnectivity:\u00a0Equipped with multiple USB ports, HDMI, and Ethernet for versatile connectivity.\n\n\u2022 \nSecurity Features:\u00a0Includes advanced security features like a fingerprint reader and TPM for data protection.\n\n\u2022 \nWeight:\u00a0Lightweight design for easy portability, making it suitable for on-the-go professionals.\n\nOverall, the HP EliteBook 640 G4 is a solid choice for business users looking for a dependable laptop with essential features.", "cat": "Laptops"}, {"t": "iPhone 12 64 GB", "p": 5500, "c": 6000.0, "img": "Black_1_b6c9b236-cb9c-4d33-98f0-39412dd918c9.webp", "imgs": ["Black_1_b6c9b236-cb9c-4d33-98f0-39412dd918c9.webp", "iphone12-2.jpg", "iphone12-3.jpg", "iphone12-4.jpg"], "d": "The iPhone 12 combines advanced technology with a sleek design, offering users a powerful smartphone experience.\n\n\u2022 \nDisplay:\u00a06.1-inch Super Retina XDR display for vibrant colors and sharp details.\n\n\u2022 \nProcessor:\u00a0A14 Bionic chip for high performance and efficiency.\n\n\u2022 \nCameras:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \n5G Capability:\u00a0Supports 5G networks for faster download and streaming speeds.\n\n\u2022 \nStorage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nRAM:\u00a0Generous RAM for smooth multitasking and app performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a user-friendly interface and regular updates.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy unlocking and secure payments.\n\nThe iPhone 12 is designed to meet the demands of modern users, delivering performance and functionality in a stylish package", "cat": "iPhones"}, {"t": "iPhone XR", "p": 4900, "c": 8600.0, "img": "Black_3_de07f0ba-d841-4f42-b0a2-762f5bc7776a.webp", "imgs": ["Black_3_de07f0ba-d841-4f42-b0a2-762f5bc7776a.webp", "iphone-xr-2.jpg", "iphone-xr-3.jpg", "iphone-xr-4.jpg"], "d": "\u2022 \nDisplay:\u00a06.1-inch Liquid Retina HD display for vibrant colors and sharp details.\n\n\u2022 \nCamera:\u00a012 MP rear camera with Smart HDR for stunning photos in various lighting conditions.\n\n\u2022 \nProcessor:\u00a0A12 Bionic chip for efficient performance and smooth multitasking.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy and secure unlocking.\n\n\u2022 \nWater and Dust Resistance:\u00a0Rated IP67, providing protection against splashes and dust.\n\n\u2022 \nStorage and RAM:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, offering a seamless user experience with regular updates.\n\n\u2022 \nAudio:\u00a0Spatial audio and stereo speakers for an immersive sound experience.", "cat": "iPhones"}, {"t": "Macbook Pro A1398 Intel Core I7 2013 Model Laptop", "p": 7600, "c": 0, "img": "MACBB.webp", "imgs": ["MACBB.webp", "mbp-2013-2.jpg", "mbp-2013-3.jpg", "mbp-2013-4.jpg"], "d": "MacOS Mojave\n8GB ram\n2.3GHz processor\n256GB SSD\nUsed in good working condition\n6 months warranty", "cat": "Apple"}, {"t": "Macbook Air Computer", "p": 4500, "c": 5700.0, "img": "imaq.webp", "imgs": ["imaq.webp", "mba-computer-2.jpg", "mba-computer-3.jpg", "mba-computer-4.jpg"], "d": "Used But New = Processor: 1.6 GHz Intel Core i5 Dual-Core with a maximum boost speed of 3.6 GHz.\nRAM: 8 GB of installed RAM.\nDisplay: 13.3-inch Retina display.\nPorts: Two Thunderbolt / USB 4 ports.", "cat": "Apple"}, {"t": "iPhone 11 64 GB", "p": 5200, "c": 5500.0, "img": "black_3_513360e6-3bba-40ab-94d7-2ec5ba0e7a22.webp", "imgs": ["black_3_513360e6-3bba-40ab-94d7-2ec5ba0e7a22.webp", "iphone11-2.jpg", "iphone11-3.jpg", "iphone11-4.jpg"], "d": "The iPhone 11 combines advanced technology with user-friendly features, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a06.1-inch Liquid Retina HD display for vibrant colors and sharp details.\n\n\u2022 \nCamera:\u00a0Dual 12 MP camera system with Night mode for stunning photos in low light.\n\n\u2022 \nProcessor:\u00a0A13 Bionic chip for exceptional performance and efficiency.\n\n\u2022 \nStorage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \nRAM:\u00a0Generous RAM for smooth multitasking and app performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing a seamless and intuitive user experience.\n\n\u2022 \nWater Resistance:\u00a0Rated IP68 for water and dust resistance, ensuring durability.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy unlocking and secure payments.\n\nOverall, the iPhone 11 is designed to meet the demands of modern users with its robust features and reliable performance", "cat": "iPhones"}, {"t": "Macbook Air A1466 I5 Laptop", "p": 4300, "c": 5400.0, "img": "CACPG075977-3237090-1.webp", "imgs": ["CACPG075977-3237090-1.webp", "mba-a1466-2.jpg", "mba-a1466-3.jpg", "mba-a1466-4.jpg"], "d": "Good condition\nSuperficial scratches along surface and small dent in bottom left corner\nIntel Core i5 / 1.6GHz\n4GB RAM / 121GB Macintosh HD\nmacOS Monterey\nCycle count: 447", "cat": "Apple"}, {"t": "Macbook Air (13-Inch,2017)", "p": 5000, "c": 5300.0, "img": "CAVNV026618-3247134-1.webp", "imgs": ["CAVNV026618-3247134-1.webp", "mba-2017-2.jpg", "mba-2017-3.jpg", "mba-2017-4.jpg"], "d": "Processor : 1.8GHz intel core i5\nMemory : 8GB\nGraphics : intel HD Graphics 6000 1536 MB\nStorage : 121GB\nBATTERY HEALTH : Cycle count 563", "cat": "Apple"}, {"t": "iPhone X", "p": 4600, "c": 6900.0, "img": "SpaceGrey_1_bc96d053-d475-4949-8d1d-eaf43de2981c.webp", "imgs": ["SpaceGrey_1_bc96d053-d475-4949-8d1d-eaf43de2981c.webp", "iphone-x-2.jpg", "iphone-x-3.jpg", "iphone-x-4.jpg"], "d": "\u2022 \nDisplay:\u00a05.8-inch Super Retina display with a resolution of 1125 x 2436 pixels for vibrant colors and sharp images.\n\n\u2022 \nCamera:\u00a0Dual 12 MP rear cameras with optical image stabilization for high-quality photos and videos.\n\n\u2022 \nFace ID:\u00a0Secure facial recognition technology for easy and secure unlocking of the device.\n\n\u2022 \nProcessor:\u00a0A11 Bionic chip with 64-bit architecture for fast performance and efficient multitasking.\n\n\u2022 \n64GBStorage:\u00a0Available in different configurations to suit various storage needs.\n\n\u2022 \n\u00a0Generous RAM capacity for smooth operation and app performance.\n\n\u2022 \nOperating System:\u00a0Ships with iOS, providing access to a wide range of apps and features.\n\n\u2022 \nWater and Dust Resistance:\u00a0Rated IP67, offering protection against water and dust ingress.\n\n\u2022 \nWireless Charging:\u00a0Supports Qi wireless charging for convenient power options.", "cat": "iPhones"}, {"t": "Apple Macbook Pro", "p": 6500, "c": 0, "img": "MAC2.webp", "imgs": ["MAC2.webp", "mbp-apple-2.jpg", "mbp-apple-3.jpg", "mbp-apple-4.jpg"], "d": "Condition \u2013 Good\nmacOS High Sierra\nVersion 10.13.6\nProcessor: 2,7 GHz Intel core i7\nRAM: 4GB\nStorage: 480GB", "cat": "Apple"}, {"t": "Apple Macbook Air | Intel Core I5 | 256Gb Storage", "p": 4500, "c": 4800.0, "img": "Silver_10_b92838b0-eeb0-42ae-87d8-b7577e8f2226.webp", "imgs": ["Silver_10_b92838b0-eeb0-42ae-87d8-b7577e8f2226.webp", "mba-i5-256-2.jpg", "mba-i5-256-3.jpg", "mba-i5-256-4.jpg"], "d": "Apple Macbook Air\nModel No -A1370\nProcessor \u2013 Intel Core i5\nProcessor Speed \u2013 1.6Ghz\nStorage \u2013 256GB\nRam \u2013 8GB\nOperating System \u2013 MacOS Monterey\nCharging Cable\nGreat Working Condition\nGood Condition\n\nNb \u2013 Slight Crack On Screen", "cat": "Apple"}, {"t": "Hp Notebook Laptop", "p": 4200, "c": 0, "img": "BCTR055006-2886805-1.webp", "imgs": ["BCTR055006-2886805-1.webp", "hp-notebook-2.jpg", "hp-notebook-3.jpg", "hp-notebook-4.jpg"], "d": "Device Name : Hp\nProcessor : Intel Celeron\nInstalled Ram : 4GB\nStorage : 430GB HDD\nNo Box\nCharger Only", "cat": "Apple"}, {"t": "Dell Laptop T9kb76t", "p": 3900, "c": 4000.0, "img": "CAMNT046123-3248538-1-scaled.jpg", "imgs": ["CAMNT046123-3248538-1-scaled.jpg", "dell-t9kb76t-2.jpg", "dell-t9kb76t-3.jpg", "dell-t9kb76t-4.jpg"], "d": "Dell Laptop T9KB76T for sale . In a good and working condition backed by a six month guarantee. 4GB RAM, 500GB storage, Intel Celeron N4000 1.10GHz, Windows 10. Black in colour", "cat": "Laptops"}, {"t": "iPhone 8", "p": 3700, "c": 0, "img": "red82.webp", "imgs": ["red82.webp", "iphone8-2.jpg", "iphone8-3.jpg", "iphone8-4.jpg"], "d": "he iPhone 8 combines powerful performance with a sleek design, making it a reliable choice for everyday use.\n\n\u2022 \nDisplay:\u00a04.7-inch Retina HD display with True Tone technology for vibrant colors.\n\n\u2022 \nCamera:\u00a012 MP rear camera with optical image stabilization for high-quality photos and videos.\n\n\u2022 \nProcessor:\u00a0A11 Bionic chip for fast performance and efficient multitasking.\n\n\u2022 \n64GBStorage:\u00a0Available in different configurations to suit your needs.\n\n\u2022 \n\u00a0Generous RAM capacity for smooth operation and app performance.\n\n\u2022 \nOperating System:\u00a0Runs on iOS, providing access to a wide range of apps and features.\n\n\u2022 \nWater and Dust Resistance:\u00a0Rated IP67 for protection against water and dust ingress.\n\n\u2022 \nWireless Charging:\u00a0Supports Qi wireless charging for convenient power-ups.\n\nThe iPhone 8 is a solid choice for users seeking a blend of performance and functionality in a compact device.", "cat": "iPhones"}, {"t": "Apple Macbook Air Laptop", "p": 3700, "c": 4000.0, "img": "BAVU.jpg", "imgs": ["BAVU.jpg", "mba-laptop-2.jpg", "mba-laptop-3.jpg", "mba-laptop-4.jpg"], "d": "APPLE MACBOOK AIR\nMACOS MONTEREY VERSION 12.7.6\n4GB MHZ DDR3 1.6 GHZ DUAL-CORE INTEL CORE I5 121GB HDD", "cat": "Apple"}, {"t": "Apple Macbook Pro (13-Inch) Mid 2012", "p": 3400, "c": 4000.0, "img": "mac_mac.webp", "imgs": ["mac_mac.webp", "mbp-2012-2.jpg", "mbp-2012-3.jpg", "mbp-2012-4.jpg"], "d": "The 13-inch Mid-2012 MacBook Pro (model A1278) features a\u00a02.5GHz or 2.9GHz Intel Core i5/i7 processor,\u00a0 1600MHz DDR3L RAM\u00a0 16GB), 500GB/750GB\u00a0 \u00a0SSD, and Intel HD Graphics 4000. It includes a 13.3\" 1280x800 display, SuperDrive, and 2x USB 3.0 ports.", "cat": "Apple"}, {"t": "Acer Chromebook-R11 Convertible-2-In-1 Touch-Celeron 6th-gen", "p": 2900, "c": 3990.0, "img": "AcerLaptops_1_78be7e76-9c30-48f1-8bf5-00baecb82180.webp", "imgs": ["AcerLaptops_1_78be7e76-9c30-48f1-8bf5-00baecb82180.webp", "acer-r11-2.jpg", "acer-r11-3.jpg", "acer-r11-4.jpg"], "d": "The Acer Chromebook R11 is a versatile 2-in-1 device designed for both productivity and entertainment. Its convertible design and touch capabilities make it suitable for various tasks.\n\n\u2022 \nProcessor:\u00a0Powered by a 6th generation Intel Celeron processor for efficient performance.\n\n\u2022 \nDisplay:\u00a0Features an 11.6-inch HD touchscreen display for vibrant visuals and easy navigation.\n\n\u2022 \nConvertible Design:\u00a0Easily transforms between laptop and tablet modes to suit your needs.\n\n\u2022 \n4GBRAM:\u00a0Available in different configurations to handle multitasking effectively.\n\n\u2022 \n16 GB SSD Storage:\u00a0Comes with various storage options to accommodate your files and applications.\n\n\u2022 \nOperating System:\u00a0Runs on Chrome OS, providing a fast and secure user experience.\n\n\u2022 \nConnectivity:\u00a0Includes multiple ports such as USB 3.0, HDMI, and a microSD card reader for versatile connectivity.\n\n\u2022 \nBattery Life:\u00a0Designed for all-day use, ensuring you stay productive without frequent recharging.\n\n\u2022 \nWeight:\u00a0Lightweight design for easy portability, making it ideal for on-the-go use.", "cat": "Laptops"}, {"t": "iPhone 7", "p": 2900, "c": 0, "img": "Black_4cdd944e-1ebe-4fef-acc7-0b6499ec0497.webp", "imgs": ["Black_4cdd944e-1ebe-4fef-acc7-0b6499ec0497.webp", "iphone7-2.jpg", "iphone7-3.jpg", "iphone7-4.jpg"], "d": "Storage\n32 GB\n\nSIM Card\nUnlocked\n\nScreen size (inches)\n6.5\n\nProcessor Core\n6\n\nOS\nIOS\u00a0\n\nConnector\nLightning\n\neSIM\nYes\n\nDouble SIM\nYes\n\nNetwork\n4G\n\nRelease Date\n2017\n\nCamera Type\nDouble (2x)\n\nMemory\n4 GB\n\nBrand\nApple", "cat": "iPhones"}, {"t": "Indoor Hydroponic Plant Growing Machine", "p": 1296, "c": 0, "img": "ed7815a2-3708-49b3-9688-0bbdc37a3b2c.jpg", "imgs": ["ed7815a2-3708-49b3-9688-0bbdc37a3b2c.jpg", "hydroponic-2.jpg", "hydroponic-3.jpg", "hydroponic-4.jpg"], "d": "Overview\n\nHydroponic System: Soilless cultivation technology for clean indoor gardening\n\nSmart Function: Automated lighting and water circulation for optimal plant growth\n\nMulti-Capacity Options: 3 to 12 planting holes with adjustable power (6W-24W)\n\nPlant Compatibility: Supports herbs, vegetables, flowers (e.g., roses), and ornamental plants\n\nNutrient Supply: Includes dedicated nutrient solutions for accelerated germination\n\nSpecifications\n\nMaterial: ABS plastic + aluminum alloy\n\nPower: 6W/15W/20W/24W (varies by model)\n\nVoltage: 100-240V AC (plug adaptors available)\n\nPlanting Holes: 3/6/9/12 slots (model-dependent)\n\nLight Source: LED grow lights with adjustable intensity\n\nPacking List\n\nhydroponic growing machine*1\n\nplanting cottonvaries (36/88/119 units)\n\nplanting basketvaries (36/88/119 units)\n\nnutrient solutionvaries (6/8/11 sets)\n\npower adapter*1", "cat": "Accessories"}, {"t": "Wireless Noise Cancelling Bluetooth Headset with Microphone", "p": 496, "c": 0, "img": "369d20ec-92a4-49df-adec-b0b9c365b9d8.jpg", "imgs": ["369d20ec-92a4-49df-adec-b0b9c365b9d8.jpg", "headset-2.jpg", "headset-3.jpg", "headset-4.jpg"], "d": "Overview\n\nNoise Cancellation: Advanced noise reduction technology for clear communication in busy environments\n\nBluetooth Connectivity: Wireless operation with 5.3 Bluetooth version and 15-meter range\n\nComfort Design: Non-in-ear microphone rod design with head-mounted wearing style\n\nBattery Performance: 150mAh battery providing 7 hours continuous usage\n\nStereo Sound: Bilateral stereo sound delivery for immersive audio experience\n\nSpecifications\n\nBluetooth Version: 5.3\n\nTransmission Range: 15 meters\n\nBattery Capacity: 150mAh\n\nWorking Time: 7 hours\n\nStandby Time: 10 days\n\nWaterproof Rating: IPX6\n\nMaterial: PC+ABS\n\nWeight: 26g\n\nChip Type: Jerry\n\nCertifications: CE, ROHS, FCC\n\nColors: Black, Apricot\n\nPacking List\n\nwireless headset*1\n\ncharging cable*1\n\nuser manual*1", "cat": "Accessories"}, {"t": "Hp Laptop Charger Mode No Ppp012hs", "p": 360, "c": 0, "img": "chager.webp", "imgs": ["chager.webp", "hp-charger-2.jpg", "hp-charger-3.jpg", "hp-charger-4.jpg"], "d": "The HP Laptop Charger P0012HS is a compatible AC power adapter designed to safely charge HP laptops, featuring precise voltage and amperage specifications, Smart Pin technology, and various connector options for optimal safety and performance.", "cat": "Laptops"}, {"t": "Wireless Sports Bluetooth Headphones", "p": 288, "c": 0, "img": "941a0be0-e240-4bc8-9d98-887ea0c1d496.jpg", "imgs": ["941a0be0-e240-4bc8-9d98-887ea0c1d496.jpg", "sport-headphones-2.jpg", "sport-headphones-3.jpg", "sport-headphones-4.jpg"], "d": "Overview\n\nBluetooth 5.4: Latest protocol for stable connectivity and low power consumption.\n\nAir-bone conduction: Open-ear design for situational awareness during activities.\n\nLong battery life: Up to 8 hours of continuous playback or calls.\n\nStereo sound: Bilateral audio with 360\ufffd surround effect for immersive experience.\n\nLightweight build: Ergonomic ear-mounted design for comfort during sports.\n\nSpecifications\n\nBluetooth version: 5.4\n\nBattery life: 4-8 hours\n\nTransmission range: 10 meters\n\nCharging type: USB (details not specified)\n\nMaterial: PC+ABS\n\nWater resistance: Life waterproof (splash-resistant)\n\nPacking List\n\nWireless headphones*1\n\nUSB charging cable*1\n\nUser manual*1", "cat": "Accessories"}, {"t": "Himalayan crystal salt lamp", "p": 275, "c": 0, "img": "images.jpg", "imgs": ["images.jpg", "salt-lamp-2.jpg", "salt-lamp-3.jpg", "salt-lamp-4.jpg"], "d": "Himalayan crystal salt lamps are\u00a0natural, hand-carved lamps from Pakistan\u2019s Khewra Salt Mine that emit a warm, soft glow. They function as ambient lighting, acting as air cleansers and natural ionizers to neutralize electromagnetic radiation. These lamps are popular for reducing stress, improving air quality, and promoting relaxation\n\nKey Features and Benefits:\n\n\u2022 Unique Aesthetic:\u00a0Natural pink-to-orange hues, ranging from raw shapes to polished designs.\n\n\u2022 Air Cleansing:\u00a0As hygroscopic items, they attract moisture, which is said to help trap dust, allergens, and smoke.\n\n\u2022 Ambiance & Wellbeing:\u00a0Known for enhancing the atmosphere in yoga studios, spas, or homes to improve mood.\n\n\u2022 \nDurability:\u00a0Typically come with a wooden base and a 15W bulb to heat the salt.", "cat": "Accessories"}, {"t": "Bluetooth earphones", "p": 208, "c": 0, "img": "ffdce3a5-b214-4d92-951f-a5d0d3e9e17e.jpg", "imgs": ["ffdce3a5-b214-4d92-951f-a5d0d3e9e17e.jpg", "earphones-2.jpg", "earphones-3.jpg", "earphones-4.jpg"], "d": "Overview\n\nNoise Reduction: Advanced noise reduction technology for clear audio.\n\nBluetooth 5.4: Latest Bluetooth protocol for stable and fast connectivity.\n\nBattery Life: 4-8 hours of continuous usage on a single charge.\n\nBinaural Stereo: True wireless design with bilateral stereo sound.\n\nCompact & Lightweight: Ultra-small and mini design for comfort and portability.\n\nMulti-Point Connection: Connect to multiple devices simultaneously.\n\nLife Waterproof: Resistant to splashes and sweat.\n\nSpecifications\n\nBluetooth Protocol: 5.4\n\nTransmission Range: 10m\n\nUsage Type: Earplug-style\n\nMaterial: Silicone\n\nColor Options: Off-white, Black, White\n\nBattery Indicator: Display for real-time battery status.\n\nFunctions: Call support, music playback, noise reduction.\n\nPacking List\n\nBluetooth earphones*1\n\nCharging case*1\n\nUSB cable*1\n\nEar tips (various sizes)*3\n\nUser manual*1", "cat": "Accessories"}];
+const PAYSTACK_KEY='pk_live_b07f0d8b9ee7305c57362ec9bbb89fe1eb0f9433';
+const DELIVERY_FEE=180; // <-- delivery fee in Rand. Change this one number to update everywhere.
+let cart=[];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const grid=$('#grid');
+const cards=$$('.card');
+const state={cat:'All',brands:[],bands:[],q:'',sort:'rel',favOnly:false};
+let favSet=new Set();
+try{const sv=localStorage.getItem('mh_favs');if(sv)favSet=new Set(JSON.parse(sv));}catch(e){}
+function saveFavs(){try{localStorage.setItem('mh_favs',JSON.stringify([...favSet]));}catch(e){}}
+function updateFavUI(){
+  document.querySelectorAll('.fav').forEach(b=>b.classList.toggle('on',favSet.has(b.dataset.fav)));
+  const c=$('#favCount');c.textContent=favSet.size;c.style.display=favSet.size?'grid':'none';
 }
 
-/* Header */
-#guide-header {
-  background: linear-gradient(135deg, #0d1f3c, #1a1040);
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  flex-shrink: 0;
+function apply(){
+  state.q=($('#search').value||'').toLowerCase().trim();
+  state.brands=$$('.fbrand:checked').map(c=>c.value);
+  state.bands=$$('.fband:checked').map(c=>c.value);
+  let shown=0;
+  cards.forEach(c=>{
+    const okCat=state.cat==='All'||c.dataset.cat===state.cat;
+    const okBrand=!state.brands.length||state.brands.includes(c.dataset.brand);
+    const okBand=!state.bands.length||state.bands.includes(c.dataset.band);
+    const okQ=!state.q||c.dataset.title.includes(state.q);
+    const okFav=!state.favOnly||favSet.has(c.dataset.idx);
+    const show=okCat&&okBrand&&okBand&&okQ&&okFav;
+    c.style.display=show?'':'none';
+    if(show)shown++;
+  });
+  // sort visible
+  const vis=cards.filter(c=>c.style.display!=='none');
+  if(state.sort!=='rel'){
+    vis.sort((a,b)=>{
+      const pa=+a.dataset.price,pb=+b.dataset.price;
+      if(state.sort==='plow')return pa-pb;
+      if(state.sort==='phigh')return pb-pa;
+      if(state.sort==='az')return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+    vis.forEach(c=>grid.appendChild(c));
+  }
+  $('#shown').textContent=shown;
+  $('#empty').style.display=shown?'none':'block';
 }
-#guide-avatar {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg,#38bdf8,#6366f1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-#guide-close {
-  background: none;
-  border: none;
-  color: #64748b;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 4px;
-  transition: color 0.2s;
-}
-#guide-close:hover { color: #fff; }
+$('#search').addEventListener('input',apply);
+$$('.fbrand,.fband').forEach(c=>c.addEventListener('change',apply));
+$('#sort').addEventListener('change',e=>{state.sort=e.target.value;apply();});
 
-/* Messages */
-#guide-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  scroll-behavior: smooth;
+// department + category sync
+function setCat(cat){
+  state.cat=cat;
+  $$('.dept a').forEach(a=>a.classList.toggle('on',a.dataset.cat===cat));
+  $('#ptitle').textContent = cat==='All'?'All products':cat==='Apple'?'MacBooks & Apple':cat;
+  apply();
 }
-.gm-bot {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-.gm-bot-bubble {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px 14px 14px 4px;
-  padding: 10px 14px;
-  font-size: 13px;
-  color: #e2e8f0;
-  line-height: 1.6;
-  max-width: 85%;
-}
-.gm-bot-icon {
-  width: 28px;
-  height: 28px;
-  background: linear-gradient(135deg,#38bdf8,#6366f1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.gm-user {
-  display: flex;
-  justify-content: flex-end;
-}
-.gm-user-bubble {
-  background: linear-gradient(135deg,#38bdf8,#6366f1);
-  border-radius: 14px 14px 4px 14px;
-  padding: 10px 14px;
-  font-size: 13px;
-  color: #fff;
-  max-width: 85%;
-  line-height: 1.6;
-}
+$$('.dept a').forEach(a=>a.addEventListener('click',e=>{if(!a.dataset.cat)return;e.preventDefault();setCat(a.dataset.cat);window.scrollTo({top:0,behavior:'smooth'});}));
+$('#clearF').addEventListener('click',()=>{
+  $$('.fbrand,.fband').forEach(c=>c.checked=false);
+  $('#search').value='';setCat('All');
+});
 
-/* Options */
-#guide-options {
-  padding: 0 12px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.g-opt {
-  background: rgba(56,189,248,0.08);
-  border: 1px solid rgba(56,189,248,0.2);
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-size: 13px;
-  color: #38bdf8;
-  cursor: pointer;
-  font-family: var(--font);
-  text-align: left;
-  transition: background 0.15s, border-color 0.15s;
-}
-.g-opt:hover {
-  background: rgba(56,189,248,0.15);
-  border-color: rgba(56,189,248,0.4);
-}
+// view toggle
+$('#vGrid').addEventListener('click',()=>{grid.classList.remove('list');$('#vGrid').classList.add('on');$('#vList').classList.remove('on');});
+$('#vList').addEventListener('click',()=>{grid.classList.add('list');$('#vList').classList.add('on');$('#vGrid').classList.remove('on');});
 
-/* Input */
-#guide-input-row {
-  display: flex;
-  gap: 8px;
-  padding: 10px 12px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  background: rgba(0,0,0,0.2);
-  flex-shrink: 0;
+// cart
+function money(n){return 'R\u00a0'+n.toLocaleString('en-ZA')}
+function renderCart(){
+  cart=cart.filter(function(i){return i&&typeof i.p==='number';});
+  const box=$('#ditems');$('#cartCount').textContent=cart.length;
+  $('#cartCount').style.display=cart.length?'grid':'none';
+  if(!cart.length){box.innerHTML='<div class="dempty">Your cart is empty.<br>Add devices to check out securely by card.</div>';$('#dfoot').style.display='none';return;}
+  $('#dfoot').style.display='block';let total=0;
+  box.innerHTML=cart.map((i,ix)=>{total+=i.p;return `<div class="ditem"><div><div class="nm">${i.t}</div><div class="pr">${money(i.p)}</div></div><button class="rm" data-x="${ix}">Remove</button></div>`}).join('');
+  $('#dsub').textContent=money(total);
+  $('#ddel').textContent=money(DELIVERY_FEE);
+  $('#dtotal').textContent=money(total+DELIVERY_FEE);
+  box.querySelectorAll('.rm').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.x,1);renderCart();});
 }
-#guide-input {
-  flex: 1;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 8px 12px;
-  color: #fff;
-  font-family: var(--font);
-  font-size: 13px;
-  outline: none;
+$$('#grid .add').forEach(btn=>btn.addEventListener('click',()=>{
+  if(btn.dataset.i===undefined)return;
+  cart.push(PRODUCTS[+btn.dataset.i]);
+  btn.textContent='Added \u2713';btn.classList.add('added');
+  setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added')},1100);
+  renderCart();openCart();
+}));
+function openCart(){$('#drawer').classList.add('open');$('#overlay').classList.add('open');}
+function closeCart(){$('#drawer').classList.remove('open');$('#overlay').classList.remove('open');}
+$('#openCart').onclick=openCart;$('#closeCart').onclick=closeCart;$('#overlay').onclick=closeCart;
+$('#payNow').onclick=function(){
+  if(!cart.length){return;}
+  const email=($('#custEmail').value||'').trim();
+  if(!email||email.indexOf('@')<1){$('#custEmail').focus();$('#custEmail').style.borderColor='#E0102B';return;}
+  const total=cart.reduce((s,i)=>s+i.p,0)+DELIVERY_FEE;
+  const items=cart.map(i=>i.t).join(', ');
+  const h=PaystackPop.setup({
+    key:PAYSTACK_KEY,email:email,amount:Math.round(total*100),currency:'ZAR',
+    metadata:{custom_fields:[{display_name:'Items',variable_name:'items',value:items}]},
+    callback:function(resp){cart=[];renderCart();$('#ditems').innerHTML='<div class="dempty"><div style="font-size:34px;margin-bottom:8px">\u2705</div><b style="color:var(--ink)">Payment successful!</b><br><br>Reference:<br><b style="color:var(--ink)">'+resp.reference+'</b><br><br>Thank you for your order. We\'ll arrange delivery and be in touch shortly.</div>';},
+    onClose:function(){}
+  });
+  h.openIframe();
+};
+$$('.fcat').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector('.dept a[data-cat="'+a.dataset.cat+'"]').click();}));
+let rvRating=5;
+const sp=$('#starpick');
+sp.querySelectorAll('span').forEach(s=>{s.onclick=()=>{rvRating=+s.dataset.v;sp.querySelectorAll('span').forEach(x=>x.classList.toggle('on',+x.dataset.v<=rvRating));};});
+sp.querySelectorAll('span').forEach(x=>x.classList.add('on'));
+$('#writeReview').onclick=()=>$('#rmodalbg').classList.add('open');
+$('#rvCancel').onclick=()=>$('#rmodalbg').classList.remove('open');
+$('#rmodalbg').onclick=e=>{if(e.target.id==='rmodalbg')$('#rmodalbg').classList.remove('open');};
+$('#rvSubmit').onclick=()=>{
+  const n=($('#rvName').value||'').trim()||'A customer';
+  const b=($('#rvBody').value||'').trim();
+  if(!b){$('#rvBody').focus();return;}
+  const msg='New review for M&H Dynamic Tech%0A'+'\u2605'.repeat(rvRating)+' ('+rvRating+'/5)%0AName: '+encodeURIComponent(n)+'%0A'+encodeURIComponent(b);
+  window.open('https://wa.me/'+WA+'?text='+msg,'_blank');
+  $('#rmodalbg').classList.remove('open');
+};
+// product detail view
+function openProduct(i){
+  const p=PRODUCTS[i];
+  const wrap=$('#pmImgWrap');wrap.classList.remove('noimg');
+  const img=$('#pmImg');
+  const gallery=((p.imgs&&p.imgs.length)?p.imgs:[p.img]).slice(0,4); // main + up to 3 thumbnails
+  function showMain(src){img.style.display='';img.src=src||'';img.alt=p.t;}
+  showMain(gallery[0]);
+  img.onerror=function(){wrap.classList.add('noimg');img.style.display='none';};
+  const thumbs=$('#pmThumbs');
+  thumbs.innerHTML='';
+  if(gallery.length>1){
+    thumbs.style.display='';
+    gallery.forEach(function(src,idx){
+      const b=document.createElement('button');
+      b.className='pmthumb'+(idx===0?' on':'');
+      const im=document.createElement('img');im.alt='';
+      if(idx>0){
+        // extra thumbnails: try other file types, and hide cleanly if the photo isn't uploaded yet
+        const base=src.replace(/\.[^.]+$/,'');
+        const exts=['.jpg','.jpeg','.png','.webp','.avif'];
+        im.onerror=function(){
+          const k=im._k||0;
+          if(k<exts.length){im._k=k+1;im.src=base+exts[k];return;}
+          b.remove();
+          if(thumbs.querySelectorAll('.pmthumb').length<=1)thumbs.style.display='none';
+        };
+      }
+      im.src=src;
+      b.appendChild(im);
+      b.onclick=function(){showMain(im.src);$$('.pmthumb').forEach(t=>t.classList.remove('on'));b.classList.add('on');};
+      thumbs.appendChild(b);
+    });
+  }else{thumbs.style.display='none';}
+  $('#pmTitle').textContent=p.t;
+  $('#pmPrice').textContent=money(p.p);
+  const sv=$('#pmSave');
+  if(p.c&&p.c>p.p){sv.innerHTML='<span class="was">'+money(p.c)+'</span> <span class="savetag">Save '+money(p.c-p.p)+'</span>';}
+  else{sv.innerHTML='';}
+  $('#pmDesc').textContent=p.d||'No description available — message us on WhatsApp for full details.';
+  $('#pmAdd').onclick=function(){cart.push({t:p.t,p:p.p});renderCart();$('#pmAdd').textContent='Added \u2713';setTimeout(()=>{$('#pmAdd').textContent='Add to Cart';},1100);};
+  $('#pmBuy').onclick=function(){cart.push({t:p.t,p:p.p});renderCart();closeProduct();openCart();};
+  $('#pmodalbg').classList.add('open');document.body.style.overflow='hidden';
 }
-#guide-input:focus { border-color: rgba(56,189,248,0.4); }
-#guide-send {
-  background: linear-gradient(135deg,#38bdf8,#6366f1);
-  border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: 700;
-}
+function closeProduct(){$('#pmodalbg').classList.remove('open');document.body.style.overflow='';}
+$$('[data-open]').forEach(el=>el.addEventListener('click',()=>openProduct(+el.dataset.open)));
+$('#pmClose').onclick=closeProduct;
+$('#pmodalbg').onclick=e=>{if(e.target.id==='pmodalbg')closeProduct();};
+// favourites
+document.querySelectorAll('.fav').forEach(b=>{
+  b.addEventListener('click',e=>{
+    e.stopPropagation();
+    const id=b.dataset.fav;
+    if(favSet.has(id))favSet.delete(id);else favSet.add(id);
+    saveFavs();updateFavUI();
+    if(state.favOnly)apply();
+  });
+});
+$('#openFav').onclick=()=>{
+  state.favOnly=!state.favOnly;
+  $('#openFav').classList.toggle('on',state.favOnly);
+  $('#ptitle').textContent=state.favOnly?'My favourites':(state.cat==='All'?'All products':state.cat);
+  apply();
+};
+updateFavUI();
+renderCart();apply();
 
-/* Typing indicator */
-.gm-typing { display:flex; gap:4px; align-items:center; padding:6px 10px; }
-.gm-typing span {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #38bdf8; opacity: 0.4;
-  animation: gm-bounce 1.2s infinite;
-}
-.gm-typing span:nth-child(2) { animation-delay: 0.2s; }
-.gm-typing span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes gm-bounce {
-  0%,80%,100% { transform: translateY(0); opacity:0.4; }
-  40% { transform: translateY(-6px); opacity:1; }
-}
-
-@media(max-width:400px){
-  #guide-window { right:8px; bottom:80px; width:calc(100vw - 16px); }
-  #guide-fab { right:12px; bottom:16px; }
-}
-</style>
-
+// R200 meal voucher claim
+(function(){
+  var vm=document.getElementById('voucherModal');
+  if(!vm) return;
+  var open=document.getElementById('openVoucher');
+  if(open) open.addEventListener('click',function(){vm.hidden=false;});
+  document.querySelectorAll('[data-vclose]').forEach(function(b){b.addEventListener('click',function(){vm.hidden=true;});});
+  var sub=document.getElementById('vSubmit');
+  if(sub) sub.addEventListener('click',function(){
+    var o=document.getElementById('vOrder').value.trim();
+    var e=document.getElementById('vEmail').value.trim();
+    if(!o){document.getElementById('vOrder').focus();return;}
+    if(!e||e.indexOf('@')<1){document.getElementById('vEmail').focus();return;}
+    var msg=encodeURIComponent("Hi M&H Dynamic Tech, I'd like to claim my R200 meal voucher.\nOrder number: "+o+"\nEmail: "+e);
+    window.open('https://wa.me/27636110970?text='+msg,'_blank');
+    document.getElementById('vForm').hidden=true;
+    var done=document.getElementById('vDone');
+    done.hidden=false;
+    done.textContent="✓ Claim sent! Once we confirm your delivery, your R200 voucher will be emailed to "+e+".";
+  });
+})();
+</script>
 </body>
 </html>
