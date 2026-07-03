@@ -189,6 +189,8 @@ footer a:hover{color:#fff}
 .dhead button{background:none;border:0;font-size:26px;cursor:pointer;color:#fff;line-height:1}
 .ditems{flex:1;overflow-y:auto;padding:4px 20px}
 .ditem{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ditem .dimg{width:52px;height:52px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:8px;flex:none;padding:3px}
+.ditem .dinfo{flex:1;min-width:0}
 .ditem .nm{font-size:14px;font-weight:600}.ditem .pr{font-size:13px;color:var(--muted)}
 .ditem .rm{background:none;border:0;color:var(--save);cursor:pointer;font-size:12.5px;font-weight:600}
 .dempty{text-align:center;color:var(--muted);padding:50px 20px;font-size:14px}
@@ -1615,7 +1617,7 @@ function renderCart(){
   $('#cartCount').style.display=cart.length?'grid':'none';
   if(!cart.length){box.innerHTML='<div class="dempty">Your cart is empty.<br>Add devices to check out securely by card.</div>';$('#dfoot').style.display='none';return;}
   $('#dfoot').style.display='block';let total=0;
-  box.innerHTML=cart.map((i,ix)=>{total+=i.p;return `<div class="ditem"><div><div class="nm">${i.t}</div><div class="pr">${money(i.p)}</div></div><button class="rm" data-x="${ix}">Remove</button></div>`}).join('');
+  box.innerHTML=cart.map((i,ix)=>{total+=i.p;return `<div class="ditem"><img class="dimg" src="${i.img||''}" alt="" onerror="this.style.visibility='hidden'"><div class="dinfo"><div class="nm">${i.t}</div><div class="pr">${money(i.p)}</div></div><button class="rm" data-x="${ix}">Remove</button></div>`}).join('');
   $('#dsub').textContent=money(total);
   $('#ddel').textContent=money(DELIVERY_FEE);
   $('#dtotal').textContent=money(total+DELIVERY_FEE);
@@ -1701,8 +1703,8 @@ function openProduct(i){
   if(p.c&&p.c>p.p){sv.innerHTML='<span class="was">'+money(p.c)+'</span> <span class="savetag">Save '+money(p.c-p.p)+'</span>';}
   else{sv.innerHTML='';}
   $('#pmDesc').textContent=p.d||'No description available — message us on WhatsApp for full details.';
-  $('#pmAdd').onclick=function(){cart.push({t:p.t,p:p.p});renderCart();$('#pmAdd').textContent='Added \u2713';setTimeout(()=>{$('#pmAdd').textContent='Add to Cart';},1100);};
-  $('#pmBuy').onclick=function(){cart.push({t:p.t,p:p.p});renderCart();closeProduct();openCart();};
+  $('#pmAdd').onclick=function(){cart.push({t:p.t,p:p.p,img:p.img});renderCart();$('#pmAdd').textContent='Added \u2713';setTimeout(()=>{$('#pmAdd').textContent='Add to Cart';},1100);};
+  $('#pmBuy').onclick=function(){cart.push({t:p.t,p:p.p,img:p.img});renderCart();closeProduct();openCart();};
   $('#pmodalbg').classList.add('open');document.body.style.overflow='hidden';
 }
 function closeProduct(){$('#pmodalbg').classList.remove('open');document.body.style.overflow='';}
