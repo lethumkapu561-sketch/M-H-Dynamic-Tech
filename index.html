@@ -1629,6 +1629,7 @@ function renderCart(){
 $$('#grid .add').forEach(btn=>btn.addEventListener('click',()=>{
   if(btn.dataset.i===undefined)return;
   cart.push(PRODUCTS[+btn.dataset.i]);
+  if(typeof gtag==='function'){var _pa=PRODUCTS[+btn.dataset.i];gtag('event','add_to_cart',{currency:'ZAR',value:_pa.p,items:[{item_name:_pa.t}]});}
   btn.textContent='Added \u2713';btn.classList.add('added');
   setTimeout(()=>{btn.textContent='Add to Cart';btn.classList.remove('added')},1100);
   renderCart();openCart();
@@ -1641,11 +1642,12 @@ $('#payNow').onclick=function(){
   const email=($('#custEmail').value||'').trim();
   if(!email||email.indexOf('@')<1){$('#custEmail').focus();$('#custEmail').style.borderColor='#E0102B';return;}
   const total=cart.reduce((s,i)=>s+i.p,0)+DELIVERY_FEE;
+  if(typeof gtag==='function')gtag('event','begin_checkout',{currency:'ZAR',value:total});
   const items=cart.map(i=>i.t).join(', ');
   const h=PaystackPop.setup({
     key:PAYSTACK_KEY,email:email,amount:Math.round(total*100),currency:'ZAR',
     metadata:{custom_fields:[{display_name:'Items',variable_name:'items',value:items}]},
-    callback:function(resp){cart=[];renderCart();$('#ditems').innerHTML='<div class="dempty"><div style="font-size:34px;margin-bottom:8px">\u2705</div><b style="color:var(--ink)">Payment successful!</b><br><br>Reference:<br><b style="color:var(--ink)">'+resp.reference+'</b><br><br>Thank you for your order. We\'ll arrange delivery and be in touch shortly.</div>';},
+    callback:function(resp){if(typeof gtag==='function')gtag('event','purchase',{transaction_id:resp.reference,value:total,currency:'ZAR'});cart=[];renderCart();$('#ditems').innerHTML='<div class="dempty"><div style="font-size:34px;margin-bottom:8px">\u2705</div><b style="color:var(--ink)">Payment successful!</b><br><br>Reference:<br><b style="color:var(--ink)">'+resp.reference+'</b><br><br>Thank you for your order. We\'ll arrange delivery and be in touch shortly.</div>';},
     onClose:function(){}
   });
   h.openIframe();
@@ -1706,8 +1708,8 @@ function openProduct(i){
   if(p.c&&p.c>p.p){sv.innerHTML='<span class="was">'+money(p.c)+'</span> <span class="savetag">Save '+money(p.c-p.p)+'</span>';}
   else{sv.innerHTML='';}
   $('#pmDesc').textContent=p.d||'No description available — message us on WhatsApp for full details.';
-  $('#pmAdd').onclick=function(){cart.push({t:p.t,p:p.p,img:p.img});renderCart();$('#pmAdd').textContent='Added \u2713';setTimeout(()=>{$('#pmAdd').textContent='Add to Cart';},1100);};
-  $('#pmBuy').onclick=function(){cart.push({t:p.t,p:p.p,img:p.img});renderCart();closeProduct();openCart();};
+  $('#pmAdd').onclick=function(){cart.push({t:p.t,p:p.p,img:p.img});if(typeof gtag==='function')gtag('event','add_to_cart',{currency:'ZAR',value:p.p,items:[{item_name:p.t}]});renderCart();$('#pmAdd').textContent='Added \u2713';setTimeout(()=>{$('#pmAdd').textContent='Add to Cart';},1100);};
+  $('#pmBuy').onclick=function(){cart.push({t:p.t,p:p.p,img:p.img});if(typeof gtag==='function')gtag('event','add_to_cart',{currency:'ZAR',value:p.p,items:[{item_name:p.t}]});renderCart();closeProduct();openCart();};
   $('#pmodalbg').classList.add('open');document.body.style.overflow='hidden';
 }
 function closeProduct(){$('#pmodalbg').classList.remove('open');document.body.style.overflow='';}
