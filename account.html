@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your Account — M&amp;H Dynamic Tech</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#04122B;--ink:#11223A;--muted:#5B6B7E;--line:#E3E8EF;--surface:#F1F3F6;--blue:#0E63D6;--blue-deep:#0A4DAB;--sky:#2E9BE6;--green:#1B9E63;--save:#E0102B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--surface);color:var(--ink);min-height:100vh}
+header{background:var(--navy);padding:14px 18px;display:flex;align-items:center;gap:14px}
+header a.logo{color:#fff;font-weight:800;font-size:18px}header a.logo b{color:var(--sky)}
+header a.back{margin-left:auto;color:#cfe0f2;font-size:14px;text-decoration:none}
+.wrap{max-width:420px;margin:40px auto;padding:0 18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 30px rgba(17,34,58,.07);padding:28px}
+.tabs{display:flex;gap:6px;background:var(--surface);border-radius:10px;padding:5px;margin-bottom:20px}
+.tabs button{flex:1;border:0;background:none;padding:10px;border-radius:8px;font-family:inherit;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer}
+.tabs button.on{background:#fff;color:var(--navy);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+h1{font-size:20px;font-weight:800;margin-bottom:4px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:700;margin:0 0 6px}
+input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;font-size:14px;font-family:inherit;margin-bottom:14px;outline:none}
+input:focus{border-color:var(--blue)}
+button.primary{width:100%;background:var(--blue);color:#fff;border:0;border-radius:10px;padding:14px;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit}
+button.primary:hover{background:var(--blue-deep)}
+.msg{font-size:13.5px;border-radius:9px;padding:11px 13px;margin-bottom:14px;display:none}
+.msg.err{background:#FDECEE;color:#9A1220;border:1px solid #F3C0C6;display:block}
+.msg.ok{background:#E8F7EF;color:#155e3b;border:1px solid #BFE6CF;display:block}
+.me{text-align:center}
+.me .avatar{width:66px;height:66px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:26px;font-weight:800;margin:0 auto 14px}
+.me h2{font-size:19px;margin-bottom:2px}.me p{color:var(--muted);font-size:14px;margin-bottom:20px}
+button.logout{width:100%;background:#fff;color:var(--save);border:1.5px solid var(--save);border-radius:10px;padding:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.hint{font-size:12px;color:var(--muted);text-align:center;margin-top:16px}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">M&amp;H <b>Dynamic Tech</b></a>
+  <a class="back" href="index.html">← Back to store</a>
+</header>
+
+<div class="wrap">
+  <div class="card">
+    <!-- Logged-out view -->
+    <div id="authView">
+      <div class="tabs">
+        <button id="tabLogin" class="on" onclick="switchTab('login')">Log in</button>
+        <button id="tabReg" onclick="switchTab('register')">Sign up</button>
+      </div>
+      <div id="msg" class="msg"></div>
+
+      <div id="loginForm">
+        <h1>Welcome back</h1>
+        <p class="sub">Log in to your M&amp;H Dynamic Tech account.</p>
+        <label>Email</label>
+        <input id="lEmail" type="email" placeholder="you@email.com" autocomplete="email">
+        <label>Password</label>
+        <input id="lPass" type="password" placeholder="Your password" autocomplete="current-password">
+        <button class="primary" onclick="login()">Log in</button>
+      </div>
+
+      <div id="registerForm" style="display:none">
+        <h1>Create your account</h1>
+        <p class="sub">Sign up to shop faster at M&amp;H Dynamic Tech.</p>
+        <label>Name</label>
+        <input id="rName" type="text" placeholder="Your name" autocomplete="name">
+        <label>Email</label>
+        <input id="rEmail" type="email" placeholder="you@email.com" autocomplete="email">
+        <label>Password</label>
+        <input id="rPass" type="password" placeholder="At least 6 characters" autocomplete="new-password">
+        <button class="primary" onclick="register()">Create account</button>
+      </div>
+    </div>
+
+    <!-- Logged-in view -->
+    <div id="meView" style="display:none">
+      <div class="me">
+        <div class="avatar" id="avatar">M</div>
+        <h2 id="meName">Your name</h2>
+        <p id="meEmail">you@email.com</p>
+        <button class="logout" onclick="logout()">Log out</button>
+      </div>
+    </div>
+    <div class="hint">🔒 Your password is encrypted and never stored in plain text.</div>
+  </div>
+</div>
+
+<script>
+// ====== IMPORTANT: paste your Railway backend URL here ======
+// After you deploy on Railway and "Generate Domain", it looks like:
+//   https://mh-backend-production.up.railway.app
+const API_BASE = "PASTE_YOUR_RAILWAY_URL_HERE";
+// ============================================================
+
+function $(id){return document.getElementById(id);}
+function showMsg(text,type){var m=$('msg');m.textContent=text;m.className='msg '+type;}
+function clearMsg(){var m=$('msg');m.className='msg';m.textContent='';}
+function switchTab(which){
+  clearMsg();
+  var login=which==='login';
+  $('tabLogin').classList.toggle('on',login);
+  $('tabReg').classList.toggle('on',!login);
+  $('loginForm').style.display=login?'':'none';
+  $('registerForm').style.display=login?'none':'';
+}
+function saveSession(data){ localStorage.setItem('mh_token',data.token); localStorage.setItem('mh_user',JSON.stringify(data.user)); showMe(data.user); }
+function showMe(user){
+  $('authView').style.display='none';
+  $('meView').style.display='';
+  $('meName').textContent=user.name||'Your account';
+  $('meEmail').textContent=user.email;
+  $('avatar').textContent=(user.name||user.email||'M').charAt(0).toUpperCase();
+}
+async function api(pathname,method,body,token){
+  var res=await fetch(API_BASE+pathname,{
+    method:method,
+    headers:Object.assign({'Content-Type':'application/json'},token?{'Authorization':'Bearer '+token}:{}),
+    body:body?JSON.stringify(body):undefined
+  });
+  var data=await res.json().catch(function(){return {};});
+  if(!res.ok) throw new Error(data.error||'Something went wrong. Please try again.');
+  return data;
+}
+async function register(){
+  clearMsg();
+  try{
+    var d=await api('/api/register','POST',{name:$('rName').value,email:$('rEmail').value,password:$('rPass').value});
+    saveSession(d);
+  }catch(e){ showMsg(e.message,'err'); }
+}
+async function login(){
+  clearMsg();
+  try{
+    var d=await api('/api/login','POST',{email:$('lEmail').value,password:$('lPass').value});
+    saveSession(d);
+  }catch(e){ showMsg(e.message,'err'); }
+}
+async function logout(){
+  var token=localStorage.getItem('mh_token');
+  try{ await api('/api/logout','POST',null,token); }catch(e){}
+  localStorage.removeItem('mh_token'); localStorage.removeItem('mh_user');
+  $('meView').style.display='none'; $('authView').style.display='';
+  switchTab('login'); showMsg('You have been logged out.','ok');
+}
+// On load: if we have a token, confirm it's still valid
+(async function(){
+  var token=localStorage.getItem('mh_token');
+  if(!token) return;
+  try{ var d=await api('/api/me','GET',null,token); showMe(d.user); }
+  catch(e){ localStorage.removeItem('mh_token'); localStorage.removeItem('mh_user'); }
+})();
+</script>
+</body>
+</html>
