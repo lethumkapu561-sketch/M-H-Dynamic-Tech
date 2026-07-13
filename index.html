@@ -287,9 +287,15 @@ footer a:hover{color:#fff}
   footer .cols{grid-template-columns:1fr 1fr}
 }
 @media(max-width:620px){
-  .hbar{flex-wrap:wrap;gap:12px}
-  .searchwrap{order:3;flex-basis:100%;max-width:none}
+  .hbar{flex-wrap:wrap;gap:10px;row-gap:12px}
+  .searchwrap{order:3;flex-basis:100%;max-width:none;min-width:0}
+  .searchwrap input{min-width:0;font-size:14px;padding:12px 13px}
+  .searchwrap button{font-size:0;gap:0;padding:0 16px}
+  .searchwrap button svg{width:18px;height:18px}
+  .hactions{margin-left:auto;gap:10px}
   .hactions .hact{display:none}
+  .cartbtn{padding:9px 12px;font-size:0;gap:0}
+  .cartbtn svg{width:20px;height:20px}
   .grid{grid-template-columns:repeat(2,1fr);gap:10px}
   .grid.list .card{flex-direction:column}
   .grid.list .imgwrap{width:100%}
