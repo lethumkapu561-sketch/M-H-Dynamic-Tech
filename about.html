@@ -45,6 +45,16 @@ header{background:var(--navy);position:sticky;top:0;z-index:30}
 footer{background:var(--navy);color:#9FB8D4;padding:30px 18px;font-size:13px;text-align:center;margin-top:46px}
 footer a{color:#cfe0f2}
 @media(max-width:560px){.values{grid-template-columns:1fr}.hero h1{font-size:27px}.card{padding:24px}}
+
+.founder{display:grid;grid-template-columns:186px 1fr;gap:24px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:6px}
+.fphoto img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;display:block;box-shadow:0 6px 20px rgba(4,18,43,.16)}
+.fbody h3{font-size:20px;font-weight:800;margin:0 0 4px}
+.frole{display:inline-block;background:var(--sky-soft);color:var(--blue-deep);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:999px;margin-bottom:14px}
+.fbody p{color:#2C3A4C;margin-bottom:12px;font-size:14.5px}
+.fquote{border-left:3px solid var(--sky);background:#fff;margin:16px 0 14px;padding:13px 16px;border-radius:0 10px 10px 0;font-style:italic;color:var(--navy);font-size:14.5px}
+.fwa{display:inline-block;background:var(--navy);color:#fff;border-radius:10px;padding:11px 17px;font-size:14px;font-weight:600}
+.fwa:hover{background:var(--navy2);text-decoration:none}
+@media(max-width:620px){.founder{grid-template-columns:1fr;gap:16px;padding:18px}.fphoto img{max-width:210px;margin:0 auto}}
 </style>
 </head>
 <body>
@@ -66,6 +76,23 @@ footer a{color:#cfe0f2}
 
     <h2>What we do</h2>
     <p>Every device we list is hand-selected and tested before it reaches you. We focus on dependable, well-known brands — Apple, HP, Dell, Lenovo and more — so you get real performance and long-term value, not a gamble. From students and remote workers to small businesses, our goal is simple: get great tech into your hands at a price that makes sense.</p>
+
+
+    <h2>Meet the founder</h2>
+    <div class="founder">
+      <div class="fphoto">
+        <img src="founder-wongalethu.jpg" alt="Wongalethu Mkapu, founder of M&amp;H Dynamic Tech">
+      </div>
+      <div class="fbody">
+        <h3>Wongalethu Mkapu</h3>
+        <span class="frole">Founder &amp; Owner</span>
+        <p>M&amp;H Dynamic Tech started with one conviction: that premium technology &mdash; the kind that helps people study, work and build &mdash; shouldn&rsquo;t be out of reach for the people who need it most.</p>
+        <p>A young South African entrepreneur, Wongalethu founded M&amp;H Dynamic Tech to close that gap. He knows first-hand what a reliable laptop or phone unlocks: a student who submits on time, a freelancer who lands the job, a small business that finally runs properly. So instead of chasing quick sales, he built this store around trust &mdash; hand-selecting every device, testing it, certifying it, and standing behind it with a warranty.</p>
+        <p>He stays personally involved in every order that leaves M&amp;H Dynamic Tech, from sourcing the device to making sure it reaches your door safely. If you message the store, you&rsquo;re talking to the founder himself.</p>
+        <blockquote class="fquote">&ldquo;Smart Tech, Real Value isn&rsquo;t just our tagline &mdash; it&rsquo;s the promise I make to every customer.&rdquo;</blockquote>
+        <a class="fwa" href="https://wa.me/27636110970">&#128172; Chat with Wongalethu</a>
+      </div>
+    </div>
 
     <h2>Why shop with us</h2>
     <div class="values">
